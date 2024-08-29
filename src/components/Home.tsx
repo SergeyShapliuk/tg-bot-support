@@ -2,6 +2,7 @@ import {useEffect, useMemo, useState} from "react";
 import Countdown from "react-countdown";
 import {useTelegram} from "../hooks/useTelegram";
 
+
 function Home() {
     const {user} = useTelegram();
     const [isCountdown, setIsCountdown] = useState<boolean>(true);
@@ -10,7 +11,7 @@ function Home() {
     const countdownDate = useMemo(() => Date.now() + 28800000, []);
 
     useEffect(() => {
-        let interval;
+        let interval: number;
 
         if (!isCountdown) {
             interval = setInterval(() => {
@@ -26,7 +27,7 @@ function Home() {
 
     const Completionist = () => <span>You are good to go!</span>;
 
-    const renderer = ({hours, minutes, seconds, completed}) => {
+    const renderer = ({hours, minutes, completed}: any) => {
         if (completed) {
             // Render a completed state
             return <Completionist/>;

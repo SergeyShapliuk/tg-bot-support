@@ -1,6 +1,4 @@
-import {a} from "vite/dist/node/types.d-aGj9QkWt";
-
-interface TelegramWebApp {
+export interface TelegramWebApp {
     initData: string;
     initDataUnsafe: {
         user?: {
@@ -77,7 +75,7 @@ interface TelegramWebApp {
     ready(): void;
 }
 
-interface Telegram {
+export interface Telegram {
     WebApp: TelegramWebApp;
 }
 
