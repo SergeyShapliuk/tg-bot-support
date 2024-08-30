@@ -4,7 +4,7 @@ import {useTelegram} from "../hooks/useTelegram";
 
 
 function Home() {
-    const {user, chatId} = useTelegram();
+    const {user} = useTelegram();
     const [isCountdown, setIsCountdown] = useState<boolean>(true);
     const [count, setCount] = useState<number>(0);
     const [points, setPoints] = useState<number>(0);
