@@ -15,7 +15,7 @@ function Home() {
         const getPoints = async () => {
             // console.log("useEffect");
             // const response = await fetch("http://localhost:8000/points/?chatId=909630753");
-            const response = await fetch(`http://78.155.197.92:8000/points/?chatId=${chatId}`);
+            const response = await fetch(`https://78.155.197.92:8000/points/?chatId=${chatId}`);
             const data = await response.json();
             if (data?.points) setPoints(data.points);
             // console.log("res", data);
@@ -42,7 +42,7 @@ function Home() {
     const setUserPoints = async (points: number) => {
         try {
             // await fetch("http://localhost:8000/set-points/", {
-            await fetch("http://78.155.197.92:8000/set-points/", {
+            await fetch("https://78.155.197.92:8000/set-points/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
