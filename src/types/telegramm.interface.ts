@@ -20,6 +20,7 @@ export interface TelegramWebApp {
         };
         auth_date: number;
         hash: string;
+        query_id?: any;
     };
     version: string;
     platform: string;
