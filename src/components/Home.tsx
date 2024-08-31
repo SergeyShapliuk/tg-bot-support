@@ -4,7 +4,7 @@ import {useTelegram} from "../hooks/useTelegram";
 
 
 function Home() {
-    const {user} = useTelegram();
+    const {tg, user} = useTelegram();
     const [isCountdown, setIsCountdown] = useState<boolean>(true);
     const [count, setCount] = useState<number>(0);
     const [points, setPoints] = useState<number>(0);
@@ -41,6 +41,7 @@ function Home() {
 
     const setUserPoints = async (points: number) => {
         try {
+            await tg.sendData(JSON.stringify(points));
             // await fetch("http://localhost:8000/set-points/", {
             await fetch("https://78.155.197.92:8000/set-points/", {
                 method: "POST",
@@ -48,7 +49,7 @@ function Home() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    chatId:'909630753',
+                    chatId: "909630753",
                     points
                 })
             });
