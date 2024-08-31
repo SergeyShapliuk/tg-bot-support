@@ -7,21 +7,25 @@ import Home from "./components/Home";
 import Tasks from "./components/Tasks";
 import Friends from "./components/Friends";
 import {useEffect} from "react";
-import {useTelegram} from "./hooks/useTelegram";
+// import {useTelegram} from "./hooks/useTelegram";
+import {initInitData} from "@telegram-apps/sdk";
 
 
 function App() {
-    const {tg} = useTelegram();
+    // const {tg} = useTelegram();
+    const initDatas = initInitData();
+    console.log('innit',initDatas)
     useEffect(() => {
-        tg.ready();
+        // tg.ready();
         setTimeout(() => {
-            console.log("tg:", tg);
+            // console.log("tg:", tg);
         }, 500);
     }, []);
 
 
     return (
         <div style={{position: "relative", width: "100vw", height: "100vh"}}>
+            {JSON.stringify(initDatas)}
             <Routes>
                 <Route index element={<Home/>}/>
                 <Route path={"home"} element={<Home/>}/>

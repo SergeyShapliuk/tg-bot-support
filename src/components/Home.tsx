@@ -1,24 +1,25 @@
 import {useEffect, useMemo, useState} from "react";
 import Countdown from "react-countdown";
-import {useTelegram} from "../hooks/useTelegram";
+// import {useTelegram} from "../hooks/useTelegram";
 
 
 function Home() {
-    const {user} = useTelegram();
+    // const {tg,user} = useTelegram();
     const [isCountdown, setIsCountdown] = useState<boolean>(true);
     const [count, setCount] = useState<number>(0);
-    const [points, setPoints] = useState<number>(0);
+    const [points] = useState<number>(0);
 
     const countdownDate = useMemo(() => Date.now() + 28800000, []);
 
     useEffect(() => {
         const getPoints = async () => {
             // console.log("useEffect");
+            // const p = await tg.CloudStorage.getItem('points')
             // const response = await fetch("http://localhost:8000/points/?chatId=909630753");
-            const response = await fetch(`http://78.155.197.92:8000/points/?chatId=909630753`);
-            const data = await response.json();
-            if (data?.points) setPoints(data.points);
-            // console.log("res", data);
+            // // const response = await fetch(`http://78.155.197.92:8000/points/?chatId=909630753`);
+            // const data = await response.json();
+            // if (data?.points) setPoints(data.points);
+            // console.log("localStorage", p);
             // console.log("user", user);
         };
         getPoints().then();
@@ -41,17 +42,18 @@ function Home() {
 
     const setUserPoints = async (points: number) => {
         try {
+            await localStorage.setItem("points", JSON.stringify(points));
             // await fetch("http://localhost:8000/set-points/", {
-            await fetch("http://78.155.197.92:8000/set-points", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    chatId: "909630753",
-                    points
-                })
-            });
+            // // await fetch("http://78.155.197.92:8000/set-points", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     },
+            //     body: JSON.stringify({
+            //         chatId: "909630753",
+            //         points
+            //     })
+            // });
         } catch (e) {
             console.log("Ошибка в отправке points", e);
         }
@@ -80,7 +82,7 @@ function Home() {
     return (
         <>
             <div style={{position: "relative", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                <p style={{flex: 1, fontSize: 34}}>{user ? user : "-----"}</p>
+                {/*<p style={{flex: 1, fontSize: 34}}>{user ? user : "-----"}</p>*/}
                 <p style={{position: "absolute", right: 10, paddingRight: "10px", fontSize: 24}}>&#8383; {points}</p>
             </div>
             <img
