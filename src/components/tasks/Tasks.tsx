@@ -6,7 +6,7 @@ import classes from "./Tasks.module.css";
 
 const list = [
     {icon: instagram, title: "Follow +100sd", link: ""},
-    {icon: telegram, title: "Follow +100sd", link: ""},
+    {icon: telegram, title: "Follow +100sd", link: "https://t.me/sup_durov"},
     {icon: discord, title: "Follow +100sd", link: ""}
 ];
 
@@ -44,15 +44,15 @@ function Friends() {
                                 <p style={{paddingLeft: 20}}>{item.title}</p>
                             </div>
                             <div>
-                                <button style={{
+                                <a style={{
                                     height: 45,
                                     paddingLeft: 10,
                                     paddingRight: 10,
                                     color: "white",
                                     backgroundColor: "#282828",
                                     fontSize: 16
-                                }}>start
-                                </button>
+                                }} href={item.link} target="_blank"
+                                   rel="noopener noreferrer">Start</a>
                             </div>
                         </div>
                     </div>

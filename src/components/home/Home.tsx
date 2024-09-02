@@ -30,7 +30,7 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        let interval: number;
+        let interval: any;
 
         if (!isCountdown) {
             interval = setInterval(() => {
@@ -92,9 +92,9 @@ function Home() {
                     // fontFamily:'sans-serif',
                     fontSize: 24,
                     fontWeight: 600,
-                    maxWidth: '100%', // Ограничивает ширину
-                    wordWrap: 'break-word', // Переносит текст на новую строку,
-                    padding:'1em'
+                    maxWidth: "100%", // Ограничивает ширину
+                    wordWrap: "break-word", // Переносит текст на новую строку,
+                    padding: "1em"
                 }}>{initData?.user?.username ? initData.user.username : "-----"}lkjlkjlkjlkjlkjlkjlkjlkjlkjkjlkjlkj
                 </div>
                 {/*<p style={{position: "absolute", right: 10, paddingRight: "10px", fontSize: 24}}>&#8383; {points}</p>*/}
