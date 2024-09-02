@@ -95,7 +95,7 @@ function Home() {
                     maxWidth: "100%", // Ограничивает ширину
                     wordWrap: "break-word", // Переносит текст на новую строку,
                     padding: "1em"
-                }}>{initData?.user?.username ? initData.user.username : "-----"}lkjlkjlkjlkjlkjlkjlkjlkjlkjkjlkjlkj
+                }}>{initData?.user?.username ? initData.user.username : "-----"}
                 </div>
                 {/*<p style={{position: "absolute", right: 10, paddingRight: "10px", fontSize: 24}}>&#8383; {points}</p>*/}
                 <div style={{fontSize: 27, fontWeight: 600}}>&#8383; {points}</div>

@@ -43,15 +43,15 @@ function Friends() {
                                 <img src={item.icon} alt={"Icon"}/>
                                 <p style={{paddingLeft: 20}}>{item.title}</p>
                             </div>
-                            <div>
-                                <a style={{
-                                    height: 45,
-                                    paddingLeft: 10,
-                                    paddingRight: 10,
-                                    color: "white",
-                                    backgroundColor: "#282828",
-                                    fontSize: 16
-                                }} href={item.link} target="_blank"
+                            <div style={{
+                                height: 45,
+                                paddingLeft: 10,
+                                paddingRight: 10,
+                                color: "white",
+                                backgroundColor: "#282828",
+                                fontSize: 16
+                            }}>
+                                <a href={item.link} target="_blank"
                                    rel="noopener noreferrer">Start</a>
                             </div>
                         </div>
