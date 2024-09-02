@@ -1,0 +1,119 @@
+.main {
+    height: 100vh;
+    padding: 1em;
+    overflow: auto;
+}
+
+.title {
+    font-size: 34px;
+    font-weight: 500;
+    text-align: center;
+    padding: 1em;
+}
+
+.subTitle {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: start;
+}
+
+.description {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /*padding-top: 1em;*/
+    gap: 1.5em;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/*.item::before {*/
+/*    content: "";*/
+/*    border-radius: 50%;*/
+/*    height: 10px; !* Changed *!*/
+/*    width: 10px; !* Changed *!*/
+/*    background-color: white;*/
+/*    position: absolute; !* Added *!*/
+/*    left: 0; !* Added *!*/
+/*}*/
+.circleContainer {
+    position: relative;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    margin-right: 10px;
+}
+
+.circle {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 1
+}
+
+/*.circle:first-child {*/
+/*    margin-top: 0*/
+/*}*/
+
+.circle:before {
+    content: '';
+    position: absolute;
+    width: 2px; /* толщина линии */
+    height: 100%; /* длина линии - половина высоты круга */
+    background-color: #FFFFFF;
+    left: 40%; /* центрирование линии относительно круга */
+    top: 100%; /* начало линии от нижнего края круга */
+    z-index: -1;
+}
+
+.circle:after {
+    content: '';
+    position: absolute;
+    width: 2px; /* толщина линии */
+    height: 100%; /* длина линии - половина высоты круга */
+    background-color: #FFFFFF;
+    left: 40%; /* центрирование линии относительно круга */
+    bottom: 100%; /* начало линии от верхнего края круга */
+    z-index: -1;
+}
+
+/*.circle:first-of-type:after {*/
+/*    display: none; !* убирает верхнюю линию для первого круга *!*/
+/*}*/
+
+/*.circle:last-of-type:before {*/
+/*    display: none; !* убирает нижнюю линию для последнего круга *!*/
+/*}*/
+/*.item::before {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    !*bottom: 0;*!*/
+/*    left: 8px;*/
+/*    width: 2px;*/
+/*    height: 100%;*/
+/*    background-color: #FFFFFF; !* Цвет линии *!*/
+/*    z-index: 0;*/
+/*}*/
+
+.inviteButton {
+    width: 100%;
+    height: 70px;
+    border-radius: 8px;
+    /*border: 1px solid transparent;*/
+    margin-top: 3em;
+    font-size: 1.4em;
+    font-weight: 500;
+    font-family: inherit;
+    letter-spacing: inherit;
+    color: #000000;
+    cursor: pointer;
+    background-color: #FFFFFF;
+}
+

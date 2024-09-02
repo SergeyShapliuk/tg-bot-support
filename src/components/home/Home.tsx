@@ -1,6 +1,7 @@
 import {useEffect, useMemo, useState} from "react";
 import Countdown from "react-countdown";
 import {initCloudStorage, initInitData} from "@telegram-apps/sdk";
+import classes from "./Home.module.css";
 
 
 function Home() {
@@ -84,24 +85,37 @@ function Home() {
         }
     };
     return (
-        <>
-            <div style={{position: "relative", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                <p style={{flex: 1, fontSize: 34}}>{initData?.user?.username ? initData.user.username : "-----"}</p>
-                <p style={{position: "absolute", right: 10, paddingRight: "10px", fontSize: 24}}>&#8383; {points}</p>
+        <div className={classes.main}>
+            <div style={{textAlign: "center"}}>
+                <div style={{
+                    // flex: 1,
+                    // fontFamily:'sans-serif',
+                    fontSize: 24,
+                    fontWeight: 600,
+                    maxWidth: '100%', // Ограничивает ширину
+                    wordWrap: 'break-word', // Переносит текст на новую строку,
+                    padding:'1em'
+                }}>{initData?.user?.username ? initData.user.username : "-----"}lkjlkjlkjlkjlkjlkjlkjlkjlkjkjlkjlkj
+                </div>
+                {/*<p style={{position: "absolute", right: 10, paddingRight: "10px", fontSize: 24}}>&#8383; {points}</p>*/}
+                <div style={{fontSize: 27, fontWeight: 600}}>&#8383; {points}</div>
             </div>
-            <img
-                src={"https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_66cb251a38922e1b53f17b2a_66cb2726a927611e52d8e8fa/scale_1200"}
-                className="image" alt="Image"/>
-            <div className="card">
-                {isCountdown ? <button style={{}} onClick={() => setIsCountdown(false)}>
-                    Start
+            <div className={classes.imageBlock}>
+                <img
+                    src={"https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_66cb251a38922e1b53f17b2a_66cb2726a927611e52d8e8fa/scale_1200"}
+                    className={classes.image} alt="Image"/>
+            </div>
+
+            <div className={classes.buttons}>
+                {isCountdown ? <button className={classes.unActive} onClick={() => setIsCountdown(false)}>
+                    Start farming
                 </button> : <button onClick={() => {
                     setIsCountdown(true);
                     setUserPoints(count).then();
                 }}><Timer countdownDate={countdownDate}
                           renderer={renderer}/></button>}
             </div>
-        </>
+        </div>
     );
 }
 
