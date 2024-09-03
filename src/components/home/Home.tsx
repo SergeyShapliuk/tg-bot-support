@@ -1,22 +1,49 @@
 import {useEffect, useMemo, useState} from "react";
 import Countdown from "react-countdown";
-import {initCloudStorage, initInitData} from "@telegram-apps/sdk";
+import {initInitData} from "@telegram-apps/sdk";
 import classes from "./Home.module.css";
 
 
 function Home() {
     const initData = initInitData();
-    const cloudStorage = initCloudStorage();
+    // const cloudStorage = initCloudStorage();
     const [isCountdown, setIsCountdown] = useState<boolean>(true);
     const [count, setCount] = useState<number>(0);
     const [points, setPoints] = useState<number>(0);
+    const [complete, setComplete] = useState<boolean>(false);
+    const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+    console.log("count", count);
+    console.log("points", points);
+    console.log("isCountdown", isCountdown);
+    const countdownDate = useMemo(() => {
+        // localStorage.clear()
+        const savedEndTime = parseInt(localStorage.getItem("countdownEndTime") || "0", 10);
+        const now = Date.now();
 
-    const countdownDate = useMemo(() => Date.now() + 28800000, []);
+        if (savedEndTime && savedEndTime > now) {
+            setIsCountdown(false);
+            return savedEndTime;
+        } else {
+            if (isCountdown) return;
+
+            const newEndTime = now + 8 * 60 * 60 * 1000; // 8 часов в миллисекундах
+            // const newEndTime = now +  5000; // 8 часов в миллисекундах
+            localStorage.setItem("countdownEndTime", newEndTime.toString());
+            return newEndTime;
+        }
+    }, [isCountdown]);
+
+
+    // Сохраняем значение count и время последнего обновления при его изменении
+    // useEffect(() => {
+    //     localStorage.setItem("count", count.toString());
+    //     localStorage.setItem("lastUpdate", Date.now().toString());
+    // }, [count]);
 
     useEffect(() => {
         const getPoints = async () => {
-            const userPoints = await cloudStorage.get("points");
-            if (userPoints) setPoints(Number(userPoints));
+            // const userPoints = await cloudStorage.get("points");
+            // if (userPoints) setPoints(Number(userPoints));
             // console.log("useEffect");
             // const p = await tg.CloudStorage.getItem('points')
             // const response = await fetch("http://localhost:8000/points/?chatId=909630753");
@@ -30,23 +57,44 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        let interval: any;
+        console.log("useeffect ");
+        const now = Date.now();
+        const savedEndTime = parseInt(localStorage.getItem("countdownEndTime") || "0", 10);
 
+        if (savedEndTime <= now) {
+            setCount(prevCount => prevCount + Math.floor((now - savedEndTime) / 3000));
+            setIsCountdown(true);
+        } else {
+            const elapsed = Math.floor((now - (savedEndTime - 8 * 60 * 60 * 1000)) / 3000);
+            // const elapsed = Math.floor((now - (savedEndTime -  5000)) / 3000);
+            setCount(elapsed);
+        }
+    }, []);
+
+    useEffect(() => {
         if (!isCountdown) {
-            interval = setInterval(() => {
+            const id = setInterval(() => {
                 setCount(prevCount => prevCount + 1);
+                localStorage.setItem("count", (count + 1).toString());
             }, 3000);
+            setIntervalId(id);
+        } else {
+            if (intervalId) clearInterval(intervalId);
         }
 
-        // Очистка интервала при размонтировании компонента или при изменении isCountdown
         return () => {
-            if (interval) clearInterval(interval);
+            if (intervalId) clearInterval(intervalId);
         };
     }, [isCountdown]);
 
-    const setUserPoints = async (points: number) => {
+    const setUserPoints = async (farmingPoints: number) => {
         try {
-            await cloudStorage.set("points", JSON.stringify(points));
+            setPoints(farmingPoints);
+            setComplete(false);
+            setCount(0);
+            localStorage.removeItem("complete");
+            localStorage.removeItem("count");
+            // await cloudStorage.set("points", JSON.stringify(points));
             // await localStorage.setItem("points", JSON.stringify(points));
             // await fetch("http://localhost:8000/set-points/", {
             // // await fetch("http://78.155.197.92:8000/set-points", {
@@ -65,12 +113,14 @@ function Home() {
 
     };
 
-    const Completionist = () => <span>You are good to go!</span>;
+    // const Completionist = () => <button onClick={() => setUserPoints(count)}>Claim</button>;
 
-    const renderer = ({hours, minutes, completed}: any) => {
+    const renderer = ({hours, minutes, seconds, completed}: any) => {
         if (completed) {
-            // Render a completed state
-            return <Completionist/>;
+            setIsCountdown(true);
+            setComplete(true);
+            localStorage.setItem("complete", "true");
+            // return <Completionist/>;
         } else {
             // Render a countdown
             // setCount(prevState => prevState+1)
@@ -81,7 +131,7 @@ function Home() {
                     right: 0,
                     paddingRight: "10px",
                     fontSize: 16
-                }}>{hours}h {minutes}m</span></span></div>;
+                }}>{hours}h {minutes}m{seconds}</span></span></div>;
         }
     };
     return (
@@ -107,13 +157,14 @@ function Home() {
             </div>
 
             <div className={classes.buttons}>
-                {isCountdown ? <button className={classes.unActive} onClick={() => setIsCountdown(false)}>
+                {isCountdown && !complete && <button className={classes.unActive} onClick={() => setIsCountdown(false)}>
                     Start farming
-                </button> : <button onClick={() => {
-                    setIsCountdown(true);
-                    setUserPoints(count).then();
-                }}><Timer countdownDate={countdownDate}
-                          renderer={renderer}/></button>}
+                </button>}
+                {!isCountdown && !complete && < button disabled><Timer countdownDate={countdownDate}
+                                                                       renderer={renderer}/></button>}
+                {complete && <button className={classes.unActive} onClick={() => setUserPoints(count)}>
+                    Claim
+                </button>}
             </div>
         </div>
     );

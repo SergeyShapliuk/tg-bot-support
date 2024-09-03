@@ -17,6 +17,17 @@
     /*text-align: center;*/
 }
 
+.nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #171717;
+    padding: 10px;
+    box-sizing: border-box
+}
+
 /*.logo {*/
 /*    height: 4em;*/
 /*    padding: 1.5em;*/

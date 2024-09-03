@@ -1,4 +1,5 @@
 import classes from "./Friends.module.css";
+import MemoInviteIcon from "../svg/InviteFriends";
 
 
 const listInvite = [
@@ -11,18 +12,19 @@ function Friends() {
 
     return (
         <div className={classes.main}>
+            <MemoInviteIcon/>
             <div className={classes.title}>Invite friends. Earn a points.</div>
             <div className={classes.subTitle}>How it works</div>
             <div className={classes.description}>
                 {listInvite.map((item, index) => (
                     <div key={index} className={classes.item}>
                         {/*<div className={classes.circleContainer}>*/}
-                        <div className={classes.circle}/>
-                            {/*{index < listInvite.length - 1 && <div className={classes.line}/>}*/}
+                        {/*<div className={classes.circle}/>*/}
+                        {/*{index < listInvite.length - 1 && <div className={classes.line}/>}*/}
                         {/*{item.title}*/}
-                            <div style={{paddingLeft: 50}}>
-                                <div style={{fontSize: 19}}>{item.title}</div>
-                                <div style={{fontSize: 16}}>{item.subTitle}</div>
+                        <div style={{paddingLeft: 50}}>
+                            <div style={{fontSize: 19}}>{item.title}</div>
+                            <div style={{fontSize: 16}}>{item.subTitle}</div>
                             {/*</div>*/}
                         </div>
                     </div>
