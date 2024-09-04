@@ -117,7 +117,15 @@ function Friends() {
                             marginTop: 25,
                             backgroundColor: "#282828"
                         }}>{getButtonText(state)}</button>
-                        <div style={{height: 50, color: "#fff", fontSize: 19, marginTop: 25}}>Close</div>
+                        <button onClick={() => setOpen(false)}
+                                style={{
+                                    height: 50,
+                                    color: "#fff",
+                                    fontSize: 19,
+                                    marginTop: 25,
+                                    backgroundColor: "transparent"
+                                }}>Close
+                        </button>
                     </Sheet.Scroller>
                 </Sheet.Container>
                 <Sheet.Backdrop style={{backgroundColor: "#00000099"}}/>
