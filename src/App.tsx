@@ -6,18 +6,25 @@ import Friends from "./components/friends/Friends";
 import MemoHomeIcon from "./components/svg/HomeIcon";
 import MemoTasksIcon from "./components/svg/TasksIcon";
 import MemoFriendsIcon from "./components/svg/FriendsIcon";
+import {useEffect} from "react";
+import {initViewport} from "@telegram-apps/sdk";
 
 
 function App() {
+    const [viewport] = initViewport();
     // // const {tg} = useTelegram();
     // const initDatas = initInitData();
     // console.log('innit',initDatas)
-    // useEffect(() => {
-    //     // tg.ready();
-    //     setTimeout(() => {
-    //         // console.log("tg:", tg);
-    //     }, 500);
-    // }, []);
+    useEffect(() => {
+        // tg.ready();
+        const expand = async () => {
+            const vp = await viewport;
+            if (!vp.isExpanded) {
+                vp.expand();
+            }
+        };
+        expand().then();
+    }, []);
 
 
     return (

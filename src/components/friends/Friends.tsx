@@ -22,10 +22,6 @@ function Friends() {
     const [isOpen, setOpen] = useState<boolean>(false);
     const [state, setState] = useState<ShareState>("pending");
 
-    const handleOnClick = async () => {
-        await navigator.share({url: "https://t.me/supDurovBot?start"});
-
-    };
 
     const copyClicked = async () => {
         try {
@@ -102,30 +98,27 @@ function Friends() {
                                        excavate: true
                                    }}
                                    style={{paddingTop: 50}}/>
-                        <button onClick={handleOnClick} style={{
-                            height: 50,
-                            color: "#fff",
-                            fontSize: 19,
-                            marginTop: 25,
-                            backgroundColor: "#282828"
-                        }}>Send
-                        </button>
+                        <a className={classes.shareButton}
+                           href={"https://t.me/share/url?url=https://wallpapers.com/images/hd/lightning-letter-d-7jyf54ms4gj6aibd.jpg"}
+                           target="_blank"
+                           rel="noopener noreferrer">Send
+                        </a>
                         <button onClick={copyClicked} style={{
                             height: 50,
                             color: "#fff",
                             fontSize: 19,
-                            marginTop: 25,
+                            margin: "25px 0 25px 0",
                             backgroundColor: "#282828"
                         }}>{getButtonText(state)}</button>
-                        <button onClick={() => setOpen(false)}
-                                style={{
-                                    height: 50,
-                                    color: "#fff",
-                                    fontSize: 19,
-                                    marginTop: 25,
-                                    backgroundColor: "transparent"
-                                }}>Close
-                        </button>
+                        {/*<button onClick={() => setOpen(false)}*/}
+                        {/*        style={{*/}
+                        {/*            height: 50,*/}
+                        {/*            color: "#fff",*/}
+                        {/*            fontSize: 19,*/}
+                        {/*            marginTop: 25,*/}
+                        {/*            backgroundColor: "transparent"*/}
+                        {/*        }}>Close*/}
+                        {/*</button>*/}
                     </Sheet.Scroller>
                 </Sheet.Container>
                 <Sheet.Backdrop style={{backgroundColor: "#00000099"}}/>
