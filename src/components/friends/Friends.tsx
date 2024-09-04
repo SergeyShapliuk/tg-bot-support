@@ -23,9 +23,8 @@ function Friends() {
     const [state, setState] = useState<ShareState>("pending");
 
     const handleOnClick = async () => {
-        const url = "https://t.me/supDurovBot?start";
-        const telegramUrl = `tg://msg_url?url=${encodeURIComponent(url)}`;
-        window.location.href = telegramUrl;
+        await navigator.share({url: "https://t.me/supDurovBot?start"});
+
     };
 
     const copyClicked = async () => {
