@@ -2,6 +2,7 @@ import {useEffect, useMemo, useState} from "react";
 import Countdown from "react-countdown";
 import {initInitData} from "@telegram-apps/sdk";
 import classes from "./Home.module.css";
+import image from "../../assets/main_image.jpg";
 
 
 function Home() {
@@ -57,7 +58,7 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        console.log("useeffect ");
+        // console.log("useeffect ",import.meta.env.DEV);
         const now = Date.now();
         const savedEndTime = parseInt(localStorage.getItem("countdownEndTime") || "0", 10);
 
@@ -152,7 +153,7 @@ function Home() {
             </div>
             <div className={classes.imageBlock}>
                 <img
-                    src={"https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_66cb251a38922e1b53f17b2a_66cb2726a927611e52d8e8fa/scale_1200"}
+                    src={image}
                     className={classes.image} alt="Image"/>
             </div>
 

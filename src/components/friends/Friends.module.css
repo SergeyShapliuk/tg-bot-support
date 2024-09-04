@@ -1,6 +1,6 @@
 .main {
-    height: 100vh;
-    padding: 1em;
+    height: 100%;
+    padding: 1em 1em 6em;
     overflow: auto;
     text-align: center;
 }
@@ -33,30 +33,28 @@
     text-align: start;
 }
 
-.item::before {
+.item::before{
     position: absolute;
     content: '';
+    /*display: inline-block;*/
     width: 10px;
     height: 10px;
+    /*top:-4px;*/
+    /*line-height: 10px;*/
     background-color: #FFFFFF;
     border-radius: 50%;
+    /*text-align: start;*/
+    margin: 0;
 }
 
-/*.item::after{*/
-/*    position: absolute;*/
-/*    content: '';*/
-/*    width: 2px;*/
-/*    height: 8em;*/
-/*    left: 1%;*/
-/*    background-color: #FFFFFF;*/
-/*}*/
+
 .item:first-child::after {
     position: absolute;
     content: '';
     width: 2px;
-    height: 5em;
+    height:7em;
     top: 50%;
-    left: 1%;
+    left: 4px;
     background-color: #FFFFFF;
 }
 
@@ -64,9 +62,9 @@
     position: absolute;
     content: '';
     width: 2px;
-    height: 5em;
+    height: 7em;
     bottom: 50%;
-    left: 1%;
+    left: 4px;
     background-color: #FFFFFF;
 }
 
@@ -79,48 +77,48 @@
 /*    position: absolute; !* Added *!*/
 /*    left: 0; !* Added *!*/
 /*}*/
-.circleContainer {
-    position: relative;
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*align-items: center;*/
-    margin-right: 10px;
-}
+/*.circleContainer {*/
+/*    position: relative;*/
+/*    !*display: flex;*!*/
+/*    !*flex-direction: column;*!*/
+/*    !*align-items: center;*!*/
+/*    margin-right: 10px;*/
+/*}*/
 
-.circle {
-    position: relative;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: white;
-    z-index: 1
-}
+/*.circle {*/
+/*    position: relative;*/
+/*    width: 10px;*/
+/*    height: 10px;*/
+/*    border-radius: 50%;*/
+/*    background-color: white;*/
+/*    z-index: 1*/
+/*}*/
 
 /*.circle:first-child {*/
 /*    margin-top: 0*/
 /*}*/
 
-.circle:before {
-    content: '';
-    position: absolute;
-    width: 2px; /* толщина линии */
-    height: 100%; /* длина линии - половина высоты круга */
-    background-color: #FFFFFF;
-    left: 40%; /* центрирование линии относительно круга */
-    top: 100%; /* начало линии от нижнего края круга */
-    z-index: -1;
-}
+/*.circle:before {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    width: 2px; !* толщина линии *!*/
+/*    height: 100%; !* длина линии - половина высоты круга *!*/
+/*    background-color: #FFFFFF;*/
+/*    left: 40%; !* центрирование линии относительно круга *!*/
+/*    top: 100%; !* начало линии от нижнего края круга *!*/
+/*    z-index: -1;*/
+/*}*/
 
-.circle:after {
-    content: '';
-    position: absolute;
-    width: 2px; /* толщина линии */
-    height: 100%; /* длина линии - половина высоты круга */
-    background-color: #FFFFFF;
-    left: 40%; /* центрирование линии относительно круга */
-    bottom: 100%; /* начало линии от верхнего края круга */
-    z-index: -1;
-}
+/*.circle:after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    width: 2px; !* толщина линии *!*/
+/*    height: 100%; !* длина линии - половина высоты круга *!*/
+/*    background-color: #FFFFFF;*/
+/*    left: 40%; !* центрирование линии относительно круга *!*/
+/*    bottom: 100%; !* начало линии от верхнего края круга *!*/
+/*    z-index: -1;*/
+/*}*/
 
 /*.circle:first-of-type:after {*/
 /*    display: none; !* убирает верхнюю линию для первого круга *!*/

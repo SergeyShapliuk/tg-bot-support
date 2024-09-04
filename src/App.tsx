@@ -6,7 +6,6 @@ import Friends from "./components/friends/Friends";
 import MemoHomeIcon from "./components/svg/HomeIcon";
 import MemoTasksIcon from "./components/svg/TasksIcon";
 import MemoFriendsIcon from "./components/svg/FriendsIcon";
-import React from "react";
 
 
 function App() {
