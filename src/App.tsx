@@ -8,14 +8,17 @@ import MemoTasksIcon from "./components/svg/TasksIcon";
 import MemoFriendsIcon from "./components/svg/FriendsIcon";
 import {useEffect} from "react";
 import {initViewport} from "@telegram-apps/sdk";
-
+import {ToastContainer} from "react-toastify";
+// import "react-toastify/dist/ReactToastify.minimal.css";
+import "react-toastify/dist/ReactToastify.css";
+import MemoCloseIcon from "./components/svg/CloseIcon";
 
 function App() {
     const [viewport] = initViewport();
-    // // const {tg} = useTelegram();
-    // const initDatas = initInitData();
-    // console.log('innit',initDatas)
+    //
+    // const hapticFeedback = initHapticFeedback();
     useEffect(() => {
+
         // tg.ready();
         const expand = async () => {
             const vp = await viewport;
@@ -28,16 +31,34 @@ function App() {
 
 
     return (
-        <div className={classes.main}>
-            <Routes>
-                <Route index element={<Home/>}/>
-                {/*<Route path={"/"} element={<Home/>}/>*/}
-                <Route path={"tasks"} element={<Tasks/>}/>
-                <Route path={"friends"} element={<Friends/>}/>
+        <>
+            <div className={classes.main}>
+                <Routes>
+                    <Route index element={<Home/>}/>
+                    {/*<Route path={"/"} element={<Home/>}/>*/}
+                    <Route path={"tasks"} element={<Tasks/>}/>
+                    <Route path={"friends"} element={<Friends/>}/>
 
-            </Routes>
-            <NavBar/>
-        </div>
+                </Routes>
+                <NavBar/>
+
+            </div>
+            <ToastContainer
+                // position="top-right"
+                autoClose={3000}
+                // hideProgressBar={false}
+                closeOnClick
+                // pauseOnHover
+                draggable
+                // // draggableDirection={Slide}
+                // transition={Slide} // Вы можете использовать Slide, Zoom, Flip или Bounce
+                closeButton={props => (
+                    <button onClick={props.closeToast} style={{width: 50, backgroundColor: "transparent"}}>
+                        <MemoCloseIcon/>
+                    </button>
+                )}
+            />
+        </>
     );
 }
 

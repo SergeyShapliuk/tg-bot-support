@@ -5,12 +5,13 @@ import "./index.css";
 import {BrowserRouter} from "react-router-dom";
 import {SDKProvider} from "@telegram-apps/sdk-react";
 
+
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <BrowserRouter>
-            <SDKProvider acceptCustomStyles debug>
-                <App/>
-            </SDKProvider>
-        </BrowserRouter>
+            <BrowserRouter>
+                <SDKProvider acceptCustomStyles debug>
+                    <App/>
+                </SDKProvider>
+            </BrowserRouter>
     </StrictMode>
 );
