@@ -76,8 +76,7 @@ function Friends() {
                                                 alignItems: "center",
                                                 borderRadius: "50%",
                                                 fontWeight: 500,
-                                                color: "black",
-                                                backgroundColor: "#34c759"
+                                                backgroundColor: "rgb(49,125,148)"
                                             }}>{friend.name.slice(0, 1)}</div>
                                             <div>
                                                 <div>{friend.name}</div>

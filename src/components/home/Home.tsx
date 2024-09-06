@@ -168,7 +168,7 @@ function Home() {
                         bottom: 0,
                         borderTopLeftRadius: "12px",
                         borderBottomLeftRadius: "12px",
-                        backgroundColor: "rgba(52,199,89,0.5)",
+                        backgroundColor: "rgb(49,125,148)",
                         zIndex: 0
                     }}/>
                 <span style={{flex: 1, fontSize: 19, textAlign: "center", zIndex: 1}}>
@@ -185,7 +185,7 @@ function Home() {
             </div>
         );
     };
-    if (!isInitialized) return <FadeLoader color={"#34C759"} cssOverride={override} loading={!isInitialized}/>;
+    if (!isInitialized) return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override} loading={!isInitialized}/>;
     return (
         <div className={classes.main}>
             <div style={{textAlign: "center"}}>

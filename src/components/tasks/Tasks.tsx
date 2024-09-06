@@ -166,7 +166,7 @@ function Tasks() {
                                     width: 70,
                                     height: 45,
                                     color: "black",
-                                    backgroundColor: "#34C759",
+                                    backgroundColor: "rgb(49,125,148)",
                                     fontSize: 16,
                                     borderRadius: 12
                                 }}>Claim</button> :
