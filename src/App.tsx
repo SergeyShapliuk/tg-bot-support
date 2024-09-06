@@ -7,24 +7,27 @@ import MemoHomeIcon from "./components/svg/HomeIcon";
 import MemoTasksIcon from "./components/svg/TasksIcon";
 import MemoFriendsIcon from "./components/svg/FriendsIcon";
 import {useEffect} from "react";
-import {initViewport} from "@telegram-apps/sdk";
+import {initSwipeBehavior, initViewport} from "@telegram-apps/sdk-react";
 import {ToastContainer} from "react-toastify";
 // import "react-toastify/dist/ReactToastify.minimal.css";
 import "react-toastify/dist/ReactToastify.css";
 import MemoCloseIcon from "./components/svg/CloseIcon";
+import {CountdownProvider} from "./context/CountdownProvider";
+
 
 function App() {
     const [viewport] = initViewport();
+    const [swipeBehavior] = initSwipeBehavior();
     //
     // const hapticFeedback = initHapticFeedback();
     useEffect(() => {
-
         // tg.ready();
         const expand = async () => {
             const vp = await viewport;
             if (!vp.isExpanded) {
                 vp.expand();
             }
+            await swipeBehavior.disableVerticalSwipe();
         };
         expand().then();
     }, []);
@@ -33,15 +36,16 @@ function App() {
     return (
         <>
             <div className={classes.main}>
-                <Routes>
-                    <Route index element={<Home/>}/>
-                    {/*<Route path={"/"} element={<Home/>}/>*/}
-                    <Route path={"tasks"} element={<Tasks/>}/>
-                    <Route path={"friends"} element={<Friends/>}/>
+                <CountdownProvider>
+                    <Routes>
+                        <Route index element={<Home/>}/>
+                        {/*<Route path={"/"} element={<Home/>}/>*/}
+                        <Route path={"tasks"} element={<Tasks/>}/>
+                        <Route path={"friends"} element={<Friends/>}/>
 
-                </Routes>
+                    </Routes>
+                </CountdownProvider>
                 <NavBar/>
-
             </div>
             <ToastContainer
                 // position="top-right"

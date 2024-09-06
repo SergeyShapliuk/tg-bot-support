@@ -9,7 +9,7 @@ import {SDKProvider} from "@telegram-apps/sdk-react";
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
             <BrowserRouter>
-                <SDKProvider acceptCustomStyles debug>
+                <SDKProvider>
                     <App/>
                 </SDKProvider>
             </BrowserRouter>

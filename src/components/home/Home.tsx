@@ -1,91 +1,118 @@
-import {useEffect, useMemo, useState} from "react";
+import {CSSProperties, useEffect} from "react";
 import Countdown from "react-countdown";
-import {initInitData} from "@telegram-apps/sdk";
+import {initInitData} from "@telegram-apps/sdk-react";
 import classes from "./Home.module.css";
 import image from "../../assets/main_image.jpg";
+import {FadeLoader} from "react-spinners";
+import {useCountdown} from "../../context/CountdownProvider";
 
+// const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
+const totalTimeMS = 60 * 1000; // в миллисекундах
+// const totalTimeS = 8 * 60 * 60 * 1000 / 1000; // в секундах
+const totalTimeS = 60000 / 1000; // в секундах
+
+const override: CSSProperties = {
+    position: "absolute",
+    top: "45%",
+    left: "50%",
+    display: "block",
+    margin: "0 auto",
+    zIndex: 999
+};
 
 function Home() {
     const initData = initInitData();
     // const cloudStorage = initCloudStorage();
-    const [isCountdown, setIsCountdown] = useState<boolean>(true);
-    const [count, setCount] = useState<number>(0);
-    const [points, setPoints] = useState<number>(0);
-    const [complete, setComplete] = useState<boolean>(false);
-    const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+
+    const {
+        isInitialized,
+        isCountdown,
+        count,
+        points,
+        complete,
+        countdownDate,
+        startDate,
+        setInitialized,
+        setIsCountdown,
+        setCount,
+        setPoints,
+        setComplete,
+        setCountdownDate,
+        setStartDate
+    } = useCountdown();
+    // const [isLoading, setLoading] = useState<boolean>(false);
+    // const [progress, setProgress] = useState<string>('0');
+    // console.log("isCountdown", isCountdown);
     console.log("count", count);
     console.log("points", points);
-    console.log("isCountdown", isCountdown);
-    const countdownDate = useMemo(() => {
-        // localStorage.clear()
-        const savedEndTime = parseInt(localStorage.getItem("countdownEndTime") || "0", 10);
+    console.log("complete", complete);
+    console.log("countdownDate", countdownDate);
+    useEffect(() => {
+        if (!isInitialized) {
+            const timeOut = setTimeout(() => {
+                setInitialized(true);
+            }, 1500);
+            return () => clearTimeout(timeOut);
+        }
+    }, []);
+    useEffect(() => {
+        console.log("useEffect");
+        // localStorage.clear();
         const now = Date.now();
+        const savedEndTime = parseInt(localStorage.getItem("countdownEndTime") || "0", 10);
+        const savedStartTime = parseInt(localStorage.getItem("startTime") || "0", 10);
+        // const savedCount = parseInt(localStorage.getItem("count") || "0", 10);
 
+        // console.log("savedCount", savedCount);
+        // console.log("savedCount", savedCount);
         if (savedEndTime && savedEndTime > now) {
+            const timePassed = now - savedStartTime; // Прошедшее время с начала
+            // const elapsedTime = Math.max(0, savedEndTime - now); // Время до окончания
+            setCount(Math.floor(timePassed / 1000)); // преобразуем миллисекунды в секунды
             setIsCountdown(false);
-            return savedEndTime;
-        } else {
-            if (isCountdown) return;
-
-            const newEndTime = now + 8 * 60 * 60 * 1000; // 8 часов в миллисекундах
-            // const newEndTime = now +  5000; // 8 часов в миллисекундах
-            localStorage.setItem("countdownEndTime", newEndTime.toString());
-            return newEndTime;
+            setCountdownDate(savedEndTime);
         }
-    }, [isCountdown]);
+        if (savedEndTime && savedEndTime <= now) {
+            // console.log("второе условие");
+            // setCount(Math.floor(8 * 60 * 60 * 1000 / 1000));
+            setIsCountdown(false);
+            setCount(Math.floor(totalTimeS));
+            setCountdownDate(savedEndTime);
+        }
 
-
-    // Сохраняем значение count и время последнего обновления при его изменении
-    // useEffect(() => {
-    //     localStorage.setItem("count", count.toString());
-    //     localStorage.setItem("lastUpdate", Date.now().toString());
-    // }, [count]);
-
-    useEffect(() => {
-        const getPoints = async () => {
-            // const userPoints = await cloudStorage.get("points");
-            // if (userPoints) setPoints(Number(userPoints));
-            // console.log("useEffect");
-            // const p = await tg.CloudStorage.getItem('points')
-            // const response = await fetch("http://localhost:8000/points/?chatId=909630753");
-            // // const response = await fetch(`http://78.155.197.92:8000/points/?chatId=909630753`);
-            // const data = await response.json();
-            // if (data?.points) setPoints(data.points);
-            // console.log("localStorage", p);
-            // console.log("user", user);
-        };
-        getPoints().then();
+        // else {
+        //     // const newEndTime = now + 8 * 60 * 60 * 1000; // 8 часов в миллисекундах
+        //     const newEndTime = now + 5000; // 8 часов в миллисекундах
+        //     localStorage.setItem("countdownEndTime", newEndTime.toString());
+        //     setCountdownDate(newEndTime);
+        // }
+        // setLoading(false);
     }, []);
 
     useEffect(() => {
-        // console.log("useeffect ",import.meta.env.DEV);
-        const now = Date.now();
-        const savedEndTime = parseInt(localStorage.getItem("countdownEndTime") || "0", 10);
+        if (countdownDate) {
+            const intervalId = setInterval(() => {
+                const now = Date.now();
+                // const saveClaim = localStorage.getItem("claim");
+                // if (saveClaim) {
+                //     localStorage.removeItem("claim");
+                //     setComplete(false);
+                //     clearInterval(intervalId);
+                //     return;
+                // }
 
-        if (savedEndTime <= now) {
-            setCount(prevCount => prevCount + Math.floor((now - savedEndTime) / 3000));
-            setIsCountdown(true);
-        } else {
-            const elapsed = Math.floor((now - (savedEndTime - 8 * 60 * 60 * 1000)) / 3000);
-            // const elapsed = Math.floor((now - (savedEndTime -  5000)) / 3000);
-            setCount(elapsed);
+                if (countdownDate <= now) {
+                    clearInterval(intervalId);
+                    setIsCountdown(true);
+                    setComplete(true);
+                } else {
+                    // Обновляем счётчик каждую секунду
+                    setCount(prevCount => prevCount + 1);
+                }
+            }, 1000);
+
+            return () => clearInterval(intervalId); // Очистка интервала при размонтировании
         }
-    }, []);
-
-    useEffect(() => {
-        if (!isCountdown) {
-            const id = setInterval(() => {
-                setCount(prevCount => prevCount + 1);
-                localStorage.setItem("count", (count + 1).toString());
-            }, 3000);
-            setIntervalId(id);
-        } else {
-            if (intervalId) clearInterval(intervalId);
-        }
-
-        return () => {
-            if (intervalId) clearInterval(intervalId);
-        };
     }, [isCountdown]);
 
     const setUserPoints = async (farmingPoints: number) => {
@@ -93,48 +120,72 @@ function Home() {
             setPoints(farmingPoints);
             setComplete(false);
             setCount(0);
-            localStorage.removeItem("complete");
-            localStorage.removeItem("count");
-            // await cloudStorage.set("points", JSON.stringify(points));
-            // await localStorage.setItem("points", JSON.stringify(points));
-            // await fetch("http://localhost:8000/set-points/", {
-            // // await fetch("http://78.155.197.92:8000/set-points", {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: JSON.stringify({
-            //         chatId: "909630753",
-            //         points
-            //     })
-            // });
+            // localStorage.setItem("claim", "true");
+            localStorage.removeItem("countdownEndTime");
+            localStorage.removeItem("startTime");
         } catch (e) {
-            console.log("Ошибка в отправке points", e);
+            console.error("Ошибка в отправке points", e);
         }
+    };
+
+    const startFarming = () => {
+        const now = Date.now();
+        setIsCountdown(false);
+        const newEndTime = now + totalTimeMS; // 8 часов в миллисекундах
+        localStorage.setItem("countdownEndTime", newEndTime.toString());
+        localStorage.setItem("startTime", now.toString());
+        setCountdownDate(newEndTime);
+        setStartDate(now);
 
     };
 
-    // const Completionist = () => <button onClick={() => setUserPoints(count)}>Claim</button>;
-
-    const renderer = ({hours, minutes, seconds, completed}: any) => {
-        if (completed) {
-            setIsCountdown(true);
-            setComplete(true);
-            localStorage.setItem("complete", "true");
-            // return <Completionist/>;
-        } else {
-            // Render a countdown
-            // setCount(prevState => prevState+1)
-            return <div style={{position: "relative", display: "flex", flexDirection: "row", alignItems: "center"}}>
-                <span style={{flex: 1, fontSize: 21}}>Farming &#x20BF;{count}<span style={{
-                    position: "absolute",
-                    top: 5,
-                    right: 0,
-                    paddingRight: "10px",
-                    fontSize: 16
-                }}>{hours}h {minutes}m{seconds}</span></span></div>;
-        }
+    const renderer = ({hours, minutes, seconds, total}: any) => {
+        console.log("renderer", total / 1000);
+        const remaining = total / 1000;
+        const progress = ((totalTimeS - remaining) / totalTimeS) * 100;// прогресс в процентах
+        // setProgress(progresss.toString())
+        console.log("remaining", remaining);
+        console.log("totalTimeS", totalTimeS);
+        console.log("progress", progress);
+        return (
+            <div style={{
+                position: "relative",
+                width: "100%",
+                height: "60px",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                backgroundColor: "#9b9b9b",
+                borderRadius: "12px",
+                overflow: "hidden"
+                // transition: "background 1s ease",
+            }}>
+                <div
+                    style={{
+                        position: "absolute",
+                        width: `${progress}%`,
+                        top: 0,
+                        bottom: 0,
+                        borderTopLeftRadius: "12px",
+                        borderBottomLeftRadius: "12px",
+                        backgroundColor: "rgba(52,199,89,0.5)",
+                        zIndex: 0
+                    }}/>
+                <span style={{flex: 1, fontSize: 19, textAlign: "center", zIndex: 1}}>
+            Farming &#x20BF;{count}
+                    <span style={{
+                        position: "absolute",
+                        top: 23,
+                        right: 0,
+                        paddingRight: "10px",
+                        fontSize: 12,
+                        zIndex: 1
+                    }}>{hours}h {minutes}m {seconds}s</span>
+          </span>
+            </div>
+        );
     };
+    if (!isInitialized) return <FadeLoader color={"#34C759"} cssOverride={override} loading={!isInitialized}/>;
     return (
         <div className={classes.main}>
             <div style={{textAlign: "center"}}>
@@ -146,7 +197,7 @@ function Home() {
                     maxWidth: "100%", // Ограничивает ширину
                     wordWrap: "break-word", // Переносит текст на новую строку,
                     padding: "1em"
-                }}>{initData?.user?.username ? initData.user.username : "-----"}
+                }}>{initData?.user?.username ? initData.user.username : initData?.user?.firstName ? initData?.user?.firstName : "-----"}
                 </div>
                 {/*<p style={{position: "absolute", right: 10, paddingRight: "10px", fontSize: 24}}>&#8383; {points}</p>*/}
                 <div style={{fontSize: 27, fontWeight: 600}}>&#8383; {points}</div>
@@ -158,11 +209,11 @@ function Home() {
             </div>
 
             <div className={classes.buttons}>
-                {isCountdown && !complete && <button className={classes.unActive} onClick={() => setIsCountdown(false)}>
+                {isCountdown && !complete && <button className={classes.unActive} onClick={startFarming}>
                     Start farming
                 </button>}
-                {!isCountdown && !complete && < button disabled><Timer countdownDate={countdownDate}
-                                                                       renderer={renderer}/></button>}
+                {!isCountdown && !complete && <Timer countdownDate={countdownDate}
+                                                     renderer={renderer}/>}
                 {complete && <button className={classes.unActive} onClick={() => setUserPoints(count)}>
                     Claim
                 </button>}
@@ -171,8 +222,9 @@ function Home() {
     );
 }
 
-export default Home;
 
 function Timer({countdownDate, renderer}: any) {
     return <Countdown date={countdownDate} renderer={renderer}/>;
 }
+
+export default Home;
