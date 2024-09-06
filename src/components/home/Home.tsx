@@ -31,7 +31,7 @@ function Home() {
         points,
         complete,
         countdownDate,
-        startDate,
+        // startDate,
         setInitialized,
         setIsCountdown,
         setCount,
