@@ -1,6 +1,7 @@
 .main {
+    position: relative;
     height: 100%;
-    padding: 1em 1em 6em;
+    padding: 1em;
     overflow: auto;
     text-align: center;
 }
@@ -68,84 +69,33 @@
     background-color: #FFFFFF;
 }
 
-/*.item::before {*/
-/*    content: "";*/
-/*    border-radius: 50%;*/
-/*    height: 10px; !* Changed *!*/
-/*    width: 10px; !* Changed *!*/
-/*    background-color: white;*/
-/*    position: absolute; !* Added *!*/
-/*    left: 0; !* Added *!*/
-/*}*/
-/*.circleContainer {*/
-/*    position: relative;*/
-/*    !*display: flex;*!*/
-/*    !*flex-direction: column;*!*/
-/*    !*align-items: center;*!*/
-/*    margin-right: 10px;*/
-/*}*/
+.listFriends {
+    display: flex;
+    /*justify-content: start;*/
+    /*align-items: start;*/
+    flex-direction: column;
+    text-align: start;
+    padding-top: 20px;
+    gap: 20px;
+}
 
-/*.circle {*/
-/*    position: relative;*/
-/*    width: 10px;*/
-/*    height: 10px;*/
-/*    border-radius: 50%;*/
-/*    background-color: white;*/
-/*    z-index: 1*/
-/*}*/
+.itemFriends {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
-/*.circle:first-child {*/
-/*    margin-top: 0*/
-/*}*/
-
-/*.circle:before {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    width: 2px; !* толщина линии *!*/
-/*    height: 100%; !* длина линии - половина высоты круга *!*/
-/*    background-color: #FFFFFF;*/
-/*    left: 40%; !* центрирование линии относительно круга *!*/
-/*    top: 100%; !* начало линии от нижнего края круга *!*/
-/*    z-index: -1;*/
-/*}*/
-
-/*.circle:after {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    width: 2px; !* толщина линии *!*/
-/*    height: 100%; !* длина линии - половина высоты круга *!*/
-/*    background-color: #FFFFFF;*/
-/*    left: 40%; !* центрирование линии относительно круга *!*/
-/*    bottom: 100%; !* начало линии от верхнего края круга *!*/
-/*    z-index: -1;*/
-/*}*/
-
-/*.circle:first-of-type:after {*/
-/*    display: none; !* убирает верхнюю линию для первого круга *!*/
-/*}*/
-
-/*.circle:last-of-type:before {*/
-/*    display: none; !* убирает нижнюю линию для последнего круга *!*/
-/*}*/
-/*.item::before {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    !*bottom: 0;*!*/
-/*    left: 8px;*/
-/*    width: 2px;*/
-/*    height: 100%;*/
-/*    background-color: #FFFFFF; !* Цвет линии *!*/
-/*    z-index: 0;*/
-/*}*/
+.inviteButtonContainer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 80px;
+    padding: 1em;
+    background-color: #000000;
+}
 
 .inviteButton {
-    width: 100%;
-    height: 60px;
-    border-radius: 12px;
-    /*border: 1px solid transparent;*/
-    margin-top: 3em;
-    font-size: 1.4em;
     font-weight: 600;
     font-family: inherit;
     letter-spacing: inherit;

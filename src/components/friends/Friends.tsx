@@ -7,13 +7,24 @@ import {QRCodeSVG} from "qrcode.react";
 
 
 type ShareState = "pending" | "success" | "error";
+type FriendsState = { id: string, name: string, referral: string, points: string };
 // const onError: (error?: unknown) => void = null;
 
 
 const listInvite = [
     {title: "Share your invitation link", subTitle: "Get a  play pass for each friends"},
     {title: "Your friends join Support Durov", subTitle: "And start farming points"},
-    {title: "Score 10% from buddies", subTitle: ""}
+    {title: "Score 20% from buddies", subTitle: ""}
+];
+
+const listInviteFrens: FriendsState[] = [
+    {id: "1", name: "Alex", referral: "0", points: "2323"},
+    {id: "2", name: "eflexe", referral: "2", points: "2323"},
+    {id: "3", name: "Fexw", referral: "7", points: "2323"},
+    {id: "4", name: "Fexw", referral: "7", points: "2323"},
+    {id: "5", name: "Fexw", referral: "7", points: "2323"},
+    {id: "6", name: "Fexw", referral: "7", points: "2323"},
+    {id: "7", name: "Nlexe", referral: "0", points: "2323"}
 ];
 
 function Friends() {
@@ -21,6 +32,7 @@ function Friends() {
     // const initData = "test";
     const [isOpen, setOpen] = useState<boolean>(false);
     const [state, setState] = useState<ShareState>("pending");
+    // const [friends, setFriends] = useState<FriendsState[]>(listInviteFrens);
 
 
     const copyClicked = async () => {
@@ -46,24 +58,64 @@ function Friends() {
             <div className={classes.main}>
                 <MemoInviteIcon/>
                 <div className={classes.title}>Invite friends. Earn a points.</div>
-                <div className={classes.subTitle}>How it works</div>
-                <div className={classes.description}>
-                    {listInvite.map((item, index) => (
-                        <div key={index} className={classes.item}>
-                            {/*<div className={classes.circleContainer}>*/}
-                            {/*<div className={classes.circle}/>*/}
-                            {/*{index < listInvite.length - 1 && <div className={classes.line}/>}*/}
-                            {/*{item.title}*/}
-                            <div style={{paddingLeft: 50}}>
-                                <div style={{fontSize: 19}}>{item.title}</div>
-                                <div style={{fontSize: 16}}>{item.subTitle}</div>
-                                {/*</div>*/}
+                <div style={{height: "100%", paddingBottom: 160}}>
+                    {listInviteFrens.length ?
+                        <>
+                            <div style={{color: "rgba(255,255,255,0.7)"}}>Score 20% from buddies +2.5% from their
+                                referrals
                             </div>
-                        </div>
-                    ))}
+                            <div className={classes.listFriends}>{`${listInviteFrens.length} friends`}
+                                {listInviteFrens.map(friend => (
+                                    <div className={classes.itemFriends} key={friend.id}>
+                                        <div style={{display: "flex", alignItems: "center", gap: 10}}>
+                                            <div style={{
+                                                width: 30,
+                                                height: 30,
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                                borderRadius: "50%",
+                                                fontWeight: 500,
+                                                color: "black",
+                                                backgroundColor: "#34c759"
+                                            }}>{friend.name.slice(0, 1)}</div>
+                                            <div>
+                                                <div>{friend.name}</div>
+                                                <div style={{
+                                                    color: "rgba(255,255,255,0.7)",
+                                                    fontSize: 12,
+                                                    textAlign: "start"
+                                                }}>{friend.referral === "0" ? "0" : `+ ${friend.referral}`}</div>
+                                            </div>
+                                        </div>
+                                        <div>{`${friend.points} SD`}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                        : (
+                            <>
+                                <div className={classes.subTitle}>How it works</div>
+                                <div className={classes.description}>
+                                    {listInvite.map((item, index) => (
+                                        <div key={index} className={classes.item}>
+                                            {/*<div className={classes.circleContainer}>*/}
+                                            {/*<div className={classes.circle}/>*/}
+                                            {/*{index < listInvite.length - 1 && <div className={classes.line}/>}*/}
+                                            {/*{item.title}*/}
+                                            <div style={{paddingLeft: 50}}>
+                                                <div style={{fontSize: 19}}>{item.title}</div>
+                                                <div style={{fontSize: 16}}>{item.subTitle}</div>
+                                                {/*</div>*/}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </>)}
                 </div>
-                <button onClick={() => setOpen(true)} className={classes.inviteButton}>Invite a friends</button>
-
+                <div className={classes.inviteButtonContainer}>
+                    <button onClick={() => setOpen(true)} className={classes.inviteButton}>Invite a friends</button>
+                </div>
             </div>
             <Sheet isOpen={isOpen} onClose={() => setOpen(false)} disableDrag>
                 <Sheet.Container style={{
