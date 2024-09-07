@@ -1,40 +1,34 @@
 .main {
-    /*background-color: #535bf2;*/
-    /*margin: 0 auto;*/
     position: relative;
-    width: 100%;
     height: 100%;
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*padding-bottom: 200px;*/
+    padding: 1em;
     overflow: auto;
+    text-align: center;
 }
-.imageBlock{
-/*width: 100%;*/
-    padding-right: 1em;
-    padding-left: 1em;
+
+.imageBlock {
+    /*width: 100%;*/
+    /*    padding-right: 1em;*/
+    /*    padding-left: 1em;*/
     margin-top: 25px;
     /*flex: 1;*/
     /*overflow: auto;*/
     /*height: 100vh;*/
 }
+
 .image {
     width: 100%;
     /*height: 1em;*/
 }
-.buttons {
-    background-color: #000000;
-    /*margin-top: 100px;*/
-    /*width: 100%;*/
+
+.buttonContainer {
     position: fixed;
-    bottom: 100px;
     left: 0;
     right: 0;
-    /*margin-left: 10px;*/
-    /*margin-right: 10px;*/
+    bottom: 80px;
     padding: 1em;
+    background-color: #000000;
 }
-
 
 .unActive {
     color: #242424;

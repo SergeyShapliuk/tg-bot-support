@@ -1,12 +1,12 @@
 import axios from "axios";
 // import axiosRetry from 'axios-retry';
 
-const baseURL = "";
+const baseURL = "https://sd-api.faexb.com/api/";
 
 
 export const axiosInstanceApi = axios.create({
     baseURL,
-    withCredentials: true,
+    withCredentials: false,
     timeout: 20000,
 });
 // axiosRetry(axiosInstanceAdm, {

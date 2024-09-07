@@ -7,21 +7,36 @@ import MemoHomeIcon from "./components/svg/HomeIcon";
 import MemoTasksIcon from "./components/svg/TasksIcon";
 import MemoFriendsIcon from "./components/svg/FriendsIcon";
 import {useEffect} from "react";
-import {initSwipeBehavior, initViewport} from "@telegram-apps/sdk-react";
+import {initMiniApp, initSwipeBehavior, initViewport} from "@telegram-apps/sdk-react";
 import {ToastContainer} from "react-toastify";
 // import "react-toastify/dist/ReactToastify.minimal.css";
 import "react-toastify/dist/ReactToastify.css";
 import MemoCloseIcon from "./components/svg/CloseIcon";
 import {CountdownProvider} from "./context/CountdownProvider";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {TotalPointsProvider} from "./context/TotalPointsProvider";
 
+
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+            refetchOnMount: false,
+            refetchOnReconnect: true,
+            retry: false,
+            staleTime: 5 * 60 * 1000
+        }
+    }
+});
 
 function App() {
+    const [miniApp] = initMiniApp();
     const [viewport] = initViewport();
     const [swipeBehavior] = initSwipeBehavior();
     //
     // const hapticFeedback = initHapticFeedback();
     useEffect(() => {
-        // tg.ready();
+        miniApp.ready();
         const expand = async () => {
             const vp = await viewport;
             if (!vp.isExpanded) {
@@ -36,15 +51,19 @@ function App() {
     return (
         <>
             <div className={classes.main}>
-                <CountdownProvider>
-                    <Routes>
-                        <Route index element={<Home/>}/>
-                        {/*<Route path={"/"} element={<Home/>}/>*/}
-                        <Route path={"tasks"} element={<Tasks/>}/>
-                        <Route path={"friends"} element={<Friends/>}/>
+                <QueryClientProvider client={queryClient}>
+                    <TotalPointsProvider>
+                        <CountdownProvider>
+                            <Routes>
+                                <Route index element={<Home/>}/>
+                                {/*<Route path={"/"} element={<Home/>}/>*/}
+                                <Route path={"tasks"} element={<Tasks/>}/>
+                                <Route path={"friends"} element={<Friends/>}/>
 
-                    </Routes>
-                </CountdownProvider>
+                            </Routes>
+                        </CountdownProvider>
+                    </TotalPointsProvider>
+                </QueryClientProvider>
                 <NavBar/>
             </div>
             <ToastContainer
@@ -79,10 +98,10 @@ function NavBar() {
         };
     };
     return (
-        <nav className={classes.nav} style={location.pathname === "/" ? {} : {
-            borderTopLeftRadius: "17px",
-            borderTopRightRadius: "17px",
-            boxShadow: "0 -5px 15px #FFFFFF30"
+        <nav className={classes.nav} style={{
+            // borderTopLeftRadius: "17px",
+            // borderTopRightRadius: "17px",
+            // boxShadow: "0 -5px 15px #FFFFFF30"
         }}>
             <NavLink to="/" style={({isActive}) => activeStyle(isActive)}>
                 <MemoHomeIcon stroke={location.pathname === "/" ? "white" : "#a6a6a6"}/>
