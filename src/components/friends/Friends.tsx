@@ -3,7 +3,9 @@ import classes from "./Friends.module.css";
 import MemoInviteIcon from "../svg/InviteFriends";
 import {Sheet} from "react-modal-sheet";
 import MemoCloseIcon from "../svg/CloseIcon";
-import {QRCodeSVG} from "qrcode.react";
+import {QRCodeCanvas} from "qrcode.react";
+import {useFetchRef} from "../../hooks/useFetchRef";
+import {initInitData} from "@telegram-apps/sdk-react";
 
 
 type ShareState = "pending" | "success" | "error";
@@ -28,16 +30,58 @@ const listInviteFrens: FriendsState[] = [
 ];
 
 function Friends() {
-    // const initData = initInitData();
-    // const initData = "test";
+    const initData = initInitData();
+    // const initData = null;
+
+    const {data: userRef} = useFetchRef(initData?.user?.id.toString() ?? "ttt");
+
     const [isOpen, setOpen] = useState<boolean>(false);
     const [state, setState] = useState<ShareState>("pending");
     // const [friends, setFriends] = useState<FriendsState[]>(listInviteFrens);
 
+    console.log("userRef", userRef);
 
+    // useEffect(() => {
+    //     const canvas = document.querySelector("qrcode") as HTMLCanvasElement;
+    //     if (!canvas) throw new Error("<canvas> not found in the DOM");
+    //     const pngUrl = canvas
+    //         .toDataURL("image/png")
+    //         .replace("image/png", "image/octet-stream");
+    //     const downloadLink = document.createElement("a");
+    //     downloadLink.href = pngUrl;
+    //     downloadLink.download = "QRCode.png";
+    //     setLink(downloadLink)
+    //     // document.body.appendChild(downloadLink);
+    //     // downloadLink.click();
+    //     // document.body.removeChild(downloadLink);
+    // }, []);
+    const handleSendQRCode = () => {
+        // const canvas = document.getElementById("qrcode");
+        // if (canvas) {
+        //     canvas.toBlob((blob) => {
+        //         const file = new File([blob], 'qr-code.png', { type: 'image/png' });
+        //
+        //         if (navigator.share) {
+        //             navigator.share({
+        //                 title: 'QR Code',
+        //                 text: 'Here is your QR code',
+        //                 files: [file],  // QR-код файл для отправки
+        //             })
+        //                 .then(() => console.log('Successful share'))
+        //                 .catch((error) => console.log('Error sharing', error));
+        //         } else {
+        //             alert('Web Share API не поддерживается на вашем устройстве.');
+        //         }
+        //     });
+        // }
+
+
+        // Открытие ссылки для отправки QR-кода
+
+    };
     const copyClicked = async () => {
         try {
-            await navigator.clipboard.writeText("https://t.me/supDurovBot?start");
+            await navigator.clipboard.writeText(`https://t.me/supDurovBot?start=ref_${userRef?.codes[0]?.code}`);
             setState("success");
         } catch (err) {
             // onError && onError(err);
@@ -132,28 +176,32 @@ function Friends() {
                         <MemoCloseIcon style={{position: "absolute", top: 20, right: 20}}/>
                     </div>
                     <Sheet.Scroller style={{textAlign: "center", padding: "1em"}}>
-                        <QRCodeSVG value={`https://t.me/supDurovBot?start`}
-                                   title={"QR code"}
-                                   size={300}
-                                   bgColor={"#ffffff"}
-                                   fgColor={"#000000"}
-                                   level={"L"}
-                                   marginSize={1}
-                                   imageSettings={{
-                                       src: "https://coin.golden-media.by/wp-content/uploads/2023/04/2322.png",
-                                       x: undefined,
-                                       y: undefined,
-                                       height: 30,
-                                       width: 50,
-                                       opacity: 1,
-                                       excavate: true
-                                   }}
-                                   style={{paddingTop: 50}}/>
-                        <a className={classes.shareButton}
-                           href={"https://t.me/share/url?url=https://wallpapers.com/images/hd/lightning-letter-d-7jyf54ms4gj6aibd.jpg"}
-                           target="_blank"
-                           rel="noopener noreferrer">Send
-                        </a>
+                        <QRCodeCanvas id="qrcode"
+                                      value={`https://t.me/supDurovBot?start=ref_${userRef?.codes[0]?.code}`}
+                                      title={"QR code"}
+                                      size={300}
+                                      bgColor={"#ffffff"}
+                                      fgColor={"#000000"}
+                                      level={"L"}
+                                      marginSize={1}
+                            // imageSettings={{
+                            //     src: "https://coin.golden-media.by/wp-content/uploads/2023/04/2322.png",
+                            //     x: undefined,
+                            //     y: undefined,
+                            //     height: 30,
+                            //     width: 50,
+                            //     opacity: 1,
+                            //     excavate: true
+                            // }}
+                                      style={{paddingTop: 50}}/>
+                        {/*<a className={classes.shareButton}*/}
+                        {/*   href={"https://t.me/share/url?url=https://wallpapers.com/images/hd/lightning-letter-d-7jyf54ms4gj6aibd.jpg"}*/}
+                        {/*   target="_blank"*/}
+                        {/*   rel="noopener noreferrer">Send*/}
+                        {/*</a>*/}
+                        <button onClick={handleSendQRCode} className={classes.shareButton}>
+                            Send QR Code
+                        </button>
                         <button onClick={copyClicked} style={{
                             height: 50,
                             color: "#fff",

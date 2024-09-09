@@ -1,6 +1,6 @@
 import {axiosInstanceApi} from "./instanceApi";
 import {AxiosResponse} from "axios";
-import {CloseTimerType, GetBalanceType, GetTimerType, StartTimerType} from "../types/types";
+import {CloseTimerType, GetBalanceType, GetTimerType, GetUserRefType, StartTimerType} from "../types/types";
 
 
 export const api = {
@@ -14,6 +14,14 @@ export const api = {
     },
     async getUserTimer(telegram_id: string) {
         const response = await axiosInstanceApi.get<string, AxiosResponse<GetTimerType>>(`get-user-timer?telegram_id=${telegram_id}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        return response;
+    },
+    async getUserRef(telegram_id: string) {
+        const response = await axiosInstanceApi.get<string, AxiosResponse<GetUserRefType>>(`get-user-ref-code?telegram_id=${telegram_id}`, {
             headers: {
                 "Content-Type": "application/json"
             }

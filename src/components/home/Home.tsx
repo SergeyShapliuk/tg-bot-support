@@ -20,6 +20,7 @@ const override: CSSProperties = {
 
 function Home() {
     const initData = initInitData();
+    // const initData = null;
     // const cloudStorage = initCloudStorage();
 
     const {
@@ -28,13 +29,13 @@ function Home() {
         setInitialized,
         setPoints
     } = useTotalPoints();
-    const {data: balance} = useFetchBalance(initData?.user?.id.toString() ?? "", true);
-    const {data: timer, isPending} = useFetchTimer(initData?.user?.id.toString() ?? "");
+    const {data: balance} = useFetchBalance(initData?.user?.id.toString() ?? "ttt");
+    const {data: timer, refetch: refetchTimer, isPending} = useFetchTimer(initData?.user?.id.toString() ?? "ttt");
 
 
     // const [isLoading, setLoading] = useState<boolean>(false);
     // const [progress, setProgress] = useState<string>('0');
-    // console.log("isCountdown", isCountdown);
+    console.log("balance", balance);
 
     // console.log("timer", timer);
     // console.log("isPending", isPending);
@@ -84,7 +85,7 @@ function Home() {
                     className={classes.image} alt="Image"/>
             </div>
             <div className={classes.buttonContainer}>
-                <FarmingComponent timer={timer}/>
+                <FarmingComponent timer={timer} refetchTimer={() => refetchTimer()}/>
             </div>
         </div>
     );

@@ -1,16 +1,30 @@
 import Countdown from "react-countdown";
 import classes from "../home/Home.module.css";
+// import {BeatLoader} from "react-spinners";
+// import {CSSProperties} from "react";
 
 type FarmingButtonType = {
-    isCountdown: boolean,
-    complete: boolean,
-    countdownDate: number,
-    renderer: any,
-    startFarming: () => void,
-    setUserPoints: () => void
+    loading: boolean;
+    isCountdown: boolean;
+    complete: boolean;
+    countdownDate: number;
+    renderer: any;
+    startFarming: () => void;
+    setUserPoints: () => void;
 }
 
+// const override: CSSProperties = {
+//     position: "absolute",
+//     top: "53%",
+//     left: "50%",
+//     transform: "translate(-50%, -50%)",
+//     display: "block",
+//     margin: "0 auto",
+//     zIndex: 999
+// };
+
 function FarmingButton({
+                           // loading,
                            isCountdown,
                            complete,
                            countdownDate,
@@ -29,6 +43,14 @@ function FarmingButton({
             {complete && <button className={classes.unActive} onClick={setUserPoints}>
                 Claim
             </button>}
+            {/*<BeatLoader*/}
+            {/*    color={"red"}*/}
+            {/*    loading={loading}*/}
+            {/*    cssOverride={override}*/}
+            {/*    size={15}*/}
+            {/*    // aria-label="Loading Spinner"*/}
+            {/*    // data-testid="loader"*/}
+            {/*/>*/}
         </div>
     );
 }

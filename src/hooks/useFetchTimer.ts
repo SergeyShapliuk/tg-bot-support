@@ -9,6 +9,6 @@ export const useFetchTimer = (tg_id: string): QueryObserverResult<GetTimerType, 
             return data;
         },
         queryKey: ["get-timer"],
-        retry: 2
+        retry: 2,
     });
 };

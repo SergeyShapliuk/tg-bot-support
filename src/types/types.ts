@@ -45,3 +45,7 @@ export type CloseTimerType = {
     };
     resp: string;
 }
+export type GetUserRefType = {
+    codes: { code: string, stat: number }[];
+    resp: string;
+}
