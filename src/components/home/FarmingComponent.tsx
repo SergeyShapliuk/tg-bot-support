@@ -11,7 +11,7 @@ import {useFetchTimer} from "../../hooks/useFetchTimer";
 import EffectComponent from "../ui/effect/EffectComponent";
 
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
-const totalTimeMS = 60 * 1000; // в миллисекундах
+// const totalTimeMS = 60 * 1000; // в миллисекундах
 // const totalTimeS = 8 * 60 * 60 * 1000 / 1000; // в секундах
 // const totalTimeS = 60000 / 1000; // в секундах
 
@@ -150,8 +150,8 @@ function FarmingComponent({timer}: FarmingComponentProps) {
     useEffect(() => {
         if (startTimerData && startTimerData.resp === "ok") {
             console.log("startTimerDatauseEffect", timer);
-            const now = startTimerData.info.time_start * 1000 ?? Date.now();
-            const newEndTime = startTimerData.info.time_end * 1000 ?? Date.now() + totalTimeMS;
+            const now = startTimerData.info.time_start * 1000;
+            const newEndTime = startTimerData.info.time_end * 1000;
             // console.log("now", now);
             // console.log("newEndTime", newEndTime);
             localStorage.setItem("countdownEndTime", newEndTime.toString());
