@@ -5,6 +5,7 @@ import classes from "../home/Home.module.css";
 
 type FarmingButtonType = {
     loading: boolean;
+    point: number;
     isCountdown: boolean;
     complete: boolean;
     countdownDate: number;
@@ -26,6 +27,7 @@ type FarmingButtonType = {
 function FarmingButton({
                            // loading,
                            isCountdown,
+                           point,
                            complete,
                            countdownDate,
                            renderer,
@@ -40,8 +42,10 @@ function FarmingButton({
             </button>}
             {!isCountdown && !complete && <Timer countdownDate={countdownDate}
                                                  renderer={renderer}/>}
-            {complete && <button className={classes.unActive} onClick={setUserPoints}>
-                Claim
+            {complete && <button className={classes.unActive}
+                                 style={{color: "white", background: "linear-gradient(0deg, #339cff 0%, #2356a9 100%)"}}
+                                 onClick={setUserPoints}>
+                Claim &#x20BF;{point}
             </button>}
             {/*<BeatLoader*/}
             {/*    color={"red"}*/}

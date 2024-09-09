@@ -1,13 +1,14 @@
 import FarmingButton from "../ui/FarmingButton";
 import {useCountdown} from "../../context/CountdownProvider";
 import {useStartTimer} from "../../hooks/useStartTimer";
-import {memo, useEffect} from "react";
+import {memo, useEffect, useState} from "react";
 import {GetTimerType} from "../../types/types";
 import {useCloseTimer} from "../../hooks/useCloseTimer";
 import {useFetchBalance} from "../../hooks/useFetchBalance";
 import {initInitData} from "@telegram-apps/sdk-react";
 import CountUp from "react-countup";
 import {useFetchTimer} from "../../hooks/useFetchTimer";
+import EffectComponent from "../ui/effect/EffectComponent";
 
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
 const totalTimeMS = 60 * 1000; // в миллисекундах
@@ -51,6 +52,8 @@ function FarmingComponent({timer}: FarmingComponentProps) {
 
     const {mutate: startTimer, data: startTimerData} = useStartTimer(initData?.user?.id.toString() ?? "ttt");
     const {mutate: stopTimer, data: dataStopTimer} = useCloseTimer(initData?.user?.id.toString() ?? "ttt");
+
+    const [isAnimation, setAnimation] = useState<boolean>(false);
     console.log("data", data);
     console.log("timer", timer);
     console.log("countdownDate", countdownDate);
@@ -136,7 +139,9 @@ function FarmingComponent({timer}: FarmingComponentProps) {
             localStorage.removeItem("amount");
             localStorage.removeItem("duration");
             refetchTimer();
-            refetch();
+            refetch().then(() => {
+                setAnimation(true);
+            });
 
         }
 
@@ -166,6 +171,7 @@ function FarmingComponent({timer}: FarmingComponentProps) {
     }, [startTimerData]);
 
     const startFarming = () => {
+        setAnimation(false);
         startTimer();
     };
 
@@ -248,9 +254,15 @@ function FarmingComponent({timer}: FarmingComponentProps) {
         );
     };
     return (
-        <FarmingButton loading={false} isCountdown={isCountdown} complete={complete} countdownDate={countdownDate}
-                       renderer={renderer}
-                       startFarming={() => startFarming()} setUserPoints={() => setUserPoints()}/>
+        <>
+            <FarmingButton loading={false} point={timer?.info?.amount ?? 0} isCountdown={isCountdown}
+                           complete={complete}
+                           countdownDate={countdownDate}
+                           renderer={renderer}
+                           startFarming={() => startFarming()} setUserPoints={() => setUserPoints()}/>
+            <EffectComponent isActive={isAnimation}/>
+        </>
+
     );
 }
 

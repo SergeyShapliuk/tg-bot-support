@@ -7,6 +7,7 @@ import {useFetchTimer} from "../../hooks/useFetchTimer";
 import FarmingComponent from "./FarmingComponent";
 import {useTotalPoints} from "../../context/TotalPointsProvider";
 import {useFetchBalance} from "../../hooks/useFetchBalance";
+import MemoHandcuffIcon from "../svg/HandcuffIcon";
 
 
 const override: CSSProperties = {
@@ -17,6 +18,7 @@ const override: CSSProperties = {
     margin: "0 auto",
     zIndex: 999
 };
+
 
 function Home() {
     const initData = initInitData();
@@ -65,6 +67,25 @@ function Home() {
     return (
         <div className={classes.main}>
             <div style={{textAlign: "center"}}>
+                <div style={{position: "relative", display: "inline-block"}}>
+                    <MemoHandcuffIcon/>
+                    <div
+                        style={{
+                            position: "absolute",
+                            top: "50%", // Выровнять по вертикали
+                            left: "50%", // Выровнять по горизонтали
+                            transform: "translate(-50%, -50%)", // Центрирование по X и Y
+                            textAlign: "center", // Выровнять текст по центру, если потребуется
+                            color: "white", // Задать цвет текста, чтобы он был виден на иконке
+                            fontWeight: "bold" // Сделать текст жирным (опционально)
+                        }}
+                    >
+                        {initData?.user?.username
+                            ? initData.user.username
+                            : initData?.user?.firstName?.slice(0, 1) || "S"}
+                    </div>
+                </div>
+
                 <div style={{
                     // flex: 1,
                     // fontFamily:'sans-serif',
@@ -87,6 +108,7 @@ function Home() {
             <div className={classes.buttonContainer}>
                 <FarmingComponent timer={timer} refetchTimer={() => refetchTimer()}/>
             </div>
+            {/*<EffectComponent />*/}
         </div>
     );
 }
