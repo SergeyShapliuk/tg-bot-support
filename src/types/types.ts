@@ -8,8 +8,8 @@ export type ListTasksType = {
     claim: boolean;
 }
 export type GetBalanceType = {
-    resp: string;
     amount: number | string | null;
+    resp: string;
 }
 export type GetTimerType = {
     info: {
@@ -21,8 +21,40 @@ export type GetTimerType = {
         time_end: number;
         time_start: number;
     };
-    resp: string;
     second: { go: number, last: number }
+    resp: string;
+}
+export type GetUserRefType = {
+    codes: { code: string, stat: number, link_code: string }[];
+    resp: string;
+}
+export type GetUserReferrals = {
+    data: { customer: string, name: string, amount: string, referal_count: string }[]
+    resp: string;
+}
+export type TasksItemType = {
+    id: number;
+    title: string;
+    amount: number;
+    link: string;
+    icon: string;
+    stat: number;
+    dt_create: string;
+}
+export type GetTasksType = {
+    data: TasksItemType[]
+    resp: string;
+}
+export type SetTaskType = {
+    data: {
+        id: number;
+        customer_id: number;
+        amount: number;
+        stat: number;
+        task_id: number;
+        dt_create: string;
+    },
+    resp: string;
 }
 export type StartTimerType = {
     info: {
@@ -45,7 +77,12 @@ export type CloseTimerType = {
     };
     resp: string;
 }
-export type GetUserRefType = {
-    codes: { code: string, stat: number }[];
+export type SetUserTaskType = {
+    info: {
+        amount: number;
+        customer_id: number;
+        dt_create: string;
+        id: number;
+    };
     resp: string;
 }

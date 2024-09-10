@@ -13,7 +13,9 @@ import MemoHandcuffIcon from "../svg/HandcuffIcon";
 const override: CSSProperties = {
     position: "absolute",
     top: "45%",
-    left: "50%",
+    left: "49%",
+    // right:'50%',
+    // transform:"translate(-50%, -50%)",
     display: "block",
     margin: "0 auto",
     zIndex: 999
@@ -31,8 +33,8 @@ function Home() {
         setInitialized,
         setPoints
     } = useTotalPoints();
-    const {data: balance} = useFetchBalance(initData?.user?.id.toString() ?? "ttt");
-    const {data: timer, refetch: refetchTimer, isPending} = useFetchTimer(initData?.user?.id.toString() ?? "ttt");
+    const {data: balance} = useFetchBalance(initData?.user?.id.toString() ?? "test_user3");
+    const {data: timer, refetch: refetchTimer, isPending} = useFetchTimer(initData?.user?.id.toString() ?? "test_user3");
 
 
     // const [isLoading, setLoading] = useState<boolean>(false);
@@ -81,11 +83,11 @@ function Home() {
                         }}
                     >
                         {initData?.user?.username
-                            ? initData.user.username
-                            : initData?.user?.firstName?.slice(0, 1) || "S"}
+                            ? initData.user.username.slice(0, 1)
+                            : initData?.user?.firstName?.slice(0, 1) || ""}
+
                     </div>
                 </div>
-
                 <div style={{
                     // flex: 1,
                     // fontFamily:'sans-serif',
@@ -93,7 +95,7 @@ function Home() {
                     fontWeight: 600,
                     maxWidth: "100%", // Ограничивает ширину
                     wordWrap: "break-word", // Переносит текст на новую строку,
-                    padding: "1em"
+                    padding: ".5em"
                 }}>
                     {initData?.user?.username ? initData.user.username : initData?.user?.firstName ? initData?.user?.firstName : "-----"}
                 </div>

@@ -1,56 +1,126 @@
 import classes from "./Tasks.module.css";
 // import MemoInstagramIcon from "../svg/InstagramIcon";
-import MemoTelegramIcon from "../svg/TelegramIcon";
 import {useEffect, useState} from "react";
-import {ListTasksType} from "../../types/types";
+import {TasksItemType} from "../../types/types";
 import MemoCheckIcon from "../svg/CheckIcon";
 import {toast} from "react-toastify";
-// import MemoDiscordIcon from "../svg/DiscordIcon";
+import {useFetchTask} from "../../hooks/useFetchTask";
+import TasksIcons from "../svg/tasks_icons/TasksIcons";
+import {useSetTask} from "../../hooks/useSetTask";
+import {initInitData} from "@telegram-apps/sdk-react";
 
 
-const listTasks: ListTasksType[] = [
-    // {name: "instagram", icon: <MemoInstagramIcon/>, title: "Follow +100sd", link: ""},
-    {
-        id: "1",
-        name: "telegram",
-        icon: <MemoTelegramIcon/>,
-        title: "Follow +100sd",
-        points: "100",
-        link: "https://t.me/sup_durov",
-        claim: false
-    }
-    // {name: "discord", icon: <MemoDiscordIcon/>, title: "Follow +100sd", link: ""}
-];
+type TasksItemTypeWithClaim = TasksItemType & {
+    claim: boolean;
+};
+
+// const userTasks = [
+//     {
+//         id: 1,
+//         title: "sdfsdfsdf",
+//         amount: 100,
+//         link: "",
+//         icon: "tg",
+//         stat: 1,
+//         dt_create: ""
+//     }, {
+//         id: 2,
+//         title: "sdfsdfsdf dfsdf fdsdgdfgdfg",
+//         amount: 100,
+//         link: "",
+//         icon: "tg",
+//         stat: 1,
+//         dt_create: ""
+//     }, {
+//         id: 3,
+//         title: "sdfsdfsdf dsfsd",
+//         amount: 100,
+//         link: "",
+//         icon: "instagram",
+//         stat: 1,
+//         dt_create: ""
+//     }, {
+//         id: 4,
+//         title: "sdfsdfsdf sdfsd",
+//         amount: 100,
+//         link: "",
+//         icon: "discord",
+//         stat: 1,
+//         dt_create: ""
+//     }
+// ];
 
 function Tasks() {
-    const [list, setList] = useState<ListTasksType[]>(listTasks);
+    const initData = initInitData();
+    // const initData = null;
+    const {data: userTasks} = useFetchTask(initData?.user?.id.toString() ?? "test");
+    const {mutate, data} = useSetTask();
+    const [list, setList] = useState<TasksItemTypeWithClaim[] | undefined>([]);
     const [linkId, setLinkId] = useState<string[]>([]);
 
+    console.log("task", userTasks);
+    console.log("list", list);
+    console.log("dataMutate", data);
+
     useEffect(() => {
-        const ids = localStorage.getItem("link_ids");
-        if (ids) {
-            setLinkId(JSON.parse(ids));
-        }
-        const claimIds = localStorage.getItem("link_claim");
+        // localStorage.clear()
+        if (userTasks?.data?.length) {
+            const ids = localStorage.getItem("link_ids");
+            if (ids) {
+                setLinkId(JSON.parse(ids));
+            }
+            const claimIds = localStorage.getItem("link_claim");
+            // console.log("ids", ids);
+            // console.log("claimIds", claimIds);
+            if (claimIds) {
+                const claimList = JSON.parse(claimIds);
+                const updatedList: TasksItemTypeWithClaim[] = userTasks.data.map(item => ({
+                    ...item,
+                    claim: claimList.includes(String(item.id))
+                }));
+                setList(updatedList);
+            } else {
+                const updatedList: TasksItemTypeWithClaim[] = userTasks.data.map(item => ({
+                    ...item,
+                    claim: false
+                }));
+                setList(updatedList);
+            }
+            updateListWithClaim();
+            // console.log("ids", ids);
+            //     if (claimIds) {
+            //         const claimList = JSON.parse(claimIds);
+            //         const claimedTasks: TasksItemType[] = [];
+            //         const unclaimedTasks: TasksItemType[] = [];
+            //
+            //         // Separate claimed and unclaimed tasks without modifying claim
+            //         userTasks?.data?.forEach(item => {
+            //             if (claimList.includes(item.id)) {
+            //                 claimedTasks.push(item); // No change to claim property
+            //             } else {
+            //                 unclaimedTasks.push(item);
+            //             }
+            //         });
+            //
+            //         // Add claimed tasks at the end of the list
+            //         setList([...unclaimedTasks, ...claimedTasks]);
+            //     } else {
+            //         // If no claimList, just set the tasks normally
+            //         setList(userTasks?.data);
+            //     }
+            updateListWithClaim();
+            //     // console.log("ids", ids);
 
-        if (claimIds) {
-            const claimList = JSON.parse(claimIds);
-            const updatedList = listTasks.map(item => {
-                if (claimList.includes(item.id)) {
-                    return {...item, claim: true};
-                }
-                return item;
-            });
-            setList(updatedList);
-        }
-        updateListWithClaim();
-        console.log("ids", ids);
-    }, []);
 
-    const onLinkHandleStart = (item_id: string) => {
-        if (linkId.includes(item_id)) return;
+        }
+    }, [userTasks]);
+
+
+    const onLinkHandleStart = (tg_id: string, task_id: number, stat: number) => {
+        mutate({tg_id, task_id, stat});
+        if (linkId.includes(String(task_id))) return;
         setLinkId(prevState => {
-            const updatedLinkIds = [...prevState, item_id];
+            const updatedLinkIds = [...prevState, String(task_id)];
             localStorage.setItem("link_ids", JSON.stringify(updatedLinkIds));
             return updatedLinkIds;
         });
@@ -58,17 +128,20 @@ function Tasks() {
 
     const updateListWithClaim = () => {
         setList(prevList => {
+            const validList = prevList || [];
+
             // Сначала разделяем элементы на те, у которых claim = true, и те, у которых claim = false
-            const claimedItems = prevList.filter(item => item.claim);
-            const unclaimedItems = prevList.filter(item => !item.claim);
+            const claimedItems = validList.filter(item => item.claim);
+            const unclaimedItems = validList.filter(item => !item.claim);
 
             // Объединяем их так, чтобы непроверенные элементы шли перед проверенными
             return [...unclaimedItems, ...claimedItems];
         });
     };
 
-    const onLinkHandleClaim = (item_id: string, points: string) => {
-        setLinkId(prevState => prevState.filter(itemId => itemId !== item_id));
+    const onLinkHandleClaim = (tg_id: string, task_id: number, stat: number, amount: number) => {
+        mutate({tg_id, task_id, stat});
+        setLinkId(prevState => prevState.filter(itemId => Number(itemId) !== task_id));
         const claim = localStorage.getItem("link_claim");
 
         let claimArray: string[] = [];
@@ -79,24 +152,22 @@ function Tasks() {
                 claimArray = [];
             }
         }
-        if (!claimArray.includes(item_id)) {
-            claimArray.push(item_id);
+        if (!claimArray.includes(String(task_id))) {
+            claimArray.push(String(task_id));
         }
-        const updatedList = listTasks.map(item => {
-            if (claimArray.includes(item.id)) {
-                return {...item, claim: true};
-            }
-            return item;
-        });
+        const updatedList: TasksItemTypeWithClaim[] = userTasks?.data ? userTasks.data.map(item => ({
+            ...item,
+            claim: claimArray.includes(String(item.id))
+        })) : [];
         setList(updatedList);
         localStorage.setItem("link_claim", JSON.stringify(claimArray));
         updateListWithClaim();
-        toast.success(`You got a ${points} SD points`, {
+        toast.success(`You got a ${amount} points`, {
             position: "top-right",
             hideProgressBar: true,
             icon: <MemoCheckIcon/>
         });
-        console.log("claim", localStorage.getItem("link_claim"));
+        // console.log("claim", localStorage.getItem("link_claim"));
     };
     // const notify = () => {
     //     toast("Default Notification !");
@@ -122,7 +193,7 @@ function Tasks() {
     //         className: 'foo-bar'
     //     });
     // };
-    console.log("LinkId", list);
+    // console.log("LinkId", list);
     return (
         <div className={classes.main}>
             <div style={{fontSize: 31, fontWeight: 600}}>Support Durov socials</div>
@@ -130,7 +201,7 @@ function Tasks() {
                 community, be aware of new
                 and following updates, find your tribe in Support Durov
             </div>
-            {list.map(item => (
+            {list?.map(item => (
                 <>
                     <div key={item.id}
                          style={{
@@ -140,7 +211,7 @@ function Tasks() {
                              justifyContent: "center",
                              textAlign: "start",
                              paddingBlock: "10px",
-                             opacity: item.claim ? 0.7 : 1
+                             opacity: item.stat > 1 ? 0.7 : 1
                          }}>
                         <div style={{
                             // flex: 1,
@@ -157,27 +228,31 @@ function Tasks() {
                                 alignItems: "center"
                             }}>
                                 {/*<img src={item.icon} alt={`Icon ${item.name}`}/>*/}
-                                {item.icon}
+                                <TasksIcons name={item.icon}/>
                                 <p style={{paddingLeft: 20, fontSize: 19}}>{item.title}</p>
                             </div>
 
-                            {!item.claim && linkId.length && linkId.includes(item.id) ?
-                                <button onClick={() => onLinkHandleClaim(item.id, item.points)} style={{
-                                    width: 70,
-                                    height: 45,
-                                    color: "black",
-                                    backgroundColor: "rgb(49,125,148)",
-                                    fontSize: 16,
-                                    borderRadius: 12
-                                }}>Claim</button> :
-                                !item.claim && <button style={{
+                            {!item.claim && linkId.length && linkId.includes(String(item.id)) ?
+                                <button
+                                    onClick={() => onLinkHandleClaim(String(initData?.user?.id) ?? "test", item.id, 3, item.amount)}
+                                    style={{
+                                        width: 70,
+                                        height: 45,
+                                        color: "black",
+                                        backgroundColor: "rgb(49,125,148)",
+                                        fontSize: 16,
+                                        borderRadius: 12
+                                    }}>Claim</button> :
+                                !item.claim &&
+                                <button style={{
                                     width: 70,
                                     height: 45,
                                     backgroundColor: "#282828",
                                     fontSize: 16,
                                     borderRadius: 12
                                 }}>
-                                    <a href={item.link} onClick={() => onLinkHandleStart(item.id)}
+                                    <a href={item.link}
+                                       onClick={() => onLinkHandleStart(String(initData?.user?.id) ?? "test", item.id, 2)}
                                        target="_blank"
                                        rel="noopener noreferrer"
                                        style={{color: "white", textDecoration: "none"}}>Start</a>

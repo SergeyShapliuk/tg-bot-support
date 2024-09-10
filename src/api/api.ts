@@ -1,6 +1,13 @@
 import {axiosInstanceApi} from "./instanceApi";
 import {AxiosResponse} from "axios";
-import {CloseTimerType, GetBalanceType, GetTimerType, GetUserRefType, StartTimerType} from "../types/types";
+import {
+    CloseTimerType,
+    GetBalanceType, GetTasksType,
+    GetTimerType,
+    GetUserReferrals,
+    GetUserRefType, SetTaskType,
+    StartTimerType
+} from "../types/types";
 
 
 export const api = {
@@ -20,8 +27,24 @@ export const api = {
         });
         return response;
     },
+    async getUserTask(telegram_id: string) {
+        const response = await axiosInstanceApi.get<string, AxiosResponse<GetTasksType>>(`get-task?telegram_id=${telegram_id}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        return response;
+    },
     async getUserRef(telegram_id: string) {
         const response = await axiosInstanceApi.get<string, AxiosResponse<GetUserRefType>>(`get-user-ref-code?telegram_id=${telegram_id}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        return response;
+    },
+    async getUserReferrals(telegram_id: string) {
+        const response = await axiosInstanceApi.get<string, AxiosResponse<GetUserReferrals>>(`get-user-referals?telegram_id=${telegram_id}`, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -38,6 +61,18 @@ export const api = {
     },
     async setCloseTimer(telegram_id: string) {
         const response = await axiosInstanceApi.post<string, AxiosResponse<CloseTimerType>>("close-user-timer", {telegram_id}, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response;
+    },
+    async setTask(telegram_id: string, task_id: number, stat: number) {
+        const response = await axiosInstanceApi.post<string, AxiosResponse<SetTaskType>>("set-user-task-stat", {
+            telegram_id,
+            task_id,
+            stat
+        }, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }

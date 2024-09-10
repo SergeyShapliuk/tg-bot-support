@@ -47,18 +47,18 @@ function FarmingComponent({timer}: FarmingComponentProps) {
     // });
 
 
-    const {refetch, data} = useFetchBalance(initData?.user?.id.toString() ?? "ttt");
-    const {refetch: refetchTimer} = useFetchTimer(initData?.user?.id.toString() ?? "ttt");
+    const {refetch} = useFetchBalance(initData?.user?.id.toString() ?? "test_user3");
+    const {refetch: refetchTimer} = useFetchTimer(initData?.user?.id.toString() ?? "test_user3");
 
-    const {mutate: startTimer, data: startTimerData} = useStartTimer(initData?.user?.id.toString() ?? "ttt");
-    const {mutate: stopTimer, data: dataStopTimer} = useCloseTimer(initData?.user?.id.toString() ?? "ttt");
+    const {mutate: startTimer, data: startTimerData} = useStartTimer(initData?.user?.id.toString() ?? "test_user3");
+    const {mutate: stopTimer, data: dataStopTimer} = useCloseTimer(initData?.user?.id.toString() ?? "test_user3");
 
     const [isAnimation, setAnimation] = useState<boolean>(false);
-    console.log("data", data);
-    console.log("timer", timer);
-    console.log("countdownDate", countdownDate);
-    console.log("dataStopTimer", dataStopTimer);
-    console.log("startTimerData", startTimerData);
+    // console.log("data", data);
+    // console.log("timer", timer);
+    // console.log("countdownDate", countdownDate);
+    // console.log("dataStopTimer", dataStopTimer);
+    // console.log("startTimerData", startTimerData);
     useEffect(() => {
         // if (timer) {
         //     console.log("useEffect");
@@ -72,8 +72,8 @@ function FarmingComponent({timer}: FarmingComponentProps) {
         const savedEndTime = timer?.info?.time_end ? timer?.info?.time_end * 1000 : savedLocalEndTime;
         const savedStartTime = timer?.info?.time_start ? timer?.info?.time_start * 1000 : savedLocalStartTime;
 
-        console.log("savedLocalAmount", savedLocalAmount);
-        console.log("savedLocalDuration", savedLocalDuration);
+        // console.log("savedLocalAmount", savedLocalAmount);
+        // console.log("savedLocalDuration", savedLocalDuration);
         if (savedEndTime && savedEndTime > now) {
             const timePassedMs = now - savedStartTime; // Прошедшее время в миллисекундах
             const timePassedSec = timePassedMs / 1000; // Прошедшее время в секундах

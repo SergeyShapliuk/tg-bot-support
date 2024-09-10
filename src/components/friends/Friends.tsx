@@ -3,13 +3,14 @@ import classes from "./Friends.module.css";
 import MemoInviteIcon from "../svg/InviteFriends";
 import {Sheet} from "react-modal-sheet";
 import MemoCloseIcon from "../svg/CloseIcon";
-import {QRCodeCanvas} from "qrcode.react";
 import {useFetchRef} from "../../hooks/useFetchRef";
 import {initInitData} from "@telegram-apps/sdk-react";
+import {useFetchReferrals} from "../../hooks/useFetchReferrals";
+import MemoUsersIcon from "../svg/UsersIcon";
 
 
 type ShareState = "pending" | "success" | "error";
-type FriendsState = { id: string, name: string, referral: string, points: string };
+// type FriendsState = { customer: string, name: string, referal_count: string, amount: string };
 // const onError: (error?: unknown) => void = null;
 
 
@@ -19,27 +20,29 @@ const listInvite = [
     {title: "Score 20% from buddies", subTitle: ""}
 ];
 
-const listInviteFrens: FriendsState[] = [
-    {id: "1", name: "Alex", referral: "0", points: "2323"},
-    {id: "2", name: "eflexe", referral: "2", points: "2323"},
-    {id: "3", name: "Fexw", referral: "7", points: "2323"},
-    {id: "4", name: "Fexw", referral: "7", points: "2323"},
-    {id: "5", name: "Fexw", referral: "7", points: "2323"},
-    {id: "6", name: "Fexw", referral: "7", points: "2323"},
-    {id: "7", name: "Nlexe", referral: "0", points: "2323"}
-];
+// const listInviteFrens: FriendsState[] = [
+//     {customer: "1", name: "Alex", referal_count: "0", amount: "2323"},
+//     {customer: "2", name: "eflexe", referal_count: "2", amount: "2323"},
+//     {customer: "3", name: "Fexw", referal_count: "7", amount: "2323"},
+//     {customer: "4", name: "Fexw", referal_count: "7", amount: "2323"},
+//     {customer: "5", name: "Fexw", referal_count: "7", amount: "2323"},
+//     {customer: "6", name: "Fexw", referal_count: "7", amount: "2323"},
+//     {customer: "7", name: "Nlexe", referal_count: "0", amount: "2323"}
+// ];
 
 function Friends() {
     const initData = initInitData();
     // const initData = null;
 
-    const {data: userRef} = useFetchRef(initData?.user?.id.toString() ?? "ttt");
+    const {data: userRef} = useFetchRef(initData?.user?.id.toString() ?? "test_user3");
+    const {data: referrals} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3");
 
     const [isOpen, setOpen] = useState<boolean>(false);
     const [state, setState] = useState<ShareState>("pending");
     // const [friends, setFriends] = useState<FriendsState[]>(listInviteFrens);
 
     console.log("userRef", userRef);
+    console.log("referrals", referrals);
 
     // useEffect(() => {
     //     const canvas = document.querySelector("qrcode") as HTMLCanvasElement;
@@ -55,30 +58,31 @@ function Friends() {
     //     // downloadLink.click();
     //     // document.body.removeChild(downloadLink);
     // }, []);
-    const handleSendQRCode = () => {
-        // const canvas = document.getElementById("qrcode");
-        // if (canvas) {
-        //     canvas.toBlob((blob) => {
-        //         const file = new File([blob], 'qr-code.png', { type: 'image/png' });
-        //
-        //         if (navigator.share) {
-        //             navigator.share({
-        //                 title: 'QR Code',
-        //                 text: 'Here is your QR code',
-        //                 files: [file],  // QR-код файл для отправки
-        //             })
-        //                 .then(() => console.log('Successful share'))
-        //                 .catch((error) => console.log('Error sharing', error));
-        //         } else {
-        //             alert('Web Share API не поддерживается на вашем устройстве.');
-        //         }
-        //     });
-        // }
+    // const handleSendQRCode = () => {
+    // const canvas = document.getElementById("qrcode");
+    // if (canvas) {
+    //     canvas.toBlob((blob) => {
+    //         const file = new File([blob], 'qr-code.png', { type: 'image/png' });
+    //
+    //         if (navigator.share) {
+    //             navigator.share({
+    //                 title: 'QR Code',
+    //                 text: 'Here is your QR code',
+    //                 files: [file],  // QR-код файл для отправки
+    //             })
+    //                 .then(() => console.log('Successful share'))
+    //                 .catch((error) => console.log('Error sharing', error));
+    //         } else {
+    //             alert('Web Share API не поддерживается на вашем устройстве.');
+    //         }
+    //     });
+    // }
 
 
-        // Открытие ссылки для отправки QR-кода
+    // Открытие ссылки для отправки QR-кода
 
-    };
+    // };
+
     const copyClicked = async () => {
         try {
             await navigator.clipboard.writeText(`https://t.me/supDurovBot?start=ref_${userRef?.codes[0]?.code}`);
@@ -103,14 +107,14 @@ function Friends() {
                 <MemoInviteIcon/>
                 <div className={classes.title}>Invite friends. Earn a points.</div>
                 <div style={{height: "100%", paddingBottom: 160}}>
-                    {listInviteFrens.length ?
+                    {referrals?.data?.length ?
                         <>
                             <div style={{color: "rgba(255,255,255,0.7)"}}>Score 20% from buddies +2.5% from their
                                 referrals
                             </div>
-                            <div className={classes.listFriends}>{`${listInviteFrens.length} friends`}
-                                {listInviteFrens.map(friend => (
-                                    <div className={classes.itemFriends} key={friend.id}>
+                            <div className={classes.listFriends}>{`${referrals.data.length} friends`}
+                                {referrals.data.map(friend => (
+                                    <div className={classes.itemFriends} key={friend.customer}>
                                         <div style={{display: "flex", alignItems: "center", gap: 10}}>
                                             <div style={{
                                                 width: 30,
@@ -121,17 +125,23 @@ function Friends() {
                                                 borderRadius: "50%",
                                                 fontWeight: 500,
                                                 backgroundColor: "rgb(49,125,148)"
-                                            }}>{friend.name.slice(0, 1)}</div>
+                                            }}>{friend?.name?.slice(0, 1)}</div>
                                             <div>
                                                 <div>{friend.name}</div>
                                                 <div style={{
-                                                    color: "rgba(255,255,255,0.7)",
+                                                    color: "#FFFFFFB3",
                                                     fontSize: 12,
-                                                    textAlign: "start"
-                                                }}>{friend.referral === "0" ? "0" : `+ ${friend.referral}`}</div>
+                                                    display: "flex",
+                                                    flexDirection: "row",
+                                                    justifyContent: "start",
+                                                    alignItems: "center"
+                                                }}>
+                                                    <MemoUsersIcon/>
+                                                    {friend.referal_count === "0" ? "0" : `+ ${friend.referal_count}`}
+                                                </div>
                                             </div>
                                         </div>
-                                        <div>{`${friend.points} SD`}</div>
+                                        <div>{`${friend.amount} point`}</div>
                                     </div>
                                 ))}
                             </div>
@@ -176,36 +186,37 @@ function Friends() {
                         <MemoCloseIcon style={{position: "absolute", top: 20, right: 20}}/>
                     </div>
                     <Sheet.Scroller style={{textAlign: "center", padding: "1em"}}>
-                        <QRCodeCanvas id="qrcode"
-                                      value={`https://t.me/supDurovBot?start=ref_${userRef?.codes[0]?.code}`}
-                                      title={"QR code"}
-                                      size={300}
-                                      bgColor={"#ffffff"}
-                                      fgColor={"#000000"}
-                                      level={"L"}
-                                      marginSize={1}
-                            // imageSettings={{
-                            //     src: "https://coin.golden-media.by/wp-content/uploads/2023/04/2322.png",
-                            //     x: undefined,
-                            //     y: undefined,
-                            //     height: 30,
-                            //     width: 50,
-                            //     opacity: 1,
-                            //     excavate: true
-                            // }}
-                                      style={{paddingTop: 50}}/>
-                        {/*<a className={classes.shareButton}*/}
-                        {/*   href={"https://t.me/share/url?url=https://wallpapers.com/images/hd/lightning-letter-d-7jyf54ms4gj6aibd.jpg"}*/}
-                        {/*   target="_blank"*/}
-                        {/*   rel="noopener noreferrer">Send*/}
-                        {/*</a>*/}
-                        <button onClick={handleSendQRCode} className={classes.shareButton}>
-                            Send QR Code
-                        </button>
+                        {/*<QRCodeCanvas id="qrcode"*/}
+                        {/*              value={`https://t.me/supDurovBot?start=ref_${userRef?.codes[0]?.code}`}*/}
+                        {/*              title={"QR code"}*/}
+                        {/*              size={300}*/}
+                        {/*              bgColor={"#ffffff"}*/}
+                        {/*              fgColor={"#000000"}*/}
+                        {/*              level={"L"}*/}
+                        {/*              marginSize={1}*/}
+                        {/*    // imageSettings={{*/}
+                        {/*    //     src: "https://coin.golden-media.by/wp-content/uploads/2023/04/2322.png",*/}
+                        {/*    //     x: undefined,*/}
+                        {/*    //     y: undefined,*/}
+                        {/*    //     height: 30,*/}
+                        {/*    //     width: 50,*/}
+                        {/*    //     opacity: 1,*/}
+                        {/*    //     excavate: true*/}
+                        {/*    // }}*/}
+                        {/*              style={{paddingTop: 50}}/>*/}
+                        <img src={userRef?.codes[0]?.link_code} alt="QrCode" style={{width: "100%", height: "50%"}}/>
+                        <a className={classes.shareButton}
+                           href={`https://t.me/share/url?url=${userRef?.codes[0]?.link_code}`}
+                           target="_blank"
+                           rel="noopener noreferrer">Send QR Code</a>
+                        {/*<button onClick={handleSendQRCode} className={classes.shareButton}>*/}
+                        {/*    Send QR Code*/}
+                        {/*</button>*/}
                         <button onClick={copyClicked} style={{
                             height: 50,
                             color: "#fff",
-                            fontSize: 19,
+                            fontSize: 21,
+                            fontWeight: "400",
                             margin: "25px 0 25px 0",
                             backgroundColor: "#282828"
                         }}>{getButtonText(state)}</button>
