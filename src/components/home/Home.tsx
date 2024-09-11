@@ -25,7 +25,6 @@ const override: CSSProperties = {
 function Home() {
     const initData = initInitData();
     // const initData = null;
-    // const cloudStorage = initCloudStorage();
 
     const {
         isInitialized,
@@ -110,7 +109,6 @@ function Home() {
             <div className={classes.buttonContainer}>
                 <FarmingComponent timer={timer} refetchTimer={() => refetchTimer()}/>
             </div>
-            {/*<EffectComponent isActive={true}/>*/}
         </div>
     );
 }

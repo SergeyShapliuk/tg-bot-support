@@ -2,20 +2,19 @@ import {useMutation, UseMutationResult} from "@tanstack/react-query";
 import {api} from "../api/api";
 import {StartTimerType} from "../types/types";
 
-export const useStartTimer = (tg_id: string): UseMutationResult<StartTimerType, any, void, unknown> => {
+
+interface SetStartVariables {
+    tg_id: string;
+}
+
+export const useStartTimer = (): UseMutationResult<StartTimerType, any, SetStartVariables, unknown> => {
     return useMutation({
-        mutationFn: async () => {
+        mutationFn: async (variables: SetStartVariables) => {
+            const {tg_id} = variables;
             const {data} = await api.setStartTimer(tg_id);
             return data;
         },
         mutationKey: ["start-timer"],
-        // enabled: false,
         retry: 2
-        // onError: (error) => {
-        //     console.error("Ошибка при запуске таймера:", error);
-        // },
-        // onSuccess: (data) => {
-        //     console.log("Таймер успешно запущен:", data);
-        // }
     });
 };

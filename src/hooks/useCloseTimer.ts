@@ -3,9 +3,14 @@ import {api} from "../api/api";
 import {CloseTimerType} from "../types/types";
 
 
-export const useCloseTimer = (tg_id: string): UseMutationResult<CloseTimerType, any, void, unknown> => {
+interface SetCloseVariables {
+    tg_id: string;
+}
+
+export const useCloseTimer = (): UseMutationResult<CloseTimerType, any, SetCloseVariables, unknown> => {
     return useMutation({
-        mutationFn: async () => {
+        mutationFn: async (variables: SetCloseVariables) => {
+            const {tg_id} = variables;
             const {data} = await api.setCloseTimer(tg_id);
             return data;
         },

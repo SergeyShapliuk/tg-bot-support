@@ -33,7 +33,7 @@ const EffectComponent = ({isActive}: { isActive: boolean }) => {
 
         }
     }, [isActive]);
-    console.log("EffectCompodnent", isActive);
+    // console.log("EffectCompodnent", isActive);
     // const particlesLoaded = (container) => {
     //     console.log("fdgdfgdfgdfg", tsParticles.getUpdaters({}));
     // };

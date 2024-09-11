@@ -28,11 +28,11 @@ const queryClient = new QueryClient({
         }
     }
 });
-// import { mockTelegramEnv, parseInitData } from '@telegram-apps/sdk';
-//
+// import {mockTelegramEnv, parseInitData} from "@telegram-apps/sdk";
+
 // const initDataRaw = new URLSearchParams([
 //     ['user', JSON.stringify({
-//         id: 11111111113,
+//         id: 11111111116,
 //         first_name: 'Andrew',
 //         last_name: 'Rogue',
 //         username: 'rogue1',
@@ -73,7 +73,6 @@ const queryClient = new QueryClient({
 // console.log(`App version: ${appVersion}`);
 
 function App() {
-    localStorage.clear()
     const [miniApp] = initMiniApp();
     const [viewport] = initViewport();
     const [swipeBehavior] = initSwipeBehavior();
