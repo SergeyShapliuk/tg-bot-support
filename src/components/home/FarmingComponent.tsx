@@ -1,7 +1,7 @@
 import FarmingButton from "../ui/FarmingButton";
 import {useCountdown} from "../../context/CountdownProvider";
 import {useStartTimer} from "../../hooks/useStartTimer";
-import {memo, useEffect, useState} from "react";
+import {memo, useCallback, useEffect, useRef, useState} from "react";
 import {GetTimerType} from "../../types/types";
 import {useCloseTimer} from "../../hooks/useCloseTimer";
 import {useFetchBalance} from "../../hooks/useFetchBalance";
@@ -9,6 +9,7 @@ import {initInitData} from "@telegram-apps/sdk-react";
 import CountUp from "react-countup";
 import {useFetchTimer} from "../../hooks/useFetchTimer";
 import EffectComponent from "../ui/effect/EffectComponent";
+import {debounce, throttle} from "lodash";
 
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
 // const totalTimeMS = 60 * 1000; // в миллисекундах
@@ -23,6 +24,7 @@ type FarmingComponentProps = {
 function FarmingComponent({timer}: FarmingComponentProps) {
     const initData = initInitData();
     // const initData = null;
+    const hasClicked = useRef(false);
     const {
         isCountdown,
         count,
@@ -61,7 +63,7 @@ function FarmingComponent({timer}: FarmingComponentProps) {
     // console.log("startTimerData", startTimerData);
     useEffect(() => {
         // if (timer) {
-        //     console.log("useEffect");
+        // console.log("useEffect");
         // localStorage.clear();
         const now = Date.now();
         const savedLocalEndTime = parseInt(localStorage.getItem("countdownEndTime") || "0", 10);
@@ -87,34 +89,25 @@ function FarmingComponent({timer}: FarmingComponentProps) {
             // Устанавливаем количество поинтов, не превышая 99
             setCount(Math.min(totalPoints, points));
             if (timer?.resp === "ok") {
-                refetchTimer();
+                refetchTimer().then();
             }
             // const elapsedTime = Math.max(0, savedEndTime - now); // Время до окончания
             setCount(points); // преобразуем миллисекунды в секунды
             setIsCountdown(false);
             setStartDate(savedStartTime);
             setCountdownDate(savedEndTime);
-            console.log("timePassed", points);
+            // console.log("timePassed", points);
         }
         if (savedEndTime && savedEndTime <= now) {
-            // console.log("второе условие");
-            // setCount(Math.floor(8 * 60 * 60 * 1000 / 1000));
+            const totalPoints = Number(savedLocalAmount);
+            // console.log('savedEndTime',savedEndTime)
+            if (totalPoints) {
+                setComplete(true);
+            } else {
+                setComplete(false);
+            }
             setIsCountdown(true);
-            setComplete(true);
-            // setCount(timer?.info?.amount ?? Math.floor(savedEndTime - savedStartTime));
-            // setStartDate(savedStartTime);
-            // setCountdownDate(savedEndTime);
         }
-
-        // else {
-        //     // const newEndTime = now + 8 * 60 * 60 * 1000; // 8 часов в миллисекундах
-        //     const newEndTime = now + 5000; // 8 часов в миллисекундах
-        //     localStorage.setItem("countdownEndTime", newEndTime.toString());
-        //     setCountdownDate(newEndTime);
-        // }
-        // setLoading(false);
-        // }
-
     }, []);
 
     // useEffect(() => {
@@ -129,6 +122,7 @@ function FarmingComponent({timer}: FarmingComponentProps) {
 
     useEffect(() => {
         if (dataStopTimer?.resp === "ok") {
+            console.log("useEffectdataStopTimer");
             setComplete(false);
             setIsCountdown(true);
             setCount(0);
@@ -141,14 +135,15 @@ function FarmingComponent({timer}: FarmingComponentProps) {
             refetchTimer();
             refetch().then(() => {
                 setAnimation(true);
+                hasClicked.current = false;
             });
-
         }
 
     }, [dataStopTimer]);
 
     useEffect(() => {
-        if (startTimerData && startTimerData.resp === "ok") {
+        if (startTimerData?.resp === "ok") {
+            setAnimation(false);
             console.log("startTimerDatauseEffect", timer);
             const now = startTimerData.info.time_start * 1000;
             const newEndTime = startTimerData.info.time_end * 1000;
@@ -164,30 +159,55 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                     localStorage.setItem("amount", res?.data?.info?.amount.toString() as string);
                     localStorage.setItem("duration", res?.data?.second?.last.toString() as string);
                 }
-                console.log("fdsfsd", res);
+                // console.log("fdsfsd", res);
             });
 
         }
     }, [startTimerData]);
 
-    const startFarming = () => {
-        setAnimation(false);
-        startTimer();
-    };
 
-    // const startFarmingTest = () => {
-    //     const now = Date.now();
-    //     const newEndTime = Date.now() + totalTimeMS;
-    //     localStorage.setItem("countdownEndTime", newEndTime.toString());
-    //     localStorage.setItem("startTime", now.toString());
-    //     setIsCountdown(false);
-    //     setCountdownDate(newEndTime);
-    //     setStartDate(now);
-    // };
+    const handleSubsequentClicks = useCallback(
+        throttle(() => {
+            console.log("Subsequent click");
+            startTimer(); // или ваш другой код
+        }, 3000) as Function,
+        []
+    );
 
-    const setUserPoints = () => {
+    // Функция, которая вызывается при первом нажатии
+    const handleFirstClick = useCallback(
+        debounce(() => {
+            if (!hasClicked.current) {
+                console.log("First click");
+                hasClicked.current = true;
+                startTimer(); // или ваш другой код
+            }
+        }, 0) as Function,
+        []
+    );
+
+    // Основная функция, которая обрабатывает нажатие
+    const startFarming = useCallback(() => {
+        if (hasClicked.current) {
+            handleSubsequentClicks();
+        } else {
+            handleFirstClick();
+        }
+    }, [handleSubsequentClicks, handleFirstClick]);
+
+
+// const startFarmingTest = () => {
+//     const now = Date.now();
+//     const newEndTime = Date.now() + totalTimeMS;
+//     localStorage.setItem("countdownEndTime", newEndTime.toString());
+//     localStorage.setItem("startTime", now.toString());
+//     setIsCountdown(false);
+//     setCountdownDate(newEndTime);
+//     setStartDate(now);
+// };
+    const setUserPoints = throttle(() => {
         stopTimer();
-    };
+    }, 2000);
 
     const renderer = ({hours, minutes, total, completed}: any) => {
         // console.log("renderer", total);
@@ -234,8 +254,8 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                     textAlign: "center",
                     zIndex: 1
                 }}>
-                    <span style={{position: "relative", right: 25, top: "27%"}}>Farming &#x20BF;<span
-                        style={{position: "absolute"}}>{timer?.resp === "ok" &&
+                    <span style={{position: "relative", right: 25, top: "27%"}}>Farming SD <span
+                        style={{position: "absolute", paddingLeft: 5}}>{timer?.resp === "ok" &&
                     <CountUp start={count} end={timer?.info?.amount}
                              duration={timer?.second?.last}
                              decimals={3}
@@ -246,7 +266,7 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                         top: 23,
                         right: 0,
                         paddingRight: "10px",
-                        fontSize: 12,
+                        fontSize: 14,
                         zIndex: 1
                     }}>{hours}h {minutes}m</span>
                 </div>
@@ -255,7 +275,8 @@ function FarmingComponent({timer}: FarmingComponentProps) {
     };
     return (
         <>
-            <FarmingButton loading={false} point={timer?.info?.amount ?? 0} isCountdown={isCountdown}
+            <FarmingButton disabled={hasClicked.current} loading={false} point={timer?.info?.amount ?? 0}
+                           isCountdown={isCountdown}
                            complete={complete}
                            countdownDate={countdownDate}
                            renderer={renderer}

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {memo, useEffect, useState} from "react";
 import Particles, {initParticlesEngine} from "@tsparticles/react";
 import icon_v1 from "../../../assets/free_green.png";
 import icon_v2 from "../../../assets/free_light_green.png";
@@ -33,7 +33,7 @@ const EffectComponent = ({isActive}: { isActive: boolean }) => {
 
         }
     }, [isActive]);
-
+    console.log("EffectCompodnent", isActive);
     // const particlesLoaded = (container) => {
     //     console.log("fdgdfgdfgdfg", tsParticles.getUpdaters({}));
     // };
@@ -98,7 +98,8 @@ const EffectComponent = ({isActive}: { isActive: boolean }) => {
                             direction: "top",
                             enable: true,
                             gravity: {
-                                enable: true
+                                enable: true,
+                                acceleration: 30
                             },
                             outModes: {
                                 top: "none",
@@ -113,8 +114,28 @@ const EffectComponent = ({isActive}: { isActive: boolean }) => {
                             value: 100
                         },
                         opacity: {
-                            value: 1
+                            // value:1,
+                            value: {
+                                min: 0.3,
+                                max: 1
+                            },
+                            animation: {
+                                enable: true,
+                                speed: 1, // скорость изменения opacity
+                                startValue: "max", // начальное значение opacity
+                                sync: false // анимация будет независимой для каждой частицы
+                            }
                         },
+                        // life: {
+                        //     duration: {
+                        //         sync: false,
+                        //         value: {
+                        //             min: 5,
+                        //             max: 8 // Время жизни каждой частицы (перед исчезновением)
+                        //         }
+                        //     },
+                        //     count: 1
+                        // },
                         rotate: {
                             value: {
                                 min: 0,
@@ -237,4 +258,4 @@ const EffectComponent = ({isActive}: { isActive: boolean }) => {
     }
     return <></>;
 };
-export default EffectComponent;
+export default memo(EffectComponent);

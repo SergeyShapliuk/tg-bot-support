@@ -39,6 +39,7 @@ export type TasksItemType = {
     link: string;
     icon: string;
     stat: number;
+    user_stat: number;
     dt_create: string;
 }
 export type GetTasksType = {

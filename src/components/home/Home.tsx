@@ -34,12 +34,12 @@ function Home() {
         setPoints
     } = useTotalPoints();
     const {data: balance} = useFetchBalance(initData?.user?.id.toString() ?? "test_user3");
-    const {data: timer, refetch: refetchTimer, isPending} = useFetchTimer(initData?.user?.id.toString() ?? "test_user3");
+    const {data: timer, refetch: refetchTimer} = useFetchTimer(initData?.user?.id.toString() ?? "test_user3");
 
 
     // const [isLoading, setLoading] = useState<boolean>(false);
     // const [progress, setProgress] = useState<string>('0');
-    console.log("balance", balance);
+    // console.log("balance", balance);
 
     // console.log("timer", timer);
     // console.log("isPending", isPending);
@@ -53,7 +53,7 @@ function Home() {
     // console.log("datecalc", 1725723424 - 1725698224);
     // console.log("timestamp", new Date(1725698224 * 1000));
     useEffect(() => {
-        if (!isPending && timer && balance) {
+        if (timer && balance) {
             // const timeOut = setTimeout(() => {
             setPoints(balance.amount);
             setInitialized(true);
@@ -100,7 +100,7 @@ function Home() {
                     {initData?.user?.username ? initData.user.username : initData?.user?.firstName ? initData?.user?.firstName : "-----"}
                 </div>
                 {/*<p style={{position: "absolute", right: 10, paddingRight: "10px", fontSize: 24}}>&#8383; {points}</p>*/}
-                <div style={{fontSize: 27, fontWeight: 600}}>&#8383;{points ? points : "0"}</div>
+                <div style={{fontSize: 27, fontWeight: 600}}>SD {points ? points : "0"}</div>
             </div>
             <div className={classes.imageBlock}>
                 <img
@@ -110,7 +110,7 @@ function Home() {
             <div className={classes.buttonContainer}>
                 <FarmingComponent timer={timer} refetchTimer={() => refetchTimer()}/>
             </div>
-            {/*<EffectComponent />*/}
+            {/*<EffectComponent isActive={true}/>*/}
         </div>
     );
 }

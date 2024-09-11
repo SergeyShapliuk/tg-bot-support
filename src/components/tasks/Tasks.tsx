@@ -1,18 +1,14 @@
 import classes from "./Tasks.module.css";
-// import MemoInstagramIcon from "../svg/InstagramIcon";
-import {useEffect, useState} from "react";
-import {TasksItemType} from "../../types/types";
+import {useEffect} from "react";
 import MemoCheckIcon from "../svg/CheckIcon";
 import {toast} from "react-toastify";
 import {useFetchTask} from "../../hooks/useFetchTask";
 import TasksIcons from "../svg/tasks_icons/TasksIcons";
 import {useSetTask} from "../../hooks/useSetTask";
 import {initInitData} from "@telegram-apps/sdk-react";
+import {useFetchBalance} from "../../hooks/useFetchBalance";
 
 
-type TasksItemTypeWithClaim = TasksItemType & {
-    claim: boolean;
-};
 
 // const userTasks = [
 //     {
@@ -53,115 +49,126 @@ type TasksItemTypeWithClaim = TasksItemType & {
 function Tasks() {
     const initData = initInitData();
     // const initData = null;
-    const {data: userTasks} = useFetchTask(initData?.user?.id.toString() ?? "test");
-    const {mutate, data} = useSetTask();
-    const [list, setList] = useState<TasksItemTypeWithClaim[] | undefined>([]);
-    const [linkId, setLinkId] = useState<string[]>([]);
+    const {refetch} = useFetchBalance(initData?.user?.id.toString() ?? "test_user3");
 
-    console.log("task", userTasks);
-    console.log("list", list);
-    console.log("dataMutate", data);
+    const {data: userTasks, refetch: getTasks} = useFetchTask(initData?.user?.id.toString() ?? "test");
+    const {mutate, data, isSuccess} = useSetTask();
+    // const [list, setList] = useState<TasksItemTypeWithClaim[] | undefined>([]);
+    // const [linkId, setLinkId] = useState<string[]>([]);
+
+    // console.log("task", userTasks);
+    // console.log("list", list);
+    // console.log("dataMutate", data);
+
+    // useEffect(() => {
+    //     // localStorage.clear()
+    //     if (userTasks?.data?.length) {
+    //         const ids = localStorage.getItem("link_ids");
+    //         if (ids) {
+    //             setLinkId(JSON.parse(ids));
+    //         }
+    //         const claimIds = localStorage.getItem("link_claim");
+    //         // console.log("ids", ids);
+    //         // console.log("claimIds", claimIds);
+    //         if (claimIds) {
+    //             const claimList = JSON.parse(claimIds);
+    //             const updatedList: TasksItemTypeWithClaim[] = userTasks.data.map(item => ({
+    //                 ...item,
+    //                 claim: claimList.includes(String(item.id))
+    //             }));
+    //             setList(updatedList);
+    //         } else {
+    //             const updatedList: TasksItemTypeWithClaim[] = userTasks.data.map(item => ({
+    //                 ...item,
+    //                 claim: false
+    //             }));
+    //             setList(updatedList);
+    //         }
+    //         updateListWithClaim();
+    //         // console.log("ids", ids);
+    //         //     if (claimIds) {
+    //         //         const claimList = JSON.parse(claimIds);
+    //         //         const claimedTasks: TasksItemType[] = [];
+    //         //         const unclaimedTasks: TasksItemType[] = [];
+    //         //
+    //         //         // Separate claimed and unclaimed tasks without modifying claim
+    //         //         userTasks?.data?.forEach(item => {
+    //         //             if (claimList.includes(item.id)) {
+    //         //                 claimedTasks.push(item); // No change to claim property
+    //         //             } else {
+    //         //                 unclaimedTasks.push(item);
+    //         //             }
+    //         //         });
+    //         //
+    //         //         // Add claimed tasks at the end of the list
+    //         //         setList([...unclaimedTasks, ...claimedTasks]);
+    //         //     } else {
+    //         //         // If no claimList, just set the tasks normally
+    //         //         setList(userTasks?.data);
+    //         //     }
+    //         updateListWithClaim();
+    //         //     // console.log("ids", ids);
+    //
+    //
+    //     }
+    // }, [userTasks]);
 
     useEffect(() => {
-        // localStorage.clear()
-        if (userTasks?.data?.length) {
-            const ids = localStorage.getItem("link_ids");
-            if (ids) {
-                setLinkId(JSON.parse(ids));
+        if (isSuccess) {
+            getTasks().then();
+            if (data?.data?.stat === 3) {
+                refetch().then();
             }
-            const claimIds = localStorage.getItem("link_claim");
-            // console.log("ids", ids);
-            // console.log("claimIds", claimIds);
-            if (claimIds) {
-                const claimList = JSON.parse(claimIds);
-                const updatedList: TasksItemTypeWithClaim[] = userTasks.data.map(item => ({
-                    ...item,
-                    claim: claimList.includes(String(item.id))
-                }));
-                setList(updatedList);
-            } else {
-                const updatedList: TasksItemTypeWithClaim[] = userTasks.data.map(item => ({
-                    ...item,
-                    claim: false
-                }));
-                setList(updatedList);
-            }
-            updateListWithClaim();
-            // console.log("ids", ids);
-            //     if (claimIds) {
-            //         const claimList = JSON.parse(claimIds);
-            //         const claimedTasks: TasksItemType[] = [];
-            //         const unclaimedTasks: TasksItemType[] = [];
-            //
-            //         // Separate claimed and unclaimed tasks without modifying claim
-            //         userTasks?.data?.forEach(item => {
-            //             if (claimList.includes(item.id)) {
-            //                 claimedTasks.push(item); // No change to claim property
-            //             } else {
-            //                 unclaimedTasks.push(item);
-            //             }
-            //         });
-            //
-            //         // Add claimed tasks at the end of the list
-            //         setList([...unclaimedTasks, ...claimedTasks]);
-            //     } else {
-            //         // If no claimList, just set the tasks normally
-            //         setList(userTasks?.data);
-            //     }
-            updateListWithClaim();
-            //     // console.log("ids", ids);
-
-
         }
-    }, [userTasks]);
+    }, [isSuccess]);
 
 
     const onLinkHandleStart = (tg_id: string, task_id: number, stat: number) => {
         mutate({tg_id, task_id, stat});
-        if (linkId.includes(String(task_id))) return;
-        setLinkId(prevState => {
-            const updatedLinkIds = [...prevState, String(task_id)];
-            localStorage.setItem("link_ids", JSON.stringify(updatedLinkIds));
-            return updatedLinkIds;
-        });
+        // if (linkId.includes(String(task_id))) return;
+        // setLinkId(prevState => {
+        //     const updatedLinkIds = [...prevState, String(task_id)];
+        //     localStorage.setItem("link_ids", JSON.stringify(updatedLinkIds));
+        //     return updatedLinkIds;
+        // });
     };
 
-    const updateListWithClaim = () => {
-        setList(prevList => {
-            const validList = prevList || [];
+    // const updateListWithClaim = () => {
+    //     setList(prevList => {
+    //         const validList = prevList || [];
+    //
+    //         // Сначала разделяем элементы на те, у которых claim = true, и те, у которых claim = false
+    //         const claimedItems = validList.filter(item => item.claim);
+    //         const unclaimedItems = validList.filter(item => !item.claim);
+    //
+    //         // Объединяем их так, чтобы непроверенные элементы шли перед проверенными
+    //         return [...unclaimedItems, ...claimedItems];
+    //     });
+    // };
 
-            // Сначала разделяем элементы на те, у которых claim = true, и те, у которых claim = false
-            const claimedItems = validList.filter(item => item.claim);
-            const unclaimedItems = validList.filter(item => !item.claim);
-
-            // Объединяем их так, чтобы непроверенные элементы шли перед проверенными
-            return [...unclaimedItems, ...claimedItems];
-        });
-    };
-
-    const onLinkHandleClaim = (tg_id: string, task_id: number, stat: number, amount: number) => {
-        mutate({tg_id, task_id, stat});
-        setLinkId(prevState => prevState.filter(itemId => Number(itemId) !== task_id));
-        const claim = localStorage.getItem("link_claim");
-
-        let claimArray: string[] = [];
-
-        if (claim) {
-            claimArray = JSON.parse(claim);
-            if (!Array.isArray(claimArray)) {
-                claimArray = [];
-            }
-        }
-        if (!claimArray.includes(String(task_id))) {
-            claimArray.push(String(task_id));
-        }
-        const updatedList: TasksItemTypeWithClaim[] = userTasks?.data ? userTasks.data.map(item => ({
-            ...item,
-            claim: claimArray.includes(String(item.id))
-        })) : [];
-        setList(updatedList);
-        localStorage.setItem("link_claim", JSON.stringify(claimArray));
-        updateListWithClaim();
+    const onLinkHandleClaim = async (tg_id: string, task_id: number, stat: number, amount: number) => {
+        await mutate({tg_id, task_id, stat});
+        // setLinkId(prevState => prevState.filter(itemId => Number(itemId) !== task_id));
+        // const claim = localStorage.getItem("link_claim");
+        //
+        // let claimArray: string[] = [];
+        //
+        // if (claim) {
+        //     claimArray = JSON.parse(claim);
+        //     if (!Array.isArray(claimArray)) {
+        //         claimArray = [];
+        //     }
+        // }
+        // if (!claimArray.includes(String(task_id))) {
+        //     claimArray.push(String(task_id));
+        // }
+        // const updatedList: TasksItemTypeWithClaim[] = userTasks?.data ? userTasks.data.map(item => ({
+        //     ...item,
+        //     claim: claimArray.includes(String(item.id))
+        // })) : [];
+        // setList(updatedList);
+        // localStorage.setItem("link_claim", JSON.stringify(claimArray));
+        // updateListWithClaim();
         toast.success(`You got a ${amount} points`, {
             position: "top-right",
             hideProgressBar: true,
@@ -201,7 +208,7 @@ function Tasks() {
                 community, be aware of new
                 and following updates, find your tribe in Support Durov
             </div>
-            {list?.map(item => (
+            {userTasks?.data?.map(item => (
                 <>
                     <div key={item.id}
                          style={{
@@ -232,7 +239,7 @@ function Tasks() {
                                 <p style={{paddingLeft: 20, fontSize: 19}}>{item.title}</p>
                             </div>
 
-                            {!item.claim && linkId.length && linkId.includes(String(item.id)) ?
+                            {item.user_stat === 2 ?
                                 <button
                                     onClick={() => onLinkHandleClaim(String(initData?.user?.id) ?? "test", item.id, 3, item.amount)}
                                     style={{
@@ -243,7 +250,7 @@ function Tasks() {
                                         fontSize: 16,
                                         borderRadius: 12
                                     }}>Claim</button> :
-                                !item.claim &&
+                                item.user_stat <= 1 &&
                                 <button style={{
                                     width: 70,
                                     height: 45,
@@ -258,7 +265,7 @@ function Tasks() {
                                        style={{color: "white", textDecoration: "none"}}>Start</a>
                                 </button>
                             }
-                            {item.claim &&
+                            {item.user_stat === 3 &&
                             <div style={{width: 70, textAlign: "center"}}>
                                 <MemoCheckIcon/>
                             </div>}

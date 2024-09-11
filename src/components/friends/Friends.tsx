@@ -41,8 +41,8 @@ function Friends() {
     const [state, setState] = useState<ShareState>("pending");
     // const [friends, setFriends] = useState<FriendsState[]>(listInviteFrens);
 
-    console.log("userRef", userRef);
-    console.log("referrals", referrals);
+    // console.log("userRef", userRef);
+    // console.log("referrals", referrals);
 
     // useEffect(() => {
     //     const canvas = document.querySelector("qrcode") as HTMLCanvasElement;

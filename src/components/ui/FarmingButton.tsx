@@ -4,6 +4,7 @@ import classes from "../home/Home.module.css";
 // import {CSSProperties} from "react";
 
 type FarmingButtonType = {
+    disabled: boolean;
     loading: boolean;
     point: number;
     isCountdown: boolean;
@@ -25,6 +26,7 @@ type FarmingButtonType = {
 // };
 
 function FarmingButton({
+                           disabled,
                            // loading,
                            isCountdown,
                            point,
@@ -37,7 +39,8 @@ function FarmingButton({
 
     return (
         <div className={classes.buttonContainer}>
-            {isCountdown && !complete && <button className={classes.unActive} onClick={startFarming}>
+            {isCountdown && !complete &&
+            <button disabled={disabled} className={classes.unActive} onClick={startFarming}>
                 Start farming
             </button>}
             {!isCountdown && !complete && <Timer countdownDate={countdownDate}
@@ -45,7 +48,7 @@ function FarmingButton({
             {complete && <button className={classes.unActive}
                                  style={{color: "white", background: "linear-gradient(0deg, #339cff 0%, #2356a9 100%)"}}
                                  onClick={setUserPoints}>
-                Claim &#x20BF;{point}
+                Claim SD {point}
             </button>}
             {/*<BeatLoader*/}
             {/*    color={"red"}*/}
