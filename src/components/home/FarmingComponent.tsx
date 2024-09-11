@@ -13,7 +13,7 @@ import {throttle} from "throttle-debounce";
 
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
 // const totalTimeMS = 60 * 1000; // в миллисекундах
-// const totalTimeSTest = 30; // в секундах
+// const totalTimeS = 30; // в секундах
 const totalTimeS = 25200; // в секундах
 
 type FarmingComponentProps = {
@@ -57,7 +57,7 @@ function FarmingComponent({timer}: FarmingComponentProps) {
     const [isAnimation, setAnimation] = useState<boolean>(false);
     // console.log("data", data);
     // console.log("timer", timer);
-    // console.log("countdownDate", countdownDate);
+    // console.log("count", count);
     // console.log("startDate", startDate);
     // console.log("dataStopTimer", dataStopTimer);
     // console.log("startTimerData", startTimerData);
@@ -81,11 +81,12 @@ function FarmingComponent({timer}: FarmingComponentProps) {
             // const durationSec = totalTimeSTest; // 60 секунд
             const pointsPerSec = totalPoints / totalTimeS; // Поинты в секунду
             // Рассчитываем количество поинтов
-            const points = Math.round(pointsPerSec * timePassedSec);
+            const points = pointsPerSec * timePassedSec;
 
-            // console.log("points", points);
+            // console.log("points", totalPoints);
             // Устанавливаем количество поинтов, не превышая 99
-            setCount(Math.min(totalPoints, points));
+            // setCount(Math.min(totalPoints, points));
+            setCount(Number(points.toFixed(3)));
             // if (timer?.resp === "ok") {
             //     refetchTimer().then();
             // }

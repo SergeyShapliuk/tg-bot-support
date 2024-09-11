@@ -28,8 +28,8 @@ const queryClient = new QueryClient({
         }
     }
 });
-// import {mockTelegramEnv, parseInitData} from "@telegram-apps/sdk";
-
+// import { mockTelegramEnv, parseInitData } from '@telegram-apps/sdk';
+//
 // const initDataRaw = new URLSearchParams([
 //     ['user', JSON.stringify({
 //         id: 11111111116,
