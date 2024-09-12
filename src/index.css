@@ -71,7 +71,7 @@ button {
 /*  }*/
 /*}*/
 .Toastify__toast-container {
-    position: absolute;
+    /*position: absolute;*/
     width: 100%; /* Ширина контейнера */
     height: 85%;
     display: flex;

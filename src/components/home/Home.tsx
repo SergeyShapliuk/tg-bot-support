@@ -32,38 +32,33 @@ function Home() {
         setInitialized,
         setPoints
     } = useTotalPoints();
-    const {data: balance} = useFetchBalance(initData?.user?.id.toString() ?? "test_user3");
-    const {data: timer, refetch: refetchTimer} = useFetchTimer(initData?.user?.id.toString() ?? "test_user3");
+    const {
+        data: balance,
+        isSuccess: isSuccessBalance
+    } = useFetchBalance(initData?.user?.id.toString() ?? "test_user3");
+    const {
+        data: timer,
+        isSuccess: isSuccessTimer,
+        refetch: refetchTimer,
+        error:e
+    } = useFetchTimer(initData?.user?.id.toString() ?? "test_user3");
 
 
-    // const [isLoading, setLoading] = useState<boolean>(false);
-    // const [progress, setProgress] = useState<string>('0');
-    // console.log("balance", balance);
+    console.log("Timer", timer);
+    console.log("error", e);
 
-    // console.log("timer", timer);
-    // console.log("isPending", isPending);
-    // console.log("isLoading", isLoading);
-    // console.log("balance", balance);
-    // console.log("count", count);
-    // console.log("points", points);
-    // console.log("complete", complete);
-    // console.log("countdownDate", countdownDate);
-    // console.log("date", Date.now());
-    // console.log("datecalc", 1725723424 - 1725698224);
-    // console.log("timestamp", new Date(1725698224 * 1000));
+
     useEffect(() => {
-        if (timer && balance) {
+        if (isSuccessBalance && isSuccessTimer) {
             // const timeOut = setTimeout(() => {
             setPoints(balance.amount);
             setInitialized(true);
             // }, 1000);
             // return () => clearTimeout(timeOut);
         }
-    }, [timer, balance]);
-    //
-    //
-    //
-    //
+    }, [isSuccessBalance, isSuccessTimer]);
+
+
     if (!isInitialized) return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override} loading={!isInitialized}/>;
     return (
         <div className={classes.main}>

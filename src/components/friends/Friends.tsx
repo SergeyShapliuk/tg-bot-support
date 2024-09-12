@@ -4,9 +4,11 @@ import MemoInviteIcon from "../svg/InviteFriends";
 import {Sheet} from "react-modal-sheet";
 import MemoCloseIcon from "../svg/CloseIcon";
 import {useFetchRef} from "../../hooks/useFetchRef";
-import {initInitData} from "@telegram-apps/sdk-react";
+import {initHapticFeedback, initInitData} from "@telegram-apps/sdk-react";
 import {useFetchReferrals} from "../../hooks/useFetchReferrals";
 import MemoUsersIcon from "../svg/UsersIcon";
+import {toast} from "react-toastify";
+import MemoCheckIcon from "../svg/CheckIcon";
 
 
 type ShareState = "pending" | "success" | "error";
@@ -32,7 +34,8 @@ const listInvite = [
 
 function Friends() {
     const initData = initInitData();
-    // const initData = null;
+    const hapticFeedback = initHapticFeedback();
+
 
     const {data: userRef} = useFetchRef(initData?.user?.id.toString() ?? "test_user3");
     const {data: referrals} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3");
@@ -85,8 +88,15 @@ function Friends() {
 
     const copyClicked = async () => {
         try {
-            await navigator.clipboard.writeText(`https://t.me/supDurovBot?start=ref_${userRef?.codes[0]?.code}`);
+            await navigator.clipboard.writeText(`https://t.me/supDurovBot?start=ref_${userRef?.codes[0]?.code} \n Join me on SupportDurov! Use my invite link to join us. 🚀`);
             setState("success");
+            setOpen(false);
+            hapticFeedback.notificationOccurred("success");
+            toast.success("Referral link is copied", {
+                position: "top-right",
+                hideProgressBar: true,
+                icon: <MemoCheckIcon/>
+            });
         } catch (err) {
             // onError && onError(err);
             setState("error");
@@ -109,9 +119,7 @@ function Friends() {
                 <div style={{height: "100%", paddingBottom: 160}}>
                     {referrals?.data?.length ?
                         <>
-                            <div style={{color: "rgba(255,255,255,0.7)"}}>Score 20% from buddies +2.5% from their
-                                referrals
-                            </div>
+                            <div style={{color: "rgba(255,255,255,0.7)"}}>Score 20% from their referrals</div>
                             <div className={classes.listFriends}>{`${referrals.data.length} friends`}
                                 {referrals.data.map(friend => (
                                     <div className={classes.itemFriends} key={friend.customer}>
@@ -141,7 +149,7 @@ function Friends() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div>{`${friend.amount} point`}</div>
+                                        <div>{`+${friend.amount} SD`}</div>
                                     </div>
                                 ))}
                             </div>
