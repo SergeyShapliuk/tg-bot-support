@@ -7,7 +7,8 @@ import TasksIcons from "../svg/tasks_icons/TasksIcons";
 import {useSetTask} from "../../hooks/useSetTask";
 import {initInitData} from "@telegram-apps/sdk-react";
 import {useFetchBalance} from "../../hooks/useFetchBalance";
-
+import {FadeLoader} from "react-spinners";
+import {override} from "../home/Home";
 
 
 // const userTasks = [
@@ -56,7 +57,7 @@ function Tasks() {
     // const [list, setList] = useState<TasksItemTypeWithClaim[] | undefined>([]);
     // const [linkId, setLinkId] = useState<string[]>([]);
 
-    // console.log("task", userTasks);
+    console.log("task", userTasks);
     // console.log("list", list);
     // console.log("dataMutate", data);
 
@@ -201,6 +202,8 @@ function Tasks() {
     //     });
     // };
     // console.log("LinkId", list);
+    if (!userTasks?.data?.length) return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override}/>;
+
     return (
         <div className={classes.main}>
             <div style={{fontSize: 31, fontWeight: 600}}>Support Durov socials</div>

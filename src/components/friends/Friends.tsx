@@ -9,6 +9,8 @@ import {useFetchReferrals} from "../../hooks/useFetchReferrals";
 import MemoUsersIcon from "../svg/UsersIcon";
 import {toast} from "react-toastify";
 import MemoCheckIcon from "../svg/CheckIcon";
+import {FadeLoader} from "react-spinners";
+import {override} from "../home/Home";
 
 
 type ShareState = "pending" | "success" | "error";
@@ -36,16 +38,16 @@ function Friends() {
     const initData = initInitData();
     const hapticFeedback = initHapticFeedback();
 
-
+    const {data: referrals, status} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3");
     const {data: userRef} = useFetchRef(initData?.user?.id.toString() ?? "test_user3");
-    const {data: referrals} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3");
+
 
     const [isOpen, setOpen] = useState<boolean>(false);
     const [state, setState] = useState<ShareState>("pending");
     // const [friends, setFriends] = useState<FriendsState[]>(listInviteFrens);
 
     // console.log("userRef", userRef);
-    // console.log("referrals", referrals);
+    // console.log("referrals", status);
 
     // useEffect(() => {
     //     const canvas = document.querySelector("qrcode") as HTMLCanvasElement;
@@ -111,6 +113,9 @@ function Friends() {
                 return "Copy link";
         }
     };
+
+    if (status !== "success") return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override}/>;
+
     return (
         <>
             <div className={classes.main}>

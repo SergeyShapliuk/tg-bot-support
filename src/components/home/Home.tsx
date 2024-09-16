@@ -7,10 +7,11 @@ import {useFetchTimer} from "../../hooks/useFetchTimer";
 import FarmingComponent from "./FarmingComponent";
 import {useTotalPoints} from "../../context/TotalPointsProvider";
 import {useFetchBalance} from "../../hooks/useFetchBalance";
-import MemoHandcuffIcon from "../svg/HandcuffIcon";
+import MemoGameIconFill from "../svg/GameIconFill";
+import {NavLink} from "react-router-dom";
 
 
-const override: CSSProperties = {
+export const override: CSSProperties = {
     position: "absolute",
     top: "45%",
     left: "49%",
@@ -40,7 +41,7 @@ function Home() {
         data: timer,
         isSuccess: isSuccessTimer,
         refetch: refetchTimer,
-        error:e
+        error: e
     } = useFetchTimer(initData?.user?.id.toString() ?? "test_user3");
 
 
@@ -63,24 +64,46 @@ function Home() {
     return (
         <div className={classes.main}>
             <div style={{textAlign: "center"}}>
-                <div style={{position: "relative", display: "inline-block"}}>
-                    <MemoHandcuffIcon/>
-                    <div
-                        style={{
-                            position: "absolute",
-                            top: "50%", // Выровнять по вертикали
-                            left: "50%", // Выровнять по горизонтали
-                            transform: "translate(-50%, -50%)", // Центрирование по X и Y
-                            textAlign: "center", // Выровнять текст по центру, если потребуется
-                            color: "white", // Задать цвет текста, чтобы он был виден на иконке
-                            fontWeight: "bold" // Сделать текст жирным (опционально)
-                        }}
-                    >
-                        {initData?.user?.username
-                            ? initData.user.username.slice(0, 1)
-                            : initData?.user?.firstName?.slice(0, 1) || ""}
-
+                <div style={{
+                    position: "relative",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    backgroundColor: "#1E1E1E",
+                    borderRadius: 12,
+                    borderWidth: 1.2,
+                    borderStyle: "solid",
+                    borderColor: "#3193F4",
+                    padding: "12px 22px 10px 22px"
+                }}>
+                    <div style={{display: "flex", flexDirection: "row"}}>
+                        <MemoGameIconFill style={{marginTop: 3}}/>
+                        <div style={{textAlign: "start", marginLeft: 22}}>
+                            <div
+                                style={{color: "#3193F4", fontSize: "17px", fontWeight: "500", lineHeight: "20px"}}>Game
+                            </div>
+                            <div>coming soon</div>
+                        </div>
                     </div>
+                    <NavLink to={"/game"} style={{
+                        textDecoration: "none",
+                        textAlign: "center"
+                    }}>
+                        <div style={{
+                            width: 63,
+                            height: 26,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: 7,
+                            color: "#fff",
+                            fontSize: "14px",
+                            fontWeight: "400",
+                            lineHeight: "16px",
+                            backgroundColor: "#333232"
+                        }}>Open
+                        </div>
+                    </NavLink>
                 </div>
                 <div style={{
                     // flex: 1,
@@ -89,7 +112,8 @@ function Home() {
                     fontWeight: 600,
                     maxWidth: "100%", // Ограничивает ширину
                     wordWrap: "break-word", // Переносит текст на новую строку,
-                    padding: ".5em"
+                    padding: ".5em",
+                    marginTop: "10px"
                 }}>
                     {initData?.user?.username ? initData.user.username : initData?.user?.firstName ? initData?.user?.firstName : "-----"}
                 </div>

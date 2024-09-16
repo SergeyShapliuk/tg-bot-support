@@ -18,6 +18,9 @@ import {TotalPointsProvider} from "./context/TotalPointsProvider";
 import ModalError from "./components/ui/modal/ModalError";
 import useNetworkStatus from "./hooks/useNetworkStatus";
 // import {setupMockTelegramEnv} from "../telegramEnvConfig";
+import GameComponent from "./components/games/GameComponent";
+import MemoGameIcon from "./components/svg/GameIcon";
+
 
 // import {version as appVersion} from "../package.json";
 //
@@ -95,13 +98,13 @@ function App() {
                 <QueryClientProvider client={queryClient}>
                     <TotalPointsProvider>
                         <CountdownProvider>
-                                <Routes>
-                                    <Route index element={<Home/>}/>
-                                    {/*<Route path={"/"} element={<Home/>}/>*/}
-                                    <Route path={"tasks"} element={<Tasks/>}/>
-                                    <Route path={"friends"} element={<Friends/>}/>
-
-                                </Routes>
+                            <Routes>
+                                <Route index element={<Home/>}/>
+                                {/*<Route path={"/"} element={<Home/>}/>*/}
+                                <Route path="tasks" element={<Tasks/>}/>
+                                <Route path="friends" element={<Friends/>}/>
+                                <Route path="game" element={<GameComponent/>}/>
+                            </Routes>
                         </CountdownProvider>
                     </TotalPointsProvider>
                 </QueryClientProvider>
@@ -154,6 +157,10 @@ function NavBar() {
             <NavLink to="friends" style={({isActive}) => activeStyle(isActive)}>
                 <MemoFriendsIcon stroke={location.pathname === "/friends" ? "white" : "#a6a6a6"}/>
                 <div style={{fontSize: 14, fontWeight: 400}}>Friends</div>
+            </NavLink>
+            <NavLink to="game" style={({isActive}) => activeStyle(isActive)}>
+                <MemoGameIcon stroke={location.pathname === "/game" ? "white" : "#a6a6a6"}/>
+                <div style={{fontSize: 14, fontWeight: 400}}>Game</div>
             </NavLink>
         </nav>
     );
