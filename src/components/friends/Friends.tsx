@@ -40,7 +40,7 @@ function Friends() {
     const initData = initInitData();
     const hapticFeedback = initHapticFeedback();
 
-    const {status} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3", 50, 0);
+    const {data: referrals, status} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3", 50, 0);
     const {data: userRef} = useFetchRef(initData?.user?.id.toString() ?? "test_user3");
 
 
@@ -132,7 +132,7 @@ function Friends() {
                 <MemoInviteIcon/>
                 <div className={classes.title}>Invite friends. Earn a points.</div>
                 <div style={{height: "100%", paddingBottom: 160}}>
-                    {true ?
+                    {referrals?.data?.length > 0 ?
                         <>
                             <div style={{color: "rgba(255,255,255,0.7)"}}>Score 20% from their referrals</div>
                             <FriendsList/>
