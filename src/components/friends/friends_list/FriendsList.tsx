@@ -62,7 +62,7 @@ function FriendsList() {
         <div style={{
             marginTop: "20px",
             textAlign: "start"
-        }}>{`${Number(referrals?.info?.cols_ref).toLocaleString()} friends`}
+        }}>{`${referrals?.info?.cols_ref} friends`}
             <div id="catalog-scroll-container" className={classes.listFriends}>
                 <InfiniteScroll
                     scrollableTarget={"catalog-scroll-container"}
