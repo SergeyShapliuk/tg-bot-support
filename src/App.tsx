@@ -17,7 +17,7 @@ import {MutationCache, QueryCache, QueryClient, QueryClientProvider} from "@tans
 import {TotalPointsProvider} from "./context/TotalPointsProvider";
 import ModalError from "./components/ui/modal/ModalError";
 import useNetworkStatus from "./hooks/useNetworkStatus";
-// import {setupMockTelegramEnv} from "../telegramEnvConfig";
+import {setupMockTelegramEnv} from "../telegramEnvConfig";
 import MemoGameIcon from "./components/svg/GameIcon";
 import GameComponent from "./components/game/GameComponent";
 
@@ -25,7 +25,7 @@ import GameComponent from "./components/game/GameComponent";
 // import {version as appVersion} from "../package.json";
 //
 // console.log(`App version: ${appVersion}`);
-// setupMockTelegramEnv();
+setupMockTelegramEnv();
 
 function App() {
     const [miniApp] = initMiniApp();
