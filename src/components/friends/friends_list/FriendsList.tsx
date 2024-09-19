@@ -96,7 +96,7 @@ function FriendsList() {
                                         alignItems: "center"
                                     }}>
                                         <MemoUsersIcon/>
-                                        {friend.referal_count === "0" ? "0" : `+ ${friend.referal_count}`} Даниил
+                                        {friend.referal_count === "0" ? "0" : `+ ${friend.referal_count}`}
                                     </div>
                                 </div>
                             </div>
