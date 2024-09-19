@@ -6,11 +6,12 @@ import MemoCloseIcon from "../svg/CloseIcon";
 import {useFetchRef} from "../../hooks/useFetchRef";
 import {initHapticFeedback, initInitData} from "@telegram-apps/sdk-react";
 import {useFetchReferrals} from "../../hooks/useFetchReferrals";
-import MemoUsersIcon from "../svg/UsersIcon";
+// import MemoUsersIcon from "../svg/UsersIcon";
 import {toast} from "react-toastify";
 import MemoCheckIcon from "../svg/CheckIcon";
 import {FadeLoader} from "react-spinners";
 import {override} from "../home/Home";
+import FriendsList from "./friends_list/FriendsList";
 
 
 type ShareState = "pending" | "success" | "error";
@@ -34,20 +35,21 @@ const listInvite = [
 //     {customer: "7", name: "Nlexe", referal_count: "0", amount: "2323"}
 // ];
 
+
 function Friends() {
     const initData = initInitData();
     const hapticFeedback = initHapticFeedback();
 
-    const {data: referrals, status} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3");
+    const {status} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3", 50, 0);
     const {data: userRef} = useFetchRef(initData?.user?.id.toString() ?? "test_user3");
 
 
     const [isOpen, setOpen] = useState<boolean>(false);
     const [state, setState] = useState<ShareState>("pending");
-    // const [friends, setFriends] = useState<FriendsState[]>(listInviteFrens);
+    // const [isLoading, setLoading] = useState<boolean>(false);
 
     // console.log("userRef", userRef);
-    // console.log("referrals", status);
+    // console.log("referrals", referrals);
 
     // useEffect(() => {
     //     const canvas = document.querySelector("qrcode") as HTMLCanvasElement;
@@ -114,6 +116,14 @@ function Friends() {
         }
     };
 
+    // const onLoading = (status: boolean) => {
+    //     if (status) {
+    //         setLoading(false);
+    //     } else {
+    //         setLoading(true);
+    //     }
+    // };
+
     if (status !== "success") return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override}/>;
 
     return (
@@ -122,42 +132,41 @@ function Friends() {
                 <MemoInviteIcon/>
                 <div className={classes.title}>Invite friends. Earn a points.</div>
                 <div style={{height: "100%", paddingBottom: 160}}>
-                    {referrals?.data?.length ?
+                    {true ?
                         <>
                             <div style={{color: "rgba(255,255,255,0.7)"}}>Score 20% from their referrals</div>
-                            <div className={classes.listFriends}>{`${referrals.data.length} friends`}
-                                {referrals.data.map(friend => (
-                                    <div className={classes.itemFriends} key={friend.customer}>
-                                        <div style={{display: "flex", alignItems: "center", gap: 10}}>
-                                            <div style={{
-                                                width: 30,
-                                                height: 30,
-                                                display: "flex",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                                borderRadius: "50%",
-                                                fontWeight: 500,
-                                                backgroundColor: "rgb(49,125,148)"
-                                            }}>{friend?.name?.slice(0, 1)}</div>
-                                            <div>
-                                                <div>{friend.name}</div>
-                                                <div style={{
-                                                    color: "#FFFFFFB3",
-                                                    fontSize: 12,
-                                                    display: "flex",
-                                                    flexDirection: "row",
-                                                    justifyContent: "start",
-                                                    alignItems: "center"
-                                                }}>
-                                                    <MemoUsersIcon/>
-                                                    {friend.referal_count === "0" ? "0" : `+ ${friend.referal_count}`}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div>{`+${friend.amount} SD`}</div>
-                                    </div>
-                                ))}
-                            </div>
+                            <FriendsList/>
+                            {/*{listInviteFrens.map(friend => (*/}
+                            {/*    <div className={classes.itemFriends} key={friend.customer}>*/}
+                            {/*        <div style={{display: "flex", alignItems: "center", gap: 10}}>*/}
+                            {/*            <div style={{*/}
+                            {/*                width: 30,*/}
+                            {/*                height: 30,*/}
+                            {/*                display: "flex",*/}
+                            {/*                justifyContent: "center",*/}
+                            {/*                alignItems: "center",*/}
+                            {/*                borderRadius: "50%",*/}
+                            {/*                fontWeight: 500,*/}
+                            {/*                backgroundColor: "rgb(49,125,148)"*/}
+                            {/*            }}>{friend?.name?.slice(0, 1)}</div>*/}
+                            {/*            <div>*/}
+                            {/*                <div>{friend.name}</div>*/}
+                            {/*                <div style={{*/}
+                            {/*                    color: "#FFFFFFB3",*/}
+                            {/*                    fontSize: 12,*/}
+                            {/*                    display: "flex",*/}
+                            {/*                    flexDirection: "row",*/}
+                            {/*                    justifyContent: "start",*/}
+                            {/*                    alignItems: "center"*/}
+                            {/*                }}>*/}
+                            {/*                    <MemoUsersIcon/>*/}
+                            {/*                    {friend.referal_count === "0" ? "0" : `+ ${friend.referal_count}`}*/}
+                            {/*                </div>*/}
+                            {/*            </div>*/}
+                            {/*        </div>*/}
+                            {/*        <div>{`+${friend.amount} SD`}</div>*/}
+                            {/*    </div>*/}
+                            {/*))}*/}
                         </>
                         : (
                             <>

@@ -28,8 +28,15 @@ export type GetUserRefType = {
     codes: { code: string, stat: number, link_code: string }[];
     resp: string;
 }
+export type UserReferrals = {
+    customer: string,
+    name: string,
+    amount: string,
+    referal_count: string
+}
 export type GetUserReferrals = {
-    data: { customer: string, name: string, amount: string, referal_count: string }[]
+    data: UserReferrals[]
+    info: { cols_ref: string }
     resp: string;
 }
 export type TasksItemType = {

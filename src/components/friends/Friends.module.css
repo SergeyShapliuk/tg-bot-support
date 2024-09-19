@@ -2,7 +2,7 @@
     position: relative;
     height: 100%;
     padding: 1em;
-    overflow: auto;
+    /*overflow: auto;*/
     text-align: center;
 }
 
@@ -10,7 +10,7 @@
     font-size: 34px;
     font-weight: 600;
     text-align: center;
-    padding: 1em;
+    padding: 0.5em 1em 0.5em 1em;
 }
 
 .subTitle {
@@ -59,6 +59,7 @@
     background-color: #FFFFFF;
 }
 
+
 .item:last-child::after {
     position: absolute;
     content: '';
@@ -70,13 +71,22 @@
 }
 
 .listFriends {
+    height: 500px;
     display: flex;
     /*justify-content: start;*/
     /*align-items: start;*/
     flex-direction: column;
     text-align: start;
     padding-top: 20px;
+    overflow: auto;
     gap: 20px;
+
+    ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.listFriends::-webkit-scrollbar {
+    display: none;
 }
 
 .itemFriends {
@@ -117,4 +127,3 @@
     border-radius: 12px;
     text-decoration: none;
 }
-

@@ -1,17 +1,16 @@
+// import {ThemeInitializer} from "./contexts/ThemeContext";
+// import {Game} from "./components/Game";
+
 import MemoHandcuffIcon from "../svg/HandcuffIcon";
 
 const GameComponent = () => {
-    // useEffect(() => {
-    //     // Initialize the game
-    //     const gameInstance = new Game();
-    //
-    //     // Cleanup the game instance if needed (e.g., removing event listeners)
-    //     return () => {
-    //         // Add cleanup code if necessary
-    //     };
-    // }, []);
 
-    // return <div id="game-container" />; // Ensure this matches the container used in the Game class
+    //
+    // return (
+    //     <ThemeInitializer>
+    //         <Game/>
+    //     </ThemeInitializer>
+    // );
     return (
         <div style={{
             width: "100%",

@@ -2,7 +2,7 @@ import {mockTelegramEnv, parseInitData} from "@telegram-apps/sdk";
 
 const initDataRaw = new URLSearchParams([
     ["user", JSON.stringify({
-        id: 1111111116,
+        id: 6007991820,
         first_name: "Andrew",
         last_name: "Rogue",
         username: "rogue",

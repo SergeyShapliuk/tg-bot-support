@@ -43,8 +43,8 @@ export const api = {
         });
         return response;
     },
-    async getUserReferrals(telegram_id: string) {
-        const response = await axiosInstanceApi.get<string, AxiosResponse<GetUserReferrals>>(`get-user-referals?telegram_id=${telegram_id}`, {
+    async getUserReferrals(telegram_id: string, limit: number, offset: number) {
+        const response = await axiosInstanceApi.get<string, AxiosResponse<GetUserReferrals>>(`get-user-referals?telegram_id=${telegram_id}&limit=${limit}&offset=${offset}`, {
             headers: {
                 "Content-Type": "application/json"
             }

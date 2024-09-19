@@ -72,7 +72,6 @@ function FarmingComponent({timer}: FarmingComponentProps) {
         // const savedLocalDuration = localStorage.getItem("duration");
         // const savedCount = parseInt(localStorage.getItem("count") || "0", 10);
         if (timer?.resp === "ok") {
-            // console.log("tartDateoints", startDate);
             const savedEndTime = timer?.info?.time_end * 1000;
             const savedStartTime = timer?.info?.time_start * 1000;
             const timePassedMs = now - savedStartTime; // Прошедшее время в миллисекундах
@@ -84,9 +83,11 @@ function FarmingComponent({timer}: FarmingComponentProps) {
             // Рассчитываем количество поинтов
             const points = pointsPerSec * timePassedSec;
 
-            // console.log("points", totalPoints);
-            // Устанавливаем количество поинтов, не превышая 99
-            // setCount(Math.min(totalPoints, points));
+            // if (points <= 0) {
+            //     console.log("points", points);
+            //     setIsCountdown(false);
+            // }
+            // console.log("points", points);
             setCount(Number(points.toFixed(3)));
             // if (timer?.resp === "ok") {
             //     refetchTimer().then();

@@ -18,8 +18,8 @@ import {TotalPointsProvider} from "./context/TotalPointsProvider";
 import ModalError from "./components/ui/modal/ModalError";
 import useNetworkStatus from "./hooks/useNetworkStatus";
 // import {setupMockTelegramEnv} from "../telegramEnvConfig";
-import GameComponent from "./components/games/GameComponent";
 import MemoGameIcon from "./components/svg/GameIcon";
+import GameComponent from "./components/game/GameComponent";
 
 
 // import {version as appVersion} from "../package.json";
@@ -100,7 +100,7 @@ function App() {
                         <CountdownProvider>
                             <Routes>
                                 <Route index element={<Home/>}/>
-                                {/*<Route path={"/"} element={<Home/>}/>*/}
+                                <Route path={"/"} element={<Home/>}/>
                                 <Route path="tasks" element={<Tasks/>}/>
                                 <Route path="friends" element={<Friends/>}/>
                                 <Route path="game" element={<GameComponent/>}/>

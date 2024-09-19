@@ -62,7 +62,7 @@ function Tasks() {
     // console.log("dataMutate", data);
 
     // useEffect(() => {
-    //     // localStorage.clear()
+    //     localStorage.clear()
     //     if (userTasks?.data?.length) {
     //         const ids = localStorage.getItem("link_ids");
     //         if (ids) {
@@ -239,7 +239,7 @@ function Tasks() {
                             }}>
                                 {/*<img src={item.icon} alt={`Icon ${item.name}`}/>*/}
                                 <TasksIcons name={item.icon}/>
-                                <p style={{paddingLeft: 20, fontSize: 19}}>{item.title}</p>
+                                <p style={{flex: 1, paddingLeft: 20, paddingRight: 20, fontSize: 19}}>{item.title}</p>
                             </div>
 
                             {item.user_stat === 2 ?
