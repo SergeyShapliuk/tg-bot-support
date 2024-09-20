@@ -1,14 +1,14 @@
+// import MemoHandcuffIcon from "../svg/HandcuffIcon";
+
 import {ThemeInitializer} from "./contexts/ThemeContext";
 import {Game} from "./components/Game";
-
-// import MemoHandcuffIcon from "../svg/HandcuffIcon";
 
 const GameComponent = () => {
 
 
     return (
         <ThemeInitializer>
-            <Game/>
+            <Game autoplay={false}/>
         </ThemeInitializer>
         // return (
         //     <div style={{
