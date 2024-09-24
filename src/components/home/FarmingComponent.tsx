@@ -62,7 +62,6 @@ function FarmingComponent({timer}: FarmingComponentProps) {
     // console.log("dataStopTimer", dataStopTimer);
     // console.log("startTimerData", startTimerData);
     useEffect(() => {
-        console.log("useEffect");
         // localStorage.clear();
         const now = Date.now();
         // const now =new Date(2024, 8, 12, 15, 30, 0);

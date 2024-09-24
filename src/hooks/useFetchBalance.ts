@@ -9,6 +9,7 @@ export const useFetchBalance = (tg_id: string): QueryObserverResult<GetBalanceTy
             return data;
         },
         queryKey: ["get-balance"],
-        retry: 2
+        retry: 2,
+        refetchOnMount: "always"
     });
 };

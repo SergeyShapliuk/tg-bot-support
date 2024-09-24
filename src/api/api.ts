@@ -5,7 +5,7 @@ import {
     GetBalanceType, GetTasksType,
     GetTimerType,
     GetUserReferrals,
-    GetUserRefType, SetTaskType,
+    GetUserRefType, SetGameType, SetTaskType, StartGameType,
     StartTimerType
 } from "../types/types";
 
@@ -73,6 +73,31 @@ export const api = {
             telegram_id,
             task_id,
             stat
+        }, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response;
+    },
+    async startGame(telegram_id: string) {
+        console.log("startGametelegram_id", telegram_id);
+        const response = await axiosInstanceApi.post<string, AxiosResponse<StartGameType>>("start-game", {
+            telegram_id,
+            game_id: 1
+
+        }, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response;
+    },
+    async setGame(telegram_id: string, game_customer_id: number, bals: number) {
+        const response = await axiosInstanceApi.post<string, AxiosResponse<SetGameType>>("confim-game", {
+            telegram_id,
+            game_customer_id,
+            bals
         }, {
             headers: {
                 "Content-Type": "multipart/form-data"

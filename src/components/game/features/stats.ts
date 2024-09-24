@@ -30,7 +30,7 @@ export const statisticMethods = {
 };
 
 export function useStatistics() {
-  const [thisGameStats, setThisGameStats] = useState(defaultStats);
+  const [thisGameStats, setThisGameStats] = useState<Statistic>(defaultStats);
   const [globalStats, setGlobalStats] = useLocalStorage(LocalStorageKeys.Stats, defaultStats);
 
   const setAllStats: React.Dispatch<React.SetStateAction<Statistic>> = (setStateAction) => {

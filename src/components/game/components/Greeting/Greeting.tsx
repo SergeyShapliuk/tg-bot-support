@@ -3,9 +3,7 @@ import "./Greeting.css";
 import React, {useState} from "react";
 import {tapOrClickBefore} from "../../shared/texts";
 import {useTheme} from "../../contexts/ThemeContext";
-import {Settings} from "../Settings/index";
 import {useIsFirstVisitInSession} from "../../features/firstVisitInSession";
-import {HowToPlay} from "../HowToPlay/HowToPlay";
 
 /** @todo rename to sharedTextProps */
 export const sharedStyleProps: React.CSSProperties = {
@@ -67,8 +65,8 @@ export function Greeting({index, isStarted}: { index: number; isStarted: boolean
             >
                 {tapOrClickBefore} to start
             </div>
-            <HowToPlay className={className}/>
-            <Settings className={className}/>
+            {/*<HowToPlay className={className}/>*/}
+            {/*<Settings className={className}/>*/}
         </>
     );
 }

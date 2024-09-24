@@ -1,4 +1,4 @@
-import {Debug, Physics} from "@react-three/cannon";
+import {Physics} from "@react-three/cannon";
 import {Canvas} from "@react-three/fiber";
 import {memo, useMemo, useRef, useState} from "react";
 import {Box3, Mesh, Vector2, Vector3} from "three";
@@ -24,9 +24,10 @@ import {useMinimumActionInterval} from "../hooks/useMinimumActionInterval";
 import originalGreetingImage from "../images/original_greeting.png";
 import {AllStatisticsProps} from "./ThisGameStats/ThisGameStats";
 import {DirLight} from "./DirLight";
-import {useControls} from "leva";
-import {ConditionalWrapper} from "./ConditionalWrapper";
+// import {useControls} from "leva";
+// import {ConditionalWrapper} from "./ConditionalWrapper";
 import {useTheme} from "../contexts/ThemeContext";
+
 
 const gameConfig = {
     physics: {
@@ -40,31 +41,55 @@ const gameConfig = {
     }
 } as const;
 
+type GamePropsType = {
+    setStartGame: () => void;
+    setEndGame: () => void;
+    autoplay: boolean;
+}
 
-export function Game({autoplay}: { autoplay?: boolean }) {
+export function Game({setStartGame, setEndGame, autoplay}: GamePropsType) {
+
     const {theme, setThemeName} = useTheme();
+    const [defaultConf] = useState({
+        invertGravity: false,
+        speedOfMovingTile: {
+            /** So that the interval between perfect taps is 800ms, like in the original game. */
+            value: 160,
+            step: 1
+        },
+        debugPhysics: {
+            label: "Debug Physics",
+            value: false
+        },
+        theme: {
+            value: theme.name,
+            onChange: setThemeName,
+            options: themes.map((themeEl) => themeEl.name)
+        },
+        displayOriginalGameImages: false
+    });
+    const displayOriginalGameImages = false;
 
-
-    const {invertGravity, speedOfMovingTile, debugPhysics, displayOriginalGameImages} = useControls(
-        {
-            invertGravity: false,
-            speedOfMovingTile: {
-                /** So that the interval between perfect taps is 800ms, like in the original game. */
-                value: 160,
-                step: 1
-            },
-            debugPhysics: {
-                label: "Debug Physics",
-                value: false
-            },
-            theme: {
-                value: theme.name,
-                onChange: setThemeName,
-                options: themes.map((themeEl) => themeEl.name)
-            },
-            displayOriginalGameImages: false
-        }
-    );
+    // const {invertGravity, speedOfMovingTile, debugPhysics, displayOriginalGameImages} = useControls(
+    //     {
+    //         invertGravity: false,
+    //         speedOfMovingTile: {
+    //             /** So that the interval between perfect taps is 800ms, like in the original game. */
+    //             value: 160,
+    //             step: 1
+    //         },
+    //         debugPhysics: {
+    //             label: "Debug Physics",
+    //             value: false
+    //         },
+    //         theme: {
+    //             value: theme.name,
+    //             onChange: setThemeName,
+    //             options: themes.map((themeEl) => themeEl.name)
+    //         },
+    //         displayOriginalGameImages: false
+    //     }
+    // );
     const {
         thisGameStats,
         globalStats,
@@ -102,6 +127,7 @@ export function Game({autoplay}: { autoplay?: boolean }) {
         }),
         []
     );
+    // console.log('thisGameStats',thisGameStats)
     const [staticTiles, setStaticTiles] = useState<TileProps[]>([]);
     const [fadingTiles, setFadingTiles] = useState<TileProps[]>([]);
     const [effects, setEffects] = useState<PerfectEffectProps[]>([]);
@@ -265,7 +291,7 @@ export function Game({autoplay}: { autoplay?: boolean }) {
         //     alert("Лимит игр достигнут! Вы сыграли 5 игр.");
         //     return;
         // }
-
+        setEndGame();
         setIsEnded(false);
         setIsStarted(false);
         setIndex(0);
@@ -280,6 +306,7 @@ export function Game({autoplay}: { autoplay?: boolean }) {
     const {preventActionOrPrepareAndContinue} = useMinimumActionInterval(50);
 
     function act() {
+        console.log("click");
         // if (gameCount >= 5) {
         //     alert("Лимит игр достигнут! Вы больше не можете играть.");
         //     return;
@@ -291,6 +318,7 @@ export function Game({autoplay}: { autoplay?: boolean }) {
             return;
         }
         if (!isStarted) {
+            setStartGame();
             setIsStarted(true);
             updateAllStatsOnGameStart();
             return;
@@ -344,30 +372,30 @@ export function Game({autoplay}: { autoplay?: boolean }) {
                         previousTile={previousTile}
                         autoplay={autoplay}
                         lastCube={staticTiles.at(-1)}
-                        speedOfMovingTile={speedOfMovingTile}
+                        speedOfMovingTile={defaultConf.speedOfMovingTile.value}
                     />
                 )}
                 <Physics
                     gravity={[
                         0,
-                        invertGravity ? gameConfig.physics.gravityDown : -gameConfig.physics.gravityDown,
+                        defaultConf.invertGravity ? gameConfig.physics.gravityDown : -gameConfig.physics.gravityDown,
                         0
                     ]}
                     defaultContactMaterial={{
                         restitution: gameConfig.physics.bounciness
                     }}
                 >
-                    <ConditionalWrapper condition={debugPhysics} Wrapper={Debug}>
-                        <BaseTile/>
-                        {staticTilesPossiblySliced.map((tile, tileArrIndex) => (
-                            <ReactTile
-                                key={tile.index}
-                                {...tile}
-                                prevSize={staticTilesPossiblySliced[tileArrIndex - 1]?.size}
-                            />
-                        ))}
-                        <FadingTiles fadingTiles={fadingTilesPossiblySliced}/>
-                    </ConditionalWrapper>
+                    {/*<ConditionalWrapper condition={defaultConf.debugPhysics} Wrapper={Debug}>*/}
+                    <BaseTile/>
+                    {staticTilesPossiblySliced.map((tile, tileArrIndex) => (
+                        <ReactTile
+                            key={tile.index}
+                            {...tile}
+                            prevSize={staticTilesPossiblySliced[tileArrIndex - 1]?.size}
+                        />
+                    ))}
+                    <FadingTiles fadingTiles={fadingTilesPossiblySliced}/>
+                    {/*</ConditionalWrapper>*/}
                 </Physics>
                 <PerfectEffects effects={effectsPossiblySliced} setEffects={setEffects}/>
             </Canvas>
@@ -387,6 +415,7 @@ export function Game({autoplay}: { autoplay?: boolean }) {
 }
 
 const UILayerMemoized = memo(UILayer);
+
 
 function UILayer({
                      index,
