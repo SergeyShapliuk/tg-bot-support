@@ -10,6 +10,7 @@ import CountUp from "react-countup";
 import {useFetchTimer} from "../../hooks/useFetchTimer";
 import EffectComponent from "../ui/effect/EffectComponent";
 import {throttle} from "throttle-debounce";
+import ym from "react-yandex-metrika";
 
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
 // const totalTimeMS = 60 * 1000; // в миллисекундах
@@ -160,6 +161,8 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                 }
                 // console.log("fdsfsd", res);
             });
+            ym("hit", "/home");
+            ym("reachGoal", "farming");
         }
     });
 

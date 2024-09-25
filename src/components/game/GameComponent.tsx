@@ -7,7 +7,7 @@ import {initInitData} from "@telegram-apps/sdk-react";
 import {useStartGame} from "../../hooks/useStartGame";
 import {useSetGame} from "../../hooks/useSetGame";
 import {useStatistics} from "./features/stats";
-
+import ym from "react-yandex-metrika";
 
 const GameComponent = () => {
     const initData = initInitData();
@@ -25,6 +25,8 @@ const GameComponent = () => {
         if (isStarted && !isEnded) {
             setCurrentScore(globalStats.totalScore);
             startGame({tg_id: initData?.user?.id.toString() ?? "test_user3"});
+            ym("hit", "/game");
+            ym("reachGoal", "start");
         }
         if (!isStarted && isEnded) {
             let game_id: number | undefined;

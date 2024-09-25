@@ -20,6 +20,7 @@ import useNetworkStatus from "./hooks/useNetworkStatus";
 // import {setupMockTelegramEnv} from "../telegramEnvConfig";
 import MemoGameIcon from "./components/svg/GameIcon";
 import GameComponent from "./components/game/GameComponent";
+import {YMInitializer} from "react-yandex-metrika";
 
 
 // import {version as appVersion} from "../package.json";
@@ -95,6 +96,8 @@ function App() {
         <>
             <div className={classes.main}
                  style={{pointerEvents: error.isOpen || !network.isOnline ? "none" : "visible"}}>
+                <YMInitializer accounts={[98457205]}
+                               options={{webvisor: true, clickmap: true, trackLinks: true, accurateTrackBounce: true}}/>
                 <QueryClientProvider client={queryClient}>
                     <TotalPointsProvider>
                         <CountdownProvider>

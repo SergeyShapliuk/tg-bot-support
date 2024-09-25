@@ -8,6 +8,7 @@ import {useSetTask} from "../../hooks/useSetTask";
 import {initInitData} from "@telegram-apps/sdk-react";
 import {FadeLoader} from "react-spinners";
 import {override} from "../home/Home";
+import ym from "react-yandex-metrika";
 
 
 // const userTasks = [
@@ -172,6 +173,8 @@ function Tasks() {
             hideProgressBar: true,
             icon: <MemoCheckIcon/>
         });
+        ym("hit", "/tasks");
+        ym("reachGoal", "task_claim");
         // console.log("claim", localStorage.getItem("link_claim"));
     };
     // const notify = () => {
