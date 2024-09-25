@@ -7,11 +7,11 @@ import {useIsFirstVisitInSession} from "../../features/firstVisitInSession";
 
 /** @todo rename to sharedTextProps */
 export const sharedStyleProps: React.CSSProperties = {
-    textAlign: "center",
     width: "100%",
     fontFamily: "Onest",
-    fontWeight: 100,
-    letterSpacing: 0.3,
+    fontWeight: 600,
+    letterSpacing: -0.03,
+    textAlign: "center",
     textTransform: "uppercase",
 
     position: "fixed"
@@ -36,7 +36,7 @@ export function Greeting({index, isStarted}: { index: number; isStarted: boolean
         }
     }
 
-    const headingTop = 7.27;
+    const headingTop = 5.27;
     const headingSize = 4.66;
 
     const fadeOutClassName = isStarted || index ? "fadeOut" : null;
@@ -56,14 +56,15 @@ export function Greeting({index, isStarted}: { index: number; isStarted: boolean
                     color: theme.lightElements,
                     animationDelay: "0.2s",
                     animationDuration: "0.25s",
-                    fontSize: "1.56rem",
-                    top: `${headingTop + headingSize + 1.62}rem`,
-                    letterSpacing: -0.15,
+                    fontSize: "1.58rem",
+                    top: `${headingTop + headingSize + 1.5}rem`,
+                    letterSpacing: -0.3,
+                    textTransform: "none",
 
                     pointerEvents: "none"
                 }}
             >
-                {tapOrClickBefore} to start
+                {tapOrClickBefore} to earn
             </div>
             {/*<HowToPlay className={className}/>*/}
             {/*<Settings className={className}/>*/}
@@ -88,28 +89,32 @@ function GreetingTitle({
     const slowDown = isFirstVisitInSession;
 
     return (
-        <div
-            className={["greetingTitleContainer", fadeOutClassName].filter(Boolean).join(" ")}
-            style={{
-                ...sharedStyleProps,
-                width: undefined,
-                // position: undefined,
-                left: "50%", // to center even with position: fixed;
-                transform: "translateX(-50%)", // to center even with position: fixed;
+        <div>
+            <div
+                className={["greetingTitleContainer", fadeOutClassName].filter(Boolean).join(" ")}
+                style={{
+                    ...sharedStyleProps,
+                    width: undefined,
+                    // position: undefined,
+                    left: "50%", // to center even with position: fixed;
+                    transform: "translateX(-50%)", // to center even with position: fixed;
 
-                color: theme.lightElements,
-                fontSize: `${headingSize}rem`,
-                top: `${headingTop}rem`,
+                    color: theme.lightElements,
+                    fontSize: `${headingSize}rem`,
+                    top: `${headingTop}rem`,
 
-                // @ts-expect-error valid custom CSS property
-                "--animationDuration": slowDown ? "4s" : undefined,
+                    // @ts-expect-error valid custom CSS property
+                    "--animationDuration": slowDown ? "4s" : undefined,
 
-                pointerEvents: "none"
-            }}
-        >
-            <p>{title}</p>
-            <span data-text={title}></span>
-            <span data-text={title}></span>
+                    pointerEvents: "none"
+                }}
+            >
+
+                <p>{title}</p>
+                <span data-text={title}></span>
+                <span data-text={title}></span>
+            </div>
+            <div className="blink" style={{top: 120}}/>
         </div>
     );
 }

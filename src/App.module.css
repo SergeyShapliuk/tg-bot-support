@@ -19,14 +19,23 @@
 
 .nav {
     position: fixed;
-    bottom: 0;
-    width: 100%;
+    bottom: 35px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 95%;
+    /*max-width: 358px;*/
+    height: 48px;
     display: flex;
-    justify-content: space-evenly;
-    background-color: #171717;
-    padding: 10px 10px 20px;
-    box-sizing: border-box
+    /*justify-content: space-evenly;*/
+    align-items: center;
+    background-color: #0E1012;
+    /*background-color: red;*/
+    padding: 4px;
+    border-radius: 68px;
+    box-sizing: border-box;
+    z-index: 999;
 }
+
 
 /*.logo {*/
 /*    height: 4em;*/

@@ -134,33 +134,41 @@ export default App;
 function NavBar() {
     const location = useLocation();
     const activeStyle = (isActive: boolean): CSSProperties => {
-        return {
-            textDecoration: "none",
+        return isActive ? {
+            width: 119.33,
+            height: 40.39,
+            display: "inline-flex",
+            justifyContent: "center",
+            alignItems: "center",
             textAlign: "center",
-            color: isActive ? "#FFFFFF" : "#a6a6a6"
-        };
+            color: "#000000",
+            borderRadius: 20,
+            backgroundColor: "#3193F4",
+            // padding: "0px 20px",
+            textDecoration: "none",
+            gap: 8.9
+        } : {display: "flex", justifyContent: "center", width: "22%"};
     };
+    const textStyle = {fontSize: 14, fontWeight: 400, letterSpacing: -0.2};
+
     return (
-        <nav className={classes.nav} style={{
-            // borderTopLeftRadius: "17px",
-            // borderTopRightRadius: "17px",
-            // boxShadow: "0 -5px 15px #FFFFFF30"
-        }}>
+        <nav className={classes.nav}>
             <NavLink to="/" style={({isActive}) => activeStyle(isActive)}>
-                <MemoHomeIcon stroke={location.pathname === "/" ? "white" : "#a6a6a6"}/>
-                <div style={{fontSize: 14, fontWeight: 400}}>Home</div>
+                <MemoHomeIcon fill={location.pathname === "/" ? "#0E1012" : "#434343"}/>
+                {location.pathname === "/" &&
+                <span style={textStyle}>Home</span>}
             </NavLink>
             <NavLink to="tasks" style={({isActive}) => activeStyle(isActive)}>
-                <MemoTasksIcon stroke={location.pathname === "/tasks" ? "white" : "#a6a6a6"}/>
-                <div style={{fontSize: 14, fontWeight: 400}}>Tasks</div>
+                <MemoTasksIcon fill={location.pathname === "/tasks" ? "#0E1012" : "#434343"}/>
+                {location.pathname === "/tasks" && <span style={textStyle}>Tasks</span>}
             </NavLink>
             <NavLink to="friends" style={({isActive}) => activeStyle(isActive)}>
-                <MemoFriendsIcon stroke={location.pathname === "/friends" ? "white" : "#a6a6a6"}/>
-                <div style={{fontSize: 14, fontWeight: 400}}>Friends</div>
+                <MemoFriendsIcon fill={location.pathname === "/friends" ? "#0E1012" : "#434343"}/>
+                {location.pathname === "/friends" && <span style={textStyle}>Friends</span>}
             </NavLink>
             <NavLink to="game" style={({isActive}) => activeStyle(isActive)}>
-                <MemoGameIcon stroke={location.pathname === "/game" ? "white" : "#a6a6a6"}/>
-                <div style={{fontSize: 14, fontWeight: 400}}>Game</div>
+                <MemoGameIcon fill={location.pathname === "/game" ? "#0E1012" : "#434343"}/>
+                {location.pathname === "/game" && <span style={textStyle}>Game</span>}
             </NavLink>
         </nav>
     );

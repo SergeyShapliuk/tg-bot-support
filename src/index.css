@@ -1,12 +1,10 @@
 :root {
-    font-family: Chakra Petch, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Onest, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
 
     /*color-scheme: dark;*/
     color: white;
-    background-color: #000000;
-
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -18,6 +16,8 @@
     /*-webkit-box-shadow: 0px 5px 10px 2px rgba(17, 26, 34, 0.2);*/
     /*-moz-box-shadow: 0px 5px 10px 2px rgba(17, 26, 34, 0.2);*/
     /*box-shadow: 0px 5px 10px 2px rgba(17, 26, 34, 0.2);*/
+
+    background: #000000 radial-gradient(117.18% 81.58% at -8.46% 3.02%, #47A4FF 0%, #4394E4 11.18%, #1E1E1E 98.82%);
 
     /*background: linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%),*/
     /*linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%) 0.1875em 0.1875em,*/
@@ -122,4 +122,63 @@ button {
     color: white;
     font-size: 19px;
     padding: 10px;
+}
+
+/*.blink {*/
+/*    background: radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, rgba(100, 115, 131, 0) 100%);*/
+/*    animation: blinker 1s linear 1ms ;*/
+/*}*/
+
+/*@keyframes blinker {*/
+/*    from{*/
+/*        opacity: 1;*/
+/*    }*/
+/*    to {*/
+/*        opacity: 0;*/
+/*    }*/
+/*}*/
+
+/*.blink{*/
+/*    position: relative;*/
+/*    font-size: 2.5em;*/
+/*    color: #fff;*/
+/*    text-align: center;*/
+/*    display: inline-block;*/
+/*    z-index: 1;*/
+/*}*/
+
+.blink {
+    position: absolute;
+    width: 100%;
+    height: 27px;
+
+    /*left: 50%;*/
+    gap: 0;
+    opacity: 0.47;
+    rotate: -15deg;
+    /*transform: translate(-50%, -50%);*/
+    background: radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, rgba(100, 115, 131, 0) 100%);
+    animation: spread 0.8s ease-out forwards;
+
+}
+
+/*.blink::before {*/
+/*    transform: translate(-50%, -50%) scale(0);*/
+/*}*/
+
+/*.blink::after {*/
+/*    transform: translate(-50%, -50%) scale(0);*/
+/*}*/
+
+@keyframes spread {
+    0% {
+        /*transform: translate(-50%, 50%);*/
+        transform: scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        /*transform: translate(-50%, 50%);*/
+        transform: scale(1);
+        opacity: 0;
+    }
 }

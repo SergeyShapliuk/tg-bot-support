@@ -4,9 +4,9 @@ export const themeStack = createTheme({
     name: "Stack",
     background: () => "#000",
     lightElements: "#fff",
-    tile: (index) => getBaseTileColor((index + 45) * 5)
+    tile: (index) => getBaseTileColor((index + 42) * 5)
 });
 
 function getBaseTileColor(hue: number) {
-    return `hsl(${hue}, 50%, 50%)`;
+    return `hsl(${hue}, 79%, 54%)`;
 }

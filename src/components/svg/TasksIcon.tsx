@@ -4,23 +4,14 @@ const TasksIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width={24}
-        height={24}
+        height={23}
         fill="none"
         {...props}
     >
         <path
-            stroke={props.stroke ? props.stroke : "#FFF"}
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M2 7a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7Z"
+            fill="currentFill"
+            d="M3.857 22.03h16.141c2.544 0 3.869-1.32 3.869-3.842V3.843C23.867 1.32 22.542 0 19.998 0H3.857C1.325 0 0 1.308 0 3.843v14.345c0 2.523 1.325 3.843 3.857 3.843Zm-.012-2.345c-.973 0-1.512-.507-1.512-1.544V7.296c0-1.037.539-1.544 1.512-1.544H20.01c.973 0 1.512.507 1.512 1.544v10.845c0 1.037-.539 1.544-1.512 1.544H3.845Zm2.004-9.701h12.18c.422 0 .738-.33.738-.766a.72.72 0 0 0-.738-.731H5.849c-.433 0-.75.318-.75.73 0 .437.317.767.75.767Zm0 3.477h12.18a.72.72 0 0 0 .738-.73c0-.425-.316-.767-.738-.767H5.849c-.433 0-.75.342-.75.766 0 .413.317.731.75.731Zm0 3.478h7.69a.72.72 0 0 0 .739-.731.733.733 0 0 0-.739-.755H5.85c-.433 0-.75.33-.75.755 0 .412.317.73.75.73Z"
         />
-        <path
-            stroke={props.stroke ? props.stroke : "#FFF"}
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M2 7h20v4H2V7Z"
-        />
-        <path stroke={props.stroke ? props.stroke : "#FFF"} strokeLinecap="round" strokeWidth={1.5} d="M8 17H6"/>
     </svg>
 );
 const MemoTasksIcon = memo(TasksIcon);

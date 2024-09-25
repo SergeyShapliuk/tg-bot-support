@@ -20,26 +20,17 @@ export function GameEndingHighScore({
             style={{
                 ...sharedStyleProps,
                 color: theme.lightElements,
-                letterSpacing: 0,
-
-                fontSize: "2rem",
-                top: `${5 + 2 + 1}rem`, // `5 + 2` is `size + top` of Score.
+                fontWeight: 400,
+                fontSize: "1.109em",
+                top: `${2}rem`, // `5 + 2` is `size + top` of Score.
+                // letterSpacing: -0.03,
+                textTransform: "none",
 
                 pointerEvents: "none"
             }}
         >
             {/* TODO icon instead of Best: */}
             {isHighScoreNew ? "New record" : `Best: ${highScore}`}
-            <div style={{
-                margin: "0 100px",
-                color: "white",
-                background: "linear-gradient(0deg, #339cff 0%, #2356a9 100%)",
-                alignSelf: "center",
-                padding: "10px 20px",
-                borderRadius: "12px",
-                fontSize: "21px"
-            }}>Claim
-            </div>
         </div>
     ) : null;
 }

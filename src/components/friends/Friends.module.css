@@ -4,6 +4,7 @@
     padding: 1em;
     /*overflow: auto;*/
     text-align: center;
+    background: #000000 radial-gradient(117.18% 81.58% at -8.46% 3.02%, #47A4FF 0%, #4394E4 11.18%, #1E1E1E 98.82%);
 }
 
 .title {

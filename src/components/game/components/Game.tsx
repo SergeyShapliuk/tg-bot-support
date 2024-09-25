@@ -339,7 +339,7 @@ export function Game({setStartGame, setEndGame, autoplay}: GamePropsType) {
             <Canvas
                 gl={{
                     antialias: false,
-                    alpha: false
+                    alpha: true
                 }} //* Disabling antialias is visible if you look closely. Think about returning it. Or making it configurable? But it seems that in the original game, antialias is disabled, and I want to match it as much as possible, so it's probably fine to leave it like that.
                 camera={{
                     near: 1,
@@ -356,7 +356,7 @@ export function Game({setStartGame, setEndGame, autoplay}: GamePropsType) {
                     })}
                 shadows="basic"
             >
-                <color attach="background" args={[autoplay ? "#1f0014" : theme.background(index)]}/>
+                {/*<color attach="background" args={[autoplay ? "#1f0014" : 'transparent']}/>*/}
                 <CameraController
                     previousTile={previousTile}
                     isStarted={isStarted}
