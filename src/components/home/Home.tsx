@@ -81,7 +81,7 @@ function Home() {
                             <div
                                 style={{color: "#3193F4", fontSize: "17px", fontWeight: "500", lineHeight: "20px"}}>Game
                             </div>
-                            <div>coming soon</div>
+                            <div>is ready, try it now!</div>
                         </div>
                     </div>
                     <NavLink to={"/game"} style={{
