@@ -10,6 +10,7 @@ import CountUp from "react-countup";
 import {useFetchTimer} from "../../hooks/useFetchTimer";
 import EffectComponent from "../ui/effect/EffectComponent";
 import {throttle} from "throttle-debounce";
+import classes from "./Home.module.css";
 import ym from "react-yandex-metrika";
 
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
@@ -209,17 +210,7 @@ function FarmingComponent({timer}: FarmingComponentProps) {
         }
         // console.log("progress", completed);
         return (
-            <div style={{
-                position: "relative",
-                width: "100%",
-                height: "60px",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                backgroundColor: "#9b9b9b",
-                borderRadius: "12px",
-                overflow: "hidden"
-            }}>
+            <div className={classes.farming}>
                 <div
                     style={{
                         position: "absolute",
@@ -228,14 +219,16 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                         bottom: 0,
                         borderTopLeftRadius: "12px",
                         borderBottomLeftRadius: "12px",
-                        backgroundColor: "rgb(49,125,148)",
+                        backgroundColor: "#2568AA",
                         zIndex: 0
                     }}/>
                 <div style={{
                     position: "relative",
                     width: "100%",
                     height: "100%",
-                    fontSize: "1.3em",
+                    color: "#9BA6C3",
+                    fontSize: "20px",
+                    letterSpacing: -0.5,
                     textAlign: "center",
                     zIndex: 1
                 }}>
@@ -248,10 +241,10 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                              useEasing={false}/>}</span></span>
                     <span style={{
                         position: "absolute",
-                        top: 23,
+                        top: 20,
                         right: 0,
-                        paddingRight: "10px",
-                        fontSize: 14,
+                        paddingRight: "20px",
+                        fontSize: '10px',
                         zIndex: 1
                     }}>{hours}h {minutes}m</span>
                 </div>

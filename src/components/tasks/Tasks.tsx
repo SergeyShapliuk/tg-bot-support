@@ -55,7 +55,7 @@ function Tasks() {
     // const [list, setList] = useState<TasksItemTypeWithClaim[] | undefined>([]);
     // const [linkId, setLinkId] = useState<string[]>([]);
 
-    console.log("task", userTasks);
+    // console.log("task", userTasks);
     // console.log("list", list);
     // console.log("dataMutate", data);
 
@@ -206,60 +206,86 @@ function Tasks() {
 
     return (
         <div className={classes.main}>
-            <div style={{fontSize: 31, fontWeight: 600}}>Support Durov socials</div>
-            <div style={{color: "#a6a696", fontSize: 16, fontWeight: 500, paddingTop: "10px"}}>Join Support Durov
-                community, be aware of new
-                and following updates, find your tribe in Support Durov
+            <div style={{
+                position: "relative",
+                fontSize: "60px",
+                fontWeight: "600",
+                letterSpacing: -0.3,
+                textAlign: "center"
+            }}>TASKS
+                <div className="blink" style={{top: 30}}/>
             </div>
-            {userTasks?.data?.map(item => (
-                <>
-                    <div key={item.id}
-                         style={{
-                             position: "relative",
-                             display: "flex",
-                             flexDirection: "column",
-                             justifyContent: "center",
-                             textAlign: "start",
-                             paddingBlock: "10px",
-                             opacity: item.stat > 1 ? 0.7 : 1
-                         }}>
+            <div style={{
+                fontSize: "15px",
+                fontWeight: "500",
+                letterSpacing: -0.4,
+                textAlign: "center"
+                // paddingRight: "16px",
+                // paddingLeft: "16px",
+            }}>Just Support
+                Durov community, be
+                aware of new and following updates, find your tribe in SD
+            </div>
+            <div style={{display: "flex", flexDirection: "column", marginTop: "25px", gap: 7}}>
+                {userTasks?.data?.map(item => (
+                    <div key={item.id} className="popup">
                         <div style={{
-                            // flex: 1,
+                            position: "relative",
+                            width: "100%",
+                            height: 37,
                             display: "flex",
                             flexDirection: "row",
                             justifyContent: "space-between",
-                            alignItems: "center"
-
+                            alignItems: "center",
+                            zIndex: 999
                         }}>
-                            <div style={{
-                                flex: 1,
-                                display: "flex",
-                                flexDirection: "row",
-                                alignItems: "center"
-                            }}>
-                                {/*<img src={item.icon} alt={`Icon ${item.name}`}/>*/}
-                                <TasksIcons name={item.icon}/>
-                                <p style={{flex: 1, paddingLeft: 20, paddingRight: 20, fontSize: 19}}>{item.title}</p>
+                            <div style={{flex: 1, display: "flex", flexDirection: "row", alignItems: "center"}}>
+                                <div style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    alignItems: "center"
+                                }}>
+                                    {/*<img src={item.icon} alt={`Icon ${item.name}`}/>*/}
+                                    <TasksIcons name={item.icon}/>
+                                    <p style={{
+                                        flex: 1,
+                                        paddingLeft: 20,
+                                        paddingRight: 20,
+                                        fontSize: "15px",
+                                        letterSpacing: -0.4
+                                    }}>{item.title}</p>
+                                </div>
                             </div>
-
                             {item.user_stat === 2 ?
                                 <button
                                     onClick={() => onLinkHandleClaim(String(initData?.user?.id) ?? "test", item.id, 3, item.amount)}
                                     style={{
-                                        width: 70,
-                                        height: 45,
-                                        color: "black",
-                                        backgroundColor: "rgb(49,125,148)",
-                                        fontSize: 16,
-                                        borderRadius: 12
+                                        width: 75,
+                                        height: 30,
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        borderRadius: 15,
+                                        color: "#3193F4",
+                                        fontSize: "14px",
+                                        fontWeight: "400",
+                                        lineHeight: "16px",
+                                        backgroundColor: "#FFFFFF"
                                     }}>Claim</button> :
                                 item.user_stat <= 1 &&
                                 <button style={{
-                                    width: 70,
-                                    height: 45,
-                                    backgroundColor: "#282828",
-                                    fontSize: 16,
-                                    borderRadius: 12
+                                    width: 75,
+                                    height: 30,
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    borderRadius: 15,
+                                    color: "#fff",
+                                    fontSize: "14px",
+                                    fontWeight: "400",
+                                    lineHeight: "16px",
+                                    letterSpacing: -0.1,
+                                    backgroundColor: "rgba(249,249,249,0.31)"
                                 }}>
                                     <a href={item.link}
                                        onClick={() => onLinkHandleStart(String(initData?.user?.id) ?? "test", item.id, 2)}
@@ -269,17 +295,26 @@ function Tasks() {
                                 </button>
                             }
                             {item.user_stat === 3 &&
-                            <div style={{width: 70, textAlign: "center"}}>
+                            <div style={{
+                                width: 75,
+                                height: 30,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                borderRadius: 15,
+                                border: "1px solid #86A9C5",
+                                color: "#fff",
+                                fontSize: "14px",
+                                fontWeight: "400",
+                                lineHeight: "16px"
+                                // backgroundColor: "rgba(249,249,249,0.31)"
+                            }}>
                                 <MemoCheckIcon/>
                             </div>}
                         </div>
                     </div>
-                    <div style={{height: 1, backgroundColor: "#282828", marginRight: 10, marginLeft: 10}}/>
-                </>
-            ))
-
-            }
-            {/*<ToastContainer/>*/}
+                ))}
+            </div>
         </div>
     );
 }

@@ -19,7 +19,7 @@ const GameComponent = () => {
 
     const {mutate: startGame, data: dataStartGame} = useStartGame();
     const {mutate: stopGame} = useSetGame();
-    // console.log("dataStart", dataStartGame);
+    console.log("dataStart", dataStartGame);
 
     useEffect(() => {
         if (isStarted && !isEnded) {

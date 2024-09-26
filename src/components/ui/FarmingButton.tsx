@@ -45,9 +45,13 @@ function FarmingButton({
             {!isCountdown && !complete && <Timer countdownDate={countdownDate}
                                                  renderer={renderer}/>}
             {complete && <button className={classes.unActive}
-                                 style={{color: "white", background: "linear-gradient(0deg, #339cff 0%, #2356a9 100%)"}}
+                                 style={{
+                                     color: "white",
+                                     background: "radial-gradient(57.6% 283.1% at 50% 50%, #3193F4 0%, #1D568E 100%)",
+                                     boxShadow: "0px 3px 7.5px 0px #00000040"
+                                 }}
                                  onClick={setUserPoints}>
-                Claim SD {point}
+                Claim +{point} SD
             </button>}
             {/*<BeatLoader*/}
             {/*    color={"red"}*/}

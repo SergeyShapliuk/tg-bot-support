@@ -17,7 +17,13 @@
     /*-moz-box-shadow: 0px 5px 10px 2px rgba(17, 26, 34, 0.2);*/
     /*box-shadow: 0px 5px 10px 2px rgba(17, 26, 34, 0.2);*/
 
-    background: #000000 radial-gradient(117.18% 81.58% at -8.46% 3.02%, #47A4FF 0%, #4394E4 11.18%, #1E1E1E 98.82%);
+    /*background: linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%),*/
+
+    background-image: url("../src/assets/background.jpg");
+    background-position: center;
+    background-size: cover;
+    /*background: radial-gradient(117.18% 81.58% at -8.46% 3.02%, #47A4FF 0%, #4394E4 11.18%, #1E1E1E 98.82%) !* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected *!;*/
+
 
     /*background: linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%),*/
     /*linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%) 0.1875em 0.1875em,*/
@@ -59,8 +65,8 @@ h1 {
 
 button {
     width: 100%;
-    height: 60px;
-    border-radius: 12px;
+    height: 53px;
+    border-radius: 45px;
     border: 1px solid transparent;
     /*margin: 0.6em 1.2em;*/
     font-size: 1.4em;
@@ -71,6 +77,49 @@ button {
     cursor: pointer;
     /*transition: border-color 0.25s;*/
     background-color: #5e5e5e;
+}
+
+.popup {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*background-color: #1E1E1E;*/
+    border-radius: 25px;
+    padding: 15px 28px 13px 27px;
+}
+
+/* Верхний слой */
+.popup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF; /* Заполнение */
+    border: 1px solid rgba(2, 40, 78, 0.7); /* Обводка */
+    mix-blend-mode: overlay; /* Наложение Overlay */
+    opacity: 0.61; /* Непрозрачность */
+    backdrop-filter: blur(2.4px); /* Эффект размытия */
+    border-radius: 25px; /* Повторить радиус для совпадения слоев */
+    z-index: 2; /* Верхний слой */
+}
+
+/* Нижний слой */
+.popup::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF; /* Заполнение */
+    border: 1px solid rgba(2, 40, 78, 0.7); /* Обводка */
+    mix-blend-mode: overlay; /* Наложение Overlay */
+    opacity: 0.21; /* Непрозрачность */
+    z-index: 1; /* Нижний слой */
+    border-radius: 25px;
 }
 
 /*@media (max-width: 320px) {*/
