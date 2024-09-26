@@ -36,6 +36,7 @@
     "react-router-dom": "^6.26.1",
     "react-spinners": "^0.14.1",
     "react-toastify": "^10.0.5",
+    "react-yandex-metrika": "^2.6.0",
     "three": "^0.168.0",
     "throttle-debounce": "^5.0.2",
     "usehooks-ts": "^3.1.0"

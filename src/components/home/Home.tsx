@@ -25,7 +25,6 @@ export const override: CSSProperties = {
 
 function Home() {
     const initData = initInitData();
-    // const initData = null;
 
     const {
         isInitialized,
@@ -35,7 +34,8 @@ function Home() {
     } = useTotalPoints();
     const {
         data: balance,
-        isSuccess: isSuccessBalance
+        isSuccess: isSuccessBalance,
+        isFetching
     } = useFetchBalance(initData?.user?.id.toString() ?? "test_user3");
     const {
         data: timer,
@@ -50,15 +50,14 @@ function Home() {
 
 
     useEffect(() => {
-        if (isSuccessBalance && isSuccessTimer) {
+        if (isSuccessBalance && isSuccessTimer && !isFetching) {
             // const timeOut = setTimeout(() => {
             setPoints(balance.amount);
             setInitialized(true);
             // }, 1000);
             // return () => clearTimeout(timeOut);
         }
-    }, [isSuccessBalance, isSuccessTimer]);
-
+    }, [isSuccessBalance, isSuccessTimer, isFetching]);
 
     if (!isInitialized) return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override} loading={!isInitialized}/>;
     return (
@@ -82,7 +81,7 @@ function Home() {
                             <div
                                 style={{color: "#3193F4", fontSize: "17px", fontWeight: "500", lineHeight: "20px"}}>Game
                             </div>
-                            <div>coming soon</div>
+                            <div>is ready, try it now!</div>
                         </div>
                     </div>
                     <NavLink to={"/game"} style={{

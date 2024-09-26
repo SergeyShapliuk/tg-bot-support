@@ -6,9 +6,9 @@ import {useFetchTask} from "../../hooks/useFetchTask";
 import TasksIcons from "../svg/tasks_icons/TasksIcons";
 import {useSetTask} from "../../hooks/useSetTask";
 import {initInitData} from "@telegram-apps/sdk-react";
-import {useFetchBalance} from "../../hooks/useFetchBalance";
 import {FadeLoader} from "react-spinners";
 import {override} from "../home/Home";
+import ym from "react-yandex-metrika";
 
 
 // const userTasks = [
@@ -49,11 +49,9 @@ import {override} from "../home/Home";
 
 function Tasks() {
     const initData = initInitData();
-    // const initData = null;
-    const {refetch} = useFetchBalance(initData?.user?.id.toString() ?? "test_user3");
 
     const {data: userTasks, refetch: getTasks} = useFetchTask(initData?.user?.id.toString() ?? "test");
-    const {mutate, data, isSuccess} = useSetTask();
+    const {mutate, isSuccess} = useSetTask();
     // const [list, setList] = useState<TasksItemTypeWithClaim[] | undefined>([]);
     // const [linkId, setLinkId] = useState<string[]>([]);
 
@@ -117,9 +115,9 @@ function Tasks() {
     useEffect(() => {
         if (isSuccess) {
             getTasks().then();
-            if (data?.data?.stat === 3) {
-                refetch().then();
-            }
+            // if (data?.data?.stat === 3) {
+            //     refetch().then();
+            // }
         }
     }, [isSuccess]);
 
@@ -175,6 +173,8 @@ function Tasks() {
             hideProgressBar: true,
             icon: <MemoCheckIcon/>
         });
+        ym("hit", "/tasks");
+        ym("reachGoal", "task_claim");
         // console.log("claim", localStorage.getItem("link_claim"));
     };
     // const notify = () => {
