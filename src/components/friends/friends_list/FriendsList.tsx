@@ -6,11 +6,13 @@ import {UserReferrals} from "../../../types/types";
 import classes from "../Friends.module.css";
 import MemoArrowIcon from "../../svg/ArrowIcon";
 import MemoFriendsIcon from "../../svg/FriendsIcon";
+import {useScreenSize} from "../../../context/ScreenSizeProvider";
 
 const limit = 50;
 
 function FriendsList() {
     const initData = initInitData();
+    const {screenSize} = useScreenSize();
 
     const [items, setItems] = useState<UserReferrals[]>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
@@ -64,7 +66,8 @@ function FriendsList() {
                 position: "relative", fontSize: "15px",
                 fontWeight: 700, textAlign: "left", zIndex: 10
             }}>{`${referrals?.info?.cols_ref} friends:`}
-                <div id="catalog-scroll-container" className={classes.listFriends}>
+                <div id="catalog-scroll-container" className={classes.listFriends}
+                     style={{height: screenSize.height - 390}}>
                     <InfiniteScroll
                         scrollableTarget={"catalog-scroll-container"}
                         dataLength={items.length}
@@ -118,7 +121,7 @@ function FriendsList() {
                             width: 35,
                             aspectRatio: 1,
                             bottom: 180,
-                            right: 20,
+                            right: 30,
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",

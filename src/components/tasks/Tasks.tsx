@@ -1,5 +1,5 @@
 import classes from "./Tasks.module.css";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import MemoCheckIcon from "../svg/CheckIcon";
 import {toast} from "react-toastify";
 import {useFetchTask} from "../../hooks/useFetchTask";
@@ -9,59 +9,107 @@ import {initInitData} from "@telegram-apps/sdk-react";
 import {FadeLoader} from "react-spinners";
 import {override} from "../home/Home";
 import ym from "react-yandex-metrika";
+import {useScreenSize} from "../../context/ScreenSizeProvider";
+import {useTotalPoints} from "../../context/TotalPointsProvider";
+import {Reorder} from "framer-motion";
+import {TasksItemType} from "../../types/types";
 
 
-// const userTasks = [
-//     {
-//         id: 1,
-//         title: "sdfsdfsdf",
-//         amount: 100,
-//         link: "",
-//         icon: "tg",
-//         stat: 1,
-//         dt_create: ""
-//     }, {
-//         id: 2,
-//         title: "sdfsdfsdf dfsdf fdsdgdfgdfg",
-//         amount: 100,
-//         link: "",
-//         icon: "tg",
-//         stat: 1,
-//         dt_create: ""
-//     }, {
-//         id: 3,
-//         title: "sdfsdfsdf dsfsd",
-//         amount: 100,
-//         link: "",
-//         icon: "instagram",
-//         stat: 1,
-//         dt_create: ""
-//     }, {
-//         id: 4,
-//         title: "sdfsdfsdf sdfsd",
-//         amount: 100,
-//         link: "",
-//         icon: "discord",
-//         stat: 1,
-//         dt_create: ""
-//     }
-// ];
+// const userTasks = {
+//     data: [
+//         {
+//             id: 1,
+//             title: "sdfsdfsdfaaa111",
+//             amount: 100,
+//             link: "",
+//             icon: "tg",
+//             stat: 1,
+//             dt_create: ""
+//         }, {
+//             id: 2,
+//             title: "sdfsdfsdf dfsdf fdsdgdfgdfg222",
+//             amount: 100,
+//             link: "",
+//             icon: "tg",
+//             stat: 1,
+//             dt_create: ""
+//         }, {
+//             id: 3,
+//             title: "sdfsdfsdf dsfsd33",
+//             amount: 100,
+//             link: "",
+//             icon: "instagram",
+//             stat: 1,
+//             dt_create: ""
+//         }, {
+//             id: 4,
+//             title: "sdfsdfsdf sdfsd4",
+//             amount: 100,
+//             link: "",
+//             icon: "discord",
+//             stat: 1,
+//             dt_create: ""
+//         }, {
+//             id: 5,
+//             title: "sdfsdfsdf sdfsd5",
+//             amount: 100,
+//             link: "",
+//             icon: "discord",
+//             stat: 1,
+//             dt_create: ""
+//         }, {
+//             id: 6,
+//             title: "sdfsdfsdf sdfsd6",
+//             amount: 100,
+//             link: "",
+//             icon: "discord",
+//             stat: 1,
+//             dt_create: ""
+//         }
+//     ]
+// };
 
 function Tasks() {
     const initData = initInitData();
+    const {setBadge} = useTotalPoints();
+    const {screenSize} = useScreenSize();
+
 
     const {data: userTasks, refetch: getTasks} = useFetchTask(initData?.user?.id.toString() ?? "test");
     const {mutate, isSuccess} = useSetTask();
-    // const [list, setList] = useState<TasksItemTypeWithClaim[] | undefined>([]);
+    const [list, setList] = useState<TasksItemType[]>();
     // const [linkId, setLinkId] = useState<string[]>([]);
 
     // console.log("task", userTasks);
-    // console.log("list", list);
+    console.log("list", list);
     // console.log("dataMutate", data);
+    const moveStat3ToEnd = (tasks: TasksItemType[]) => {
+        if (!tasks) return tasks;
 
+        // Фильтруем элементы с stat === 3
+        const incompleteItems = tasks.filter(item => item.user_stat !== 3);
+        const completedItems = tasks.filter(item => item.user_stat === 3);
+
+        // Возвращаем массив с элементами, где stat !== 3 в начале, и stat === 3 в конце
+        return [...incompleteItems, ...completedItems];
+    };
+
+    useEffect(() => {
+        localStorage.setItem("sup_badge", JSON.stringify(userTasks?.data?.length));
+        setBadge(0);
+        // localStorage.setItem("sup_badge", JSON.stringify(1));
+    }, []);
+    useEffect(() => {
+        // Перемещаем только если есть данные
+        if (userTasks && userTasks.data?.length > 0) {
+            const reorderedTasks = moveStat3ToEnd(userTasks.data);
+            setList(reorderedTasks);
+        }
+    }, [userTasks]);
     // useEffect(() => {
-    //     localStorage.clear()
-    //     if (userTasks?.data?.length) {
+    //         localStorage.clear()
+    // if (userTasks?.data?.length) {
+    //     setList(userTasks.data);
     //         const ids = localStorage.getItem("link_ids");
     //         if (ids) {
     //             setLinkId(JSON.parse(ids));
@@ -109,7 +157,7 @@ function Tasks() {
     //         //     // console.log("ids", ids);
     //
     //
-    //     }
+    // }
     // }, [userTasks]);
 
     useEffect(() => {
@@ -202,7 +250,7 @@ function Tasks() {
     //     });
     // };
     // console.log("LinkId", list);
-    if (!userTasks?.data?.length) return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override}/>;
+    if (!list?.length) return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override}/>;
 
     return (
         <div className={classes.main}>
@@ -213,7 +261,15 @@ function Tasks() {
                 letterSpacing: -0.3,
                 textAlign: "center"
             }}>TASKS
-                <div className="blink" style={{top: 30}}/>
+                <div style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: 27,
+                    gap: 0,
+                    opacity: 0.27,
+                    rotate: "-15deg",
+                    background: "radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, rgba(100, 115, 131, 0) 100%)", top: 30
+                }}/>
             </div>
             <div style={{
                 fontSize: "15px",
@@ -226,9 +282,37 @@ function Tasks() {
                 Durov community, be
                 aware of new and following updates, find your tribe in SD
             </div>
-            <div style={{display: "flex", flexDirection: "column", marginTop: "25px", gap: 7}}>
-                {userTasks?.data?.map(item => (
-                    <div key={item.id} className="popup">
+            {/*<div style={{*/}
+            {/*    height: "100%",*/}
+            {/*    display: "flex",*/}
+            {/*    flexDirection: "column",*/}
+            {/*    overflowX: 'hidden',*/}
+            {/*    overflow: "auto",*/}
+            {/*    // paddingBottom:10,*/}
+            {/*    gap: 7*/}
+            {/*}}>*/}
+            <Reorder.Group axis="y" values={list} onReorder={setList} style={{
+                // width:'100%',
+                height: screenSize.height - 270,
+                display: "flex",
+                flexDirection: "column",
+                marginTop: "25px",
+                padding: "2px",
+                overflow: "auto",
+                gap: 7
+            }}>
+                {list?.map(item => (
+                    <Reorder.Item key={item.id}
+                        // as={"div"}
+                                  drag={false}
+                                  layout
+                                  value={item}
+                        // whileDrag={{
+                        //     backgroundColor: item.isCompleted ? "#d3ffd3" : "#e0e0e0", // Задаем цвет фона при перетаскивании
+                        //     opacity: 0, // Устанавливаем opacity
+                        // }}
+                        //           whileDrag={{boxShadow:'none',opacity:1,backgroundColor:"none"}}
+                                  className="popup">
                         <div style={{
                             position: "relative",
                             width: "100%",
@@ -312,11 +396,13 @@ function Tasks() {
                                 <MemoCheckIcon/>
                             </div>}
                         </div>
-                    </div>
+                    </Reorder.Item>
                 ))}
-            </div>
+            </Reorder.Group>
+            {/*</div>*/}
         </div>
-    );
+    )
+        ;
 }
 
 export default Tasks;

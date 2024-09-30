@@ -113,7 +113,7 @@
 }
 
 .listFriends {
-    height: calc(100vh * 0.45); /* Задаём высоту как 45% от высоты окна браузера */
+    /*height: calc(100vh * 0.45); !* Задаём высоту как 45% от высоты окна браузера *!*/
     display: flex;
     /*justify-content: start;*/
     /*align-items: start;*/
@@ -169,7 +169,7 @@
     color: #fff;
     font-size: 20px;
     font-weight: 500;
-    letter-spacing: -0.4;
+    letter-spacing: -0.4px;
     margin-top: 25px;
     background-color: rgba(249, 249, 249, 0.31);
     border-radius: 29px;

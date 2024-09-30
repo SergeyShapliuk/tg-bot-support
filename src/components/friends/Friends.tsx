@@ -136,7 +136,16 @@ function Friends() {
                     letterSpacing: -0.3,
                     textAlign: "center"
                 }}>FRIENDS
-                    <div className="blink" style={{top: 30}}/>
+                    <div style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: 27,
+                        gap: 0,
+                        opacity: 0.27,
+                        rotate: "-15deg",
+                        background: "radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, rgba(100, 115, 131, 0) 100%)",
+                        top: 30
+                    }}/>
                 </div>
 
                 <div style={{

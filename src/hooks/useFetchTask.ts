@@ -9,6 +9,7 @@ export const useFetchTask = (tg_id: string): QueryObserverResult<GetTasksType, a
             return data;
         },
         queryKey: ["get-task"],
-        retry: 2
+        retry: 2,
+        refetchInterval: 60000
     });
 };

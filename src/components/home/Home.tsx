@@ -9,6 +9,7 @@ import {useTotalPoints} from "../../context/TotalPointsProvider";
 import {useFetchBalance} from "../../hooks/useFetchBalance";
 import MemoGameIconFill from "../svg/GameIconFill";
 import {NavLink} from "react-router-dom";
+import {useScreenSize} from "../../context/ScreenSizeProvider";
 
 
 export const override: CSSProperties = {
@@ -25,6 +26,7 @@ export const override: CSSProperties = {
 
 function Home() {
     const initData = initInitData();
+    const {screenSize} = useScreenSize();
 
     const {
         isInitialized,
@@ -44,9 +46,9 @@ function Home() {
         error: e
     } = useFetchTimer(initData?.user?.id.toString() ?? "test_user3");
 
-
-    console.log("Timer", timer);
+    // console.log("Timer", timer);
     console.log("error", e);
+    // console.log("refHeight", refHeight.current?.clientHeight);
 
 
     useEffect(() => {
@@ -58,6 +60,7 @@ function Home() {
             // return () => clearTimeout(timeOut);
         }
     }, [isSuccessBalance, isSuccessTimer, isFetching]);
+
 
     if (!isInitialized) return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override} loading={!isInitialized}/>;
     return (
@@ -79,14 +82,14 @@ function Home() {
                             <div
                                 style={{
                                     color: "#FFFFFF",
-                                    fontSize: "27px",
+                                    fontSize: screenSize.width * 0.069,
                                     fontWeight: "500",
                                     lineHeight: "24px"
                                 }}>Game
                             </div>
                             <div style={{
                                 color: "#FFFFFF",
-                                fontSize: "14px",
+                                fontSize: screenSize.width * 0.035,
                                 fontWeight: "400",
                                 lineHeight: "18px"
                             }}>is ready, try it now!
@@ -98,17 +101,16 @@ function Home() {
                         textAlign: "center"
                     }}>
                         <div style={{
-                            width: 75,
-                            height: 30,
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
                             borderRadius: 15,
                             color: "#fff",
-                            fontSize: "14px",
+                            fontSize: screenSize.width * 0.035,
                             fontWeight: "400",
                             lineHeight: "16px",
-                            backgroundColor: "rgba(249,249,249,0.31)"
+                            backgroundColor: "rgba(249,249,249,0.31)",
+                            padding: "7px 20px"
                         }}>Open
                         </div>
                     </NavLink>
@@ -121,29 +123,38 @@ function Home() {
                     // fontFamily:'sans-serif',
                     fontSize: "27px",
                     fontWeight: "500",
-                    lineHeight: "27px",
+                    lineHeight: "34px",
+                    letterSpacing: -0.4,
                     maxWidth: "100%", // Ограничивает ширину
                     wordWrap: "break-word", // Переносит текст на новую строку,
-                    textAlign: "left"
+                    textAlign: "left",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis"
+                    // lineClamp: 1
                     // padding: ".5em",
                     // marginTop: "10px"
                 }}>
                     Hello, {initData?.user?.username ? initData.user.username : initData?.user?.firstName ? initData?.user?.firstName : "-----"}!
                 </div>
                 {/*<p style={{position: "absolute", right: 10, paddingRight: "10px", fontSize: 24}}>&#8383; {points}</p>*/}
-                <img
-                    src={image}
-                    className={classes.image} alt="Image"/>
+                <div style={{height: screenSize.height - 450, display: "flex", alignItems: "center"}}>
+                    <img
+                        src={image}
+                        className={classes.image} alt="Image"/>
+                </div>
+                {/*<div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'flex-end',background:'red',}}>*/}
                 <div style={{fontSize: "20px", letterSpacing: -0.3, textAlign: "left"}}>Your
                     balance
                 </div>
                 <div style={{
-                    fontSize: "36px",
+                    fontSize: screenSize.width * 0.097,
                     fontWeight: 600,
                     letterSpacing: -0.2,
                     textAlign: "left"
                 }}>{points ? points : "0"} SD
                 </div>
+                {/*</div>*/}
             </div>
             <div className={classes.buttonContainer}>
                 <FarmingComponent timer={timer} refetchTimer={() => refetchTimer()}/>

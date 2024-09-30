@@ -84,7 +84,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*background-color: #1E1E1E;*/
+    /*background-color: transparent;*/
     border-radius: 25px;
     padding: 15px 28px 13px 27px;
 }

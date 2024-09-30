@@ -14,13 +14,14 @@ import "react-toastify/dist/ReactToastify.css";
 import MemoCloseIcon from "./components/svg/CloseIcon";
 import {CountdownProvider} from "./context/CountdownProvider";
 import {MutationCache, QueryCache, QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {TotalPointsProvider} from "./context/TotalPointsProvider";
+import {TotalPointsProvider, useTotalPoints} from "./context/TotalPointsProvider";
 import ModalError from "./components/ui/modal/ModalError";
 import useNetworkStatus from "./hooks/useNetworkStatus";
 // import {setupMockTelegramEnv} from "../telegramEnvConfig";
 import MemoGameIcon from "./components/svg/GameIcon";
 import GameComponent from "./components/game/GameComponent";
 import {YMInitializer} from "react-yandex-metrika";
+import {ScreenSizeProvider} from "./context/ScreenSizeProvider";
 
 
 // import {version as appVersion} from "../package.json";
@@ -75,6 +76,7 @@ function App() {
             })
     );
 
+
     useEffect(() => {
         miniApp.ready();
         const expand = async () => {
@@ -99,19 +101,22 @@ function App() {
                 <YMInitializer accounts={[98457205]}
                                options={{webvisor: true, clickmap: true, trackLinks: true, accurateTrackBounce: true}}/>
                 <QueryClientProvider client={queryClient}>
-                    <TotalPointsProvider>
-                        <CountdownProvider>
-                            <Routes>
-                                <Route index element={<Home/>}/>
-                                <Route path={"/"} element={<Home/>}/>
-                                <Route path="tasks" element={<Tasks/>}/>
-                                <Route path="friends" element={<Friends/>}/>
-                                <Route path="game" element={<GameComponent/>}/>
-                            </Routes>
-                        </CountdownProvider>
-                    </TotalPointsProvider>
+                    <ScreenSizeProvider>
+                        <TotalPointsProvider>
+                            <CountdownProvider>
+                                <Routes>
+                                    <Route index element={<Home/>}/>
+                                    <Route path={"/"} element={<Home/>}/>
+                                    <Route path="tasks" element={<Tasks/>}/>
+                                    <Route path="friends" element={<Friends/>}/>
+                                    <Route path="game" element={<GameComponent/>}/>
+                                </Routes>
+                                <NavBar/>
+                            </CountdownProvider>
+                        </TotalPointsProvider>
+                    </ScreenSizeProvider>
                 </QueryClientProvider>
-                <NavBar/>
+
             </div>
             <ToastContainer
                 autoClose={3000}
@@ -136,6 +141,7 @@ export default App;
 
 function NavBar() {
     const location = useLocation();
+    const {badge} = useTotalPoints();
     const activeStyle = (isActive: boolean): CSSProperties => {
         return isActive ? {
             width: 119.33,
@@ -150,7 +156,7 @@ function NavBar() {
             // padding: "0px 20px",
             textDecoration: "none",
             gap: 8.9
-        } : {display: "flex", justifyContent: "center", width: "22%"};
+        } : {position: "relative", display: "flex", justifyContent: "center", width: "22%", textDecoration: "none"};
     };
     const textStyle = {fontSize: 14, fontWeight: 400, letterSpacing: -0.2};
 
@@ -164,6 +170,20 @@ function NavBar() {
             <NavLink to="tasks" style={({isActive}) => activeStyle(isActive)}>
                 <MemoTasksIcon fill={location.pathname === "/tasks" ? "#0E1012" : "#434343"}/>
                 {location.pathname === "/tasks" && <span style={textStyle}>Tasks</span>}
+                {location.pathname !== "/tasks" &&
+                <div style={{
+                    // width: "15px",
+                    // height: "15px",
+                    position: "absolute",
+                    // top: 0,
+                    right: 15,
+                    bottom: 15,
+                    color: "#3193F4",
+                    fontSize: "14px",
+                    fontWeight: "700",
+                    borderRadius: "50px"
+                    // backgroundColor: "#3193F4"
+                }}>{badge !== 0 && badge}</div>}
             </NavLink>
             <NavLink to="friends" style={({isActive}) => activeStyle(isActive)}>
                 <MemoFriendsIcon fill={location.pathname === "/friends" ? "#0E1012" : "#434343"}/>

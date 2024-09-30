@@ -33,7 +33,7 @@ const GameComponent = () => {
             if (dataStartGame && dataStartGame.resp === "ok") {
                 game_id = dataStartGame.data.game_customer_id;
             }
-            if (dataStartGame && dataStartGame.resp === "err") {
+            if (dataStartGame && dataStartGame.resp === "err" && dataStartGame.msg === "Game is work") {
                 game_id = dataStartGame.info?.id;
             }
             if (game_id) {

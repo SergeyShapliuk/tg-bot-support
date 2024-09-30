@@ -12,6 +12,7 @@ import EffectComponent from "../ui/effect/EffectComponent";
 import {throttle} from "throttle-debounce";
 import classes from "./Home.module.css";
 import ym from "react-yandex-metrika";
+import {useScreenSize} from "../../context/ScreenSizeProvider";
 
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
 // const totalTimeMS = 60 * 1000; // в миллисекундах
@@ -25,6 +26,7 @@ type FarmingComponentProps = {
 
 function FarmingComponent({timer}: FarmingComponentProps) {
     const initData = initInitData();
+    const {screenSize} = useScreenSize();
 
     const {
         isCountdown,
@@ -226,13 +228,16 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                     position: "relative",
                     width: "100%",
                     height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                     color: "#9BA6C3",
-                    fontSize: "20px",
+                    fontSize: screenSize.width * 0.051,
                     letterSpacing: -0.5,
                     textAlign: "center",
                     zIndex: 1
                 }}>
-                    <span style={{position: "relative", right: 25, top: "27%"}}>Farming SD <span
+                    <span style={{position: "relative", right: 25}}>Farming SD <span
                         style={{position: "absolute", paddingLeft: 5}}>{timer?.resp === "ok" &&
                     <CountUp start={count} end={timer?.info?.amount}
                              duration={timer?.second?.last}
@@ -241,10 +246,10 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                              useEasing={false}/>}</span></span>
                     <span style={{
                         position: "absolute",
-                        top: 20,
+                        top: 19,
                         right: 0,
                         paddingRight: "20px",
-                        fontSize: '10px',
+                        fontSize: "10px",
                         zIndex: 1
                     }}>{hours}h {minutes}m</span>
                 </div>
