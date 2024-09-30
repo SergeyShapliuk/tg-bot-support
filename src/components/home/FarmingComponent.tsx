@@ -10,7 +10,9 @@ import CountUp from "react-countup";
 import {useFetchTimer} from "../../hooks/useFetchTimer";
 import EffectComponent from "../ui/effect/EffectComponent";
 import {throttle} from "throttle-debounce";
+import classes from "./Home.module.css";
 import ym from "react-yandex-metrika";
+import {useScreenSize} from "../../context/ScreenSizeProvider";
 
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
 // const totalTimeMS = 60 * 1000; // в миллисекундах
@@ -24,6 +26,7 @@ type FarmingComponentProps = {
 
 function FarmingComponent({timer}: FarmingComponentProps) {
     const initData = initInitData();
+    const {screenSize} = useScreenSize();
 
     const {
         isCountdown,
@@ -209,17 +212,7 @@ function FarmingComponent({timer}: FarmingComponentProps) {
         }
         // console.log("progress", completed);
         return (
-            <div style={{
-                position: "relative",
-                width: "100%",
-                height: "60px",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                backgroundColor: "#9b9b9b",
-                borderRadius: "12px",
-                overflow: "hidden"
-            }}>
+            <div className={classes.farming}>
                 <div
                     style={{
                         position: "absolute",
@@ -228,18 +221,23 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                         bottom: 0,
                         borderTopLeftRadius: "12px",
                         borderBottomLeftRadius: "12px",
-                        backgroundColor: "rgb(49,125,148)",
+                        backgroundColor: "#2568AA",
                         zIndex: 0
                     }}/>
                 <div style={{
                     position: "relative",
                     width: "100%",
                     height: "100%",
-                    fontSize: "1.3em",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    color: "#9BA6C3",
+                    fontSize: screenSize.width * 0.051,
+                    letterSpacing: -0.5,
                     textAlign: "center",
                     zIndex: 1
                 }}>
-                    <span style={{position: "relative", right: 25, top: "27%"}}>Farming SD <span
+                    <span style={{position: "relative", right: 25}}>Farming SD <span
                         style={{position: "absolute", paddingLeft: 5}}>{timer?.resp === "ok" &&
                     <CountUp start={count} end={timer?.info?.amount}
                              duration={timer?.second?.last}
@@ -248,10 +246,10 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                              useEasing={false}/>}</span></span>
                     <span style={{
                         position: "absolute",
-                        top: 23,
+                        top: 19,
                         right: 0,
-                        paddingRight: "10px",
-                        fontSize: 14,
+                        paddingRight: "20px",
+                        fontSize: "10px",
                         zIndex: 1
                     }}>{hours}h {minutes}m</span>
                 </div>

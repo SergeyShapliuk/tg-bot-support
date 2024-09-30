@@ -4,13 +4,15 @@ import {useFetchReferrals} from "../../../hooks/useFetchReferrals";
 import {initInitData} from "@telegram-apps/sdk-react";
 import {UserReferrals} from "../../../types/types";
 import classes from "../Friends.module.css";
-import MemoUsersIcon from "../../svg/UsersIcon";
 import MemoArrowIcon from "../../svg/ArrowIcon";
+import MemoFriendsIcon from "../../svg/FriendsIcon";
+import {useScreenSize} from "../../../context/ScreenSizeProvider";
 
 const limit = 50;
 
 function FriendsList() {
     const initData = initInitData();
+    const {screenSize} = useScreenSize();
 
     const [items, setItems] = useState<UserReferrals[]>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
@@ -59,71 +61,79 @@ function FriendsList() {
         }
     }, [hasMore]);
     return (
-        <div style={{
-            marginTop: "20px",
-            textAlign: "start"
-        }}>{`${referrals?.info?.cols_ref} friends`}
-            <div id="catalog-scroll-container" className={classes.listFriends}>
-                <InfiniteScroll
-                    scrollableTarget={"catalog-scroll-container"}
-                    dataLength={items.length}
-                    next={loadMoreData}
-                    hasMore={hasMore}
-                    loader={<h4>Loading...</h4>}
-                    // endMessage={<p>No more data</p>}
-                >
-                    {items?.map(friend => (
-                        <div className={classes.itemFriends} key={friend.customer}>
-                            <div style={{display: "flex", alignItems: "center", gap: 10}}>
-                                <div style={{
-                                    width: 30,
-                                    height: 30,
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    borderRadius: "50%",
-                                    fontWeight: 500,
-                                    backgroundColor: "rgb(49,125,148)"
-                                }}>{friend?.name?.slice(0, 1)}</div>
-                                <div>
-                                    <div>{friend.name}</div>
+        <div className={classes.listFriends_container}>
+            <div style={{
+                position: "relative", fontSize: "15px",
+                fontWeight: 700, textAlign: "left", zIndex: 10
+            }}>{`${referrals?.info?.cols_ref} friends:`}
+                <div id="catalog-scroll-container" className={classes.listFriends}
+                     style={{height: screenSize.height - 390}}>
+                    <InfiniteScroll
+                        scrollableTarget={"catalog-scroll-container"}
+                        dataLength={items.length}
+                        next={loadMoreData}
+                        hasMore={hasMore}
+                        loader={<h4>Loading...</h4>}
+                        // endMessage={<p>No more data</p>}
+
+                    >
+                        {items?.map(friend => (
+                            <div className={classes.itemFriends} key={friend.customer}>
+                                <div style={{display: "flex", alignItems: "center", gap: 15}}>
                                     <div style={{
-                                        color: "#FFFFFFB3",
-                                        fontSize: 12,
+                                        width: 30,
+                                        height: 30,
                                         display: "flex",
-                                        flexDirection: "row",
-                                        justifyContent: "start",
-                                        alignItems: "center"
-                                    }}>
-                                        <MemoUsersIcon/>
-                                        {friend.referal_count === "0" ? "0" : `+ ${friend.referal_count}`}
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        borderRadius: "50%",
+                                        color: "#3193F4",
+                                        background: "radial-gradient(57.6% 283.1% at 50% 50%, #FFFFFF 0%, #3193F4 100%)",
+                                        boxShadow: "0px 1px 3px 0px #00000014"
+
+                                    }}>{friend?.name?.slice(0, 1)}</div>
+                                    <div>
+                                        <div>{friend.name}</div>
+                                        <div style={{
+                                            display: "flex",
+                                            flexDirection: "row",
+                                            justifyContent: "start",
+                                            alignItems: "center",
+                                            color: "#FFFFFFB3",
+                                            fontSize: "10px",
+                                            lineHeight: "11px"
+                                        }}>
+                                            <MemoFriendsIcon width={12} height={8} fill={"#FFFFFF"}
+                                                             style={{paddingRight: 3}}/>
+                                            {friend.referal_count === "0" ? "0" : `+${friend.referal_count}`}
+                                        </div>
                                     </div>
                                 </div>
+                                <div>{Number(friend.amount) === 0 ? "0 SD" : `+${friend.amount} SD`}</div>
                             </div>
-                            <div>{Number(friend.amount) === 0 ? "0 SD" : `+${friend.amount} SD`}</div>
-                        </div>
-                    ))}
-                </InfiniteScroll>
-                {showScrollTopButton && (<div
-                    onClick={scrollToTop}
-                    // className={classes.scrollToTopButton}
-                    style={{
-                        position: "fixed",
-                        width: 35,
-                        aspectRatio: 1,
-                        bottom: 180,
-                        right: 20,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        backgroundColor: "#FFFFFF",
-                        color: "#000000",
-                        borderRadius: "50px",
-                        zIndex: 999
-                    }}
-                >
-                    <MemoArrowIcon style={{marginBottom: 1}}/>
-                </div>)}
+                        ))}
+                    </InfiniteScroll>
+                    {showScrollTopButton && (<div
+                        onClick={scrollToTop}
+                        // className={classes.scrollToTopButton}
+                        style={{
+                            position: "fixed",
+                            width: 35,
+                            aspectRatio: 1,
+                            bottom: 180,
+                            right: 30,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor: "#FFFFFF",
+                            color: "#000000",
+                            borderRadius: "50px",
+                            zIndex: 999
+                        }}
+                    >
+                        <MemoArrowIcon style={{marginBottom: 1}}/>
+                    </div>)}
+                </div>
             </div>
         </div>
     );

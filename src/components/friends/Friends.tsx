@@ -1,6 +1,5 @@
 import {useState} from "react";
 import classes from "./Friends.module.css";
-import MemoInviteIcon from "../svg/InviteFriends";
 import {Sheet} from "react-modal-sheet";
 import MemoCloseIcon from "../svg/CloseIcon";
 import {useFetchRef} from "../../hooks/useFetchRef";
@@ -129,78 +128,73 @@ function Friends() {
     return (
         <>
             <div className={classes.main}>
-                <MemoInviteIcon/>
-                <div className={classes.title}>Invite friends. Earn a points.</div>
+
+                <div style={{
+                    position: "relative",
+                    fontSize: "60px",
+                    fontWeight: "600",
+                    letterSpacing: -0.3,
+                    textAlign: "center"
+                }}>FRIENDS
+                    <div style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: 27,
+                        gap: 0,
+                        opacity: 0.27,
+                        rotate: "-15deg",
+                        background: "radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, rgba(100, 115, 131, 0) 100%)",
+                        top: 30
+                    }}/>
+                </div>
+
+                <div style={{
+                    fontSize: "15px",
+                    fontWeight: "500",
+                    letterSpacing: -0.4,
+                    paddingRight: "35px",
+                    paddingLeft: "35px"
+                }}>Invite a friends and earn a points.<br/> Score 20% from their referrals
+                </div>
                 <div style={{height: "100%", paddingBottom: 160}}>
-                    {referrals?.data?.length > 0 ?
+                    {referrals?.data?.length > 0 ? (
+                        <FriendsList/>
+                    ) : (
                         <>
-                            <div style={{color: "rgba(255,255,255,0.7)"}}>Score 20% from their referrals</div>
-                            <FriendsList/>
-                            {/*{listInviteFrens.map(friend => (*/}
-                            {/*    <div className={classes.itemFriends} key={friend.customer}>*/}
-                            {/*        <div style={{display: "flex", alignItems: "center", gap: 10}}>*/}
-                            {/*            <div style={{*/}
-                            {/*                width: 30,*/}
-                            {/*                height: 30,*/}
-                            {/*                display: "flex",*/}
-                            {/*                justifyContent: "center",*/}
-                            {/*                alignItems: "center",*/}
-                            {/*                borderRadius: "50%",*/}
-                            {/*                fontWeight: 500,*/}
-                            {/*                backgroundColor: "rgb(49,125,148)"*/}
-                            {/*            }}>{friend?.name?.slice(0, 1)}</div>*/}
-                            {/*            <div>*/}
-                            {/*                <div>{friend.name}</div>*/}
-                            {/*                <div style={{*/}
-                            {/*                    color: "#FFFFFFB3",*/}
-                            {/*                    fontSize: 12,*/}
-                            {/*                    display: "flex",*/}
-                            {/*                    flexDirection: "row",*/}
-                            {/*                    justifyContent: "start",*/}
-                            {/*                    alignItems: "center"*/}
-                            {/*                }}>*/}
-                            {/*                    <MemoUsersIcon/>*/}
-                            {/*                    {friend.referal_count === "0" ? "0" : `+ ${friend.referal_count}`}*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*        <div>{`+${friend.amount} SD`}</div>*/}
-                            {/*    </div>*/}
-                            {/*))}*/}
-                        </>
-                        : (
-                            <>
-                                <div className={classes.subTitle}>How it works</div>
-                                <div className={classes.description}>
-                                    {listInvite.map((item, index) => (
-                                        <div key={index} className={classes.item}>
-                                            {/*<div className={classes.circleContainer}>*/}
-                                            {/*<div className={classes.circle}/>*/}
-                                            {/*{index < listInvite.length - 1 && <div className={classes.line}/>}*/}
-                                            {/*{item.title}*/}
-                                            <div style={{paddingLeft: 50}}>
-                                                <div style={{fontSize: 19}}>{item.title}</div>
-                                                <div style={{fontSize: 16}}>{item.subTitle}</div>
-                                                {/*</div>*/}
-                                            </div>
+                            <div className={classes.subTitle}>How it works</div>
+                            <div className={classes.description}>
+                                {listInvite.map((item, index) => (
+                                    <div key={index} className={classes.item}>
+                                        {/*<div className={classes.circleContainer}>*/}
+                                        {/*<div className={classes.circle}/>*/}
+                                        {/*{index < listInvite.length - 1 && <div className={classes.line}/>}*/}
+                                        {/*{item.title}*/}
+                                        <div style={{paddingLeft: 50}}>
+                                            <div style={{fontSize: 19}}>{item.title}</div>
+                                            <div style={{fontSize: 16}}>{item.subTitle}</div>
+                                            {/*</div>*/}
                                         </div>
-                                    ))}
-                                </div>
-                            </>)}
+                                    </div>
+                                ))}
+                            </div>
+                        </>)}
                 </div>
                 <div className={classes.inviteButtonContainer}>
                     <button onClick={() => setOpen(true)} className={classes.inviteButton}>Invite a friends</button>
                 </div>
             </div>
-            <Sheet isOpen={isOpen} onClose={() => setOpen(false)} disableDrag>
+            <Sheet isOpen={isOpen} onClose={() => setOpen(false)} disableDrag style={{marginLeft: 16, marginRight: 16}}>
                 <Sheet.Container style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    backgroundColor: "#1c1c1e"
+                    borderTopLeftRadius: "34px",
+                    borderTopRightRadius: "34px",
+                    background: "radial-gradient(57.6% 283.1% at 50% 50%, #3193F4 0%, #1D568E 100%)"
+
                 }}>
                     {/*<Sheet.Header disableDrag/>*/}
-                    <div style={{padding: 20, fontSize: 24, fontWeight: 500}}>Invite a friends</div>
+                    <div style={{padding: 20, fontSize: "20px", fontWeight: 500}}>Invite a friends</div>
                     <div onClick={() => {
                         setOpen(false);
                         setState("pending");
@@ -226,7 +220,8 @@ function Friends() {
                         {/*    //     excavate: true*/}
                         {/*    // }}*/}
                         {/*              style={{paddingTop: 50}}/>*/}
-                        <img src={userRef?.codes[0]?.link_code} alt="QrCode" style={{width: "100%", height: "50%"}}/>
+                        <img src={userRef?.codes[0]?.link_code} alt="QrCode"
+                             style={{width: "100%", height: "50%", borderRadius: "20px"}}/>
                         <a className={classes.shareButton}
                            href={`https://t.me/share/url?url=${userRef?.codes[0]?.link_code}`}
                            target="_blank"
@@ -237,10 +232,11 @@ function Friends() {
                         <button onClick={copyClicked} style={{
                             height: 50,
                             color: "#fff",
-                            fontSize: 21,
-                            fontWeight: "400",
+                            fontSize: "20px",
+                            fontWeight: "500",
+                            letterSpacing: -0.4,
                             margin: "25px 0 25px 0",
-                            backgroundColor: "#282828"
+                            backgroundColor: "rgba(249,249,249,0.31)"
                         }}>{getButtonText(state)}</button>
                         {/*<button onClick={() => setOpen(false)}*/}
                         {/*        style={{*/}

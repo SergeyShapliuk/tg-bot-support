@@ -9,6 +9,7 @@ import {useTotalPoints} from "../../context/TotalPointsProvider";
 import {useFetchBalance} from "../../hooks/useFetchBalance";
 import MemoGameIconFill from "../svg/GameIconFill";
 import {NavLink} from "react-router-dom";
+import {useScreenSize} from "../../context/ScreenSizeProvider";
 
 
 export const override: CSSProperties = {
@@ -25,6 +26,7 @@ export const override: CSSProperties = {
 
 function Home() {
     const initData = initInitData();
+    const {screenSize} = useScreenSize();
 
     const {
         isInitialized,
@@ -44,9 +46,9 @@ function Home() {
         error: e
     } = useFetchTimer(initData?.user?.id.toString() ?? "test_user3");
 
-
-    console.log("Timer", timer);
+    // console.log("Timer", timer);
     console.log("error", e);
+    // console.log("refHeight", refHeight.current?.clientHeight);
 
 
     useEffect(() => {
@@ -59,29 +61,39 @@ function Home() {
         }
     }, [isSuccessBalance, isSuccessTimer, isFetching]);
 
+
     if (!isInitialized) return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override} loading={!isInitialized}/>;
     return (
         <div className={classes.main}>
-            <div style={{textAlign: "center"}}>
+            {/*<div style={{textAlign: "center"}}>*/}
+            <div className="popup">
                 <div style={{
                     position: "relative",
+                    width: "100%",
                     display: "flex",
+                    flexDirection: "row",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    backgroundColor: "#1E1E1E",
-                    borderRadius: 12,
-                    borderWidth: 1.2,
-                    borderStyle: "solid",
-                    borderColor: "#3193F4",
-                    padding: "12px 22px 10px 22px"
+                    zIndex: 10
                 }}>
-                    <div style={{display: "flex", flexDirection: "row"}}>
-                        <MemoGameIconFill style={{marginTop: 3}}/>
+                    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                        <MemoGameIconFill/>
                         <div style={{textAlign: "start", marginLeft: 22}}>
                             <div
-                                style={{color: "#3193F4", fontSize: "17px", fontWeight: "500", lineHeight: "20px"}}>Game
+                                style={{
+                                    color: "#FFFFFF",
+                                    fontSize: screenSize.width * 0.069,
+                                    fontWeight: "500",
+                                    lineHeight: "24px"
+                                }}>Game
                             </div>
-                            <div>is ready, try it now!</div>
+                            <div style={{
+                                color: "#FFFFFF",
+                                fontSize: screenSize.width * 0.035,
+                                fontWeight: "400",
+                                lineHeight: "18px"
+                            }}>is ready, try it now!
+                            </div>
                         </div>
                     </div>
                     <NavLink to={"/game"} style={{
@@ -89,40 +101,60 @@ function Home() {
                         textAlign: "center"
                     }}>
                         <div style={{
-                            width: 63,
-                            height: 26,
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            borderRadius: 7,
+                            borderRadius: 15,
                             color: "#fff",
-                            fontSize: "14px",
+                            fontSize: screenSize.width * 0.035,
                             fontWeight: "400",
                             lineHeight: "16px",
-                            backgroundColor: "#333232"
+                            backgroundColor: "rgba(249,249,249,0.31)",
+                            padding: "7px 20px"
                         }}>Open
                         </div>
                     </NavLink>
                 </div>
+            </div>
+            {/*</div>*/}
+            <div className={classes.imageBlock}>
                 <div style={{
                     // flex: 1,
                     // fontFamily:'sans-serif',
-                    fontSize: 24,
-                    fontWeight: 600,
+                    fontSize: "27px",
+                    fontWeight: "500",
+                    lineHeight: "34px",
+                    letterSpacing: -0.4,
                     maxWidth: "100%", // Ограничивает ширину
                     wordWrap: "break-word", // Переносит текст на новую строку,
-                    padding: ".5em",
-                    marginTop: "10px"
+                    textAlign: "left",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis"
+                    // lineClamp: 1
+                    // padding: ".5em",
+                    // marginTop: "10px"
                 }}>
-                    {initData?.user?.username ? initData.user.username : initData?.user?.firstName ? initData?.user?.firstName : "-----"}
+                    Hello, {initData?.user?.username ? initData.user.username : initData?.user?.firstName ? initData?.user?.firstName : "-----"}!
                 </div>
                 {/*<p style={{position: "absolute", right: 10, paddingRight: "10px", fontSize: 24}}>&#8383; {points}</p>*/}
-                <div style={{fontSize: 27, fontWeight: 600}}>SD {points ? points : "0"}</div>
-            </div>
-            <div className={classes.imageBlock}>
-                <img
-                    src={image}
-                    className={classes.image} alt="Image"/>
+                <div style={{height: screenSize.height - 450, display: "flex", alignItems: "center"}}>
+                    <img
+                        src={image}
+                        className={classes.image} alt="Image"/>
+                </div>
+                {/*<div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'flex-end',background:'red',}}>*/}
+                <div style={{fontSize: "20px", letterSpacing: -0.3, textAlign: "left"}}>Your
+                    balance
+                </div>
+                <div style={{
+                    fontSize: screenSize.width * 0.097,
+                    fontWeight: 600,
+                    letterSpacing: -0.2,
+                    textAlign: "left"
+                }}>{points ? points : "0"} SD
+                </div>
+                {/*</div>*/}
             </div>
             <div className={classes.buttonContainer}>
                 <FarmingComponent timer={timer} refetchTimer={() => refetchTimer()}/>

@@ -4,7 +4,7 @@
     padding: 1em;
     /*overflow: auto;*/
     text-align: center;
-    background: #000000 radial-gradient(117.18% 81.58% at -8.46% 3.02%, #47A4FF 0%, #4394E4 11.18%, #1E1E1E 98.82%);
+    /*background: #000000 radial-gradient(117.18% 81.58% at -8.46% 3.02%, #47A4FF 0%, #4394E4 11.18%, #1E1E1E 98.82%);*/
 }
 
 .title {
@@ -71,16 +71,55 @@
     background-color: #FFFFFF;
 }
 
+.listFriends_container {
+    position: relative;
+    /*display: flex;*/
+    margin-top: 21px;
+    border-radius: 28px;
+    padding: 26px 28px 0 28px;
+    /*overflow: hidden;*/
+}
+
+.listFriends_container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF; /* Заполнение */
+    border: 1px solid rgba(2, 40, 78, 0.7); /* Обводка */
+    mix-blend-mode: overlay; /* Наложение Overlay */
+    opacity: 0.61; /* Непрозрачность */
+    backdrop-filter: blur(2.4px); /* Эффект размытия */
+    border-radius: 25px; /* Повторить радиус для совпадения слоев */
+    z-index: 2; /* Верхний слой */
+}
+
+/* Нижний слой */
+.listFriends_container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF; /* Заполнение */
+    border: 1px solid rgba(2, 40, 78, 0.7); /* Обводка */
+    mix-blend-mode: overlay; /* Наложение Overlay */
+    opacity: 0.21; /* Непрозрачность */
+    z-index: 1; /* Нижний слой */
+    border-radius: 25px;
+}
+
 .listFriends {
-    height: 500px;
+    /*height: calc(100vh * 0.45); !* Задаём высоту как 45% от высоты окна браузера *!*/
     display: flex;
     /*justify-content: start;*/
     /*align-items: start;*/
     flex-direction: column;
     text-align: start;
-    padding-top: 20px;
     overflow: auto;
-    gap: 20px;
 
     ms-overflow-style: none;
     scrollbar-width: none;
@@ -95,6 +134,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding-top: 15px;
 }
 
 .inviteButtonContainer {
@@ -104,15 +144,20 @@
     bottom: 80px;
     padding: 1em;
     background-color: transparent;
+    overflow: hidden;
+    z-index: 999;
 }
 
 .inviteButton {
+    font-size: 20px;
     font-weight: 600;
     font-family: inherit;
     letter-spacing: inherit;
-    color: #000000;
+    color: #FFFFFF;
     cursor: pointer;
-    background-color: #FFFFFF;
+    background: radial-gradient(57.6% 283.1% at 50% 50%, #3193F4 0%, #1D568E 100%);
+    box-shadow: 0 3px 7.5px 0 #00000040;
+
 }
 
 .shareButton {
@@ -122,9 +167,11 @@
     width: 100%;
     height: 50px;
     color: #fff;
-    font-size: 21px;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
     margin-top: 25px;
-    background-color: #282828;
-    border-radius: 12px;
+    background-color: rgba(249, 249, 249, 0.31);
+    border-radius: 29px;
     text-decoration: none;
 }

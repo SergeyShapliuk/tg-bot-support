@@ -15,6 +15,7 @@ export interface TileProps extends AnimatedTileProps {
     position: Vector3;
     size: Vector2;
     index: number;
+    speed?: number;
 }
 
 /** @todo remove "React" from name. */

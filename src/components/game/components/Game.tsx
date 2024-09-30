@@ -47,6 +47,14 @@ type GamePropsType = {
     autoplay: boolean;
 }
 
+const MIN_SPEED = 100;
+const MAX_SPEED = 230;
+
+
+function getRandomSpeed(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export function Game({setStartGame, setEndGame, autoplay}: GamePropsType) {
 
     const {theme, setThemeName} = useTheme();
@@ -240,10 +248,13 @@ export function Game({setStartGame, setEndGame, autoplay}: GamePropsType) {
             previousTile.position.z + diff.z / 2
         );
 
+        const randomSpeed = getRandomSpeed(MIN_SPEED, MAX_SPEED);
+
         const newStaticTile: TileProps = {
             position: newCenter,
             size: newSize,
-            index
+            index,
+            speed: randomSpeed
         };
 
         /** "possibly" since it is not confirmed until `isConsideredPerfect` is checked. */
@@ -372,7 +383,7 @@ export function Game({setStartGame, setEndGame, autoplay}: GamePropsType) {
                         previousTile={previousTile}
                         autoplay={autoplay}
                         lastCube={staticTiles.at(-1)}
-                        speedOfMovingTile={defaultConf.speedOfMovingTile.value}
+                        speedOfMovingTile={staticTiles.at(-1)?.speed || defaultConf.speedOfMovingTile.value}
                     />
                 )}
                 <Physics
