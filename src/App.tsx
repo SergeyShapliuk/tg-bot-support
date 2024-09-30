@@ -6,8 +6,8 @@ import Friends from "./components/friends/Friends";
 import MemoHomeIcon from "./components/svg/HomeIcon";
 import MemoTasksIcon from "./components/svg/TasksIcon";
 import MemoFriendsIcon from "./components/svg/FriendsIcon";
-import {CSSProperties, useState} from "react";
-// import {initMiniApp, initSwipeBehavior, initViewport} from "@telegram-apps/sdk-react";
+import {CSSProperties, useEffect, useState} from "react";
+import {initMiniApp, initSwipeBehavior, initViewport} from "@telegram-apps/sdk-react";
 import {ToastContainer} from "react-toastify";
 // import "react-toastify/dist/ReactToastify.minimal.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,7 @@ import {MutationCache, QueryCache, QueryClient, QueryClientProvider} from "@tans
 import {TotalPointsProvider, useTotalPoints} from "./context/TotalPointsProvider";
 import ModalError from "./components/ui/modal/ModalError";
 import useNetworkStatus from "./hooks/useNetworkStatus";
-import {setupMockTelegramEnv} from "../telegramEnvConfig";
+// import {setupMockTelegramEnv} from "../telegramEnvConfig";
 import MemoGameIcon from "./components/svg/GameIcon";
 import GameComponent from "./components/game/GameComponent";
 import {YMInitializer} from "react-yandex-metrika";
@@ -27,12 +27,12 @@ import {ScreenSizeProvider} from "./context/ScreenSizeProvider";
 // import {version as appVersion} from "../package.json";
 //
 // console.log(`App version: ${appVersion}`);
-setupMockTelegramEnv();
+// setupMockTelegramEnv();
 
 function App() {
-    // const [miniApp] = initMiniApp();
-    // const [viewport] = initViewport();
-    // const [swipeBehavior] = initSwipeBehavior();
+    const [miniApp] = initMiniApp();
+    const [viewport] = initViewport();
+    const [swipeBehavior] = initSwipeBehavior();
     const network = useNetworkStatus();
     const [error, setError] = useState<{ isOpen: boolean, message: string }>({isOpen: false, message: ""});
 
@@ -77,22 +77,22 @@ function App() {
     );
 
 
-    // useEffect(() => {
-    //     miniApp.ready();
-    //     const expand = async () => {
-    //         const vp = await viewport;
-    //         if (!vp.isExpanded) {
-    //             vp.expand();
-    //         }
-    //         await swipeBehavior.disableVerticalSwipe();
-    //     };
-    //     // const localVersion = localStorage.getItem("appVersion");
-    //     // if (localVersion && localVersion !== appVersion) {
-    //     //     localStorage.setItem("appVersion", appVersion);
-    //     //     window.location.reload();
-    //     // }
-    //     expand().then();
-    // }, []);
+    useEffect(() => {
+        miniApp.ready();
+        const expand = async () => {
+            const vp = await viewport;
+            if (!vp.isExpanded) {
+                vp.expand();
+            }
+            await swipeBehavior.disableVerticalSwipe();
+        };
+        // const localVersion = localStorage.getItem("appVersion");
+        // if (localVersion && localVersion !== appVersion) {
+        //     localStorage.setItem("appVersion", appVersion);
+        //     window.location.reload();
+        // }
+        expand().then();
+    }, []);
 
     return (
         <>
