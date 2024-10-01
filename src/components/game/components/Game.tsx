@@ -47,8 +47,8 @@ type GamePropsType = {
     autoplay: boolean;
 }
 
-const MIN_SPEED = 100;
-const MAX_SPEED = 230;
+const MIN_SPEED = 130;
+const MAX_SPEED = 200;
 
 
 function getRandomSpeed(min: number, max: number) {
