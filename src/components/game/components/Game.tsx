@@ -48,7 +48,7 @@ type GamePropsType = {
 }
 
 const MIN_SPEED = 130;
-const MAX_SPEED = 180;
+const MAX_SPEED = 170;
 
 
 function getRandomSpeed(min: number, max: number) {
