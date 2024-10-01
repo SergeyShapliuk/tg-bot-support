@@ -330,12 +330,13 @@ function Tasks() {
                                     alignItems: "center"
                                 }}>
                                     {/*<img src={item.icon} alt={`Icon ${item.name}`}/>*/}
-                                    <TasksIcons name={item.icon}/>
+                                    {item.icon ? <TasksIcons name={item.icon}/> : item.img ?
+                                        <img src={item.img} style={{width: 35, height: 35, borderRadius: 50}}/> : null}
                                     <p style={{
                                         flex: 1,
                                         paddingLeft: 20,
                                         paddingRight: 20,
-                                        fontSize: "15px",
+                                        fontSize: screenSize.width >= 370 ? "15px" : screenSize.width * 0.038,
                                         letterSpacing: -0.4
                                     }}>{item.title}</p>
                                 </div>

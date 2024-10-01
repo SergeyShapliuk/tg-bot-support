@@ -74,7 +74,8 @@ path.instagram = (props: SVGProps<SVGSVGElement>) => {
 };
 path.KOLOBOK = (props: SVGProps<SVGSVGElement>) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 640 640" {...props}>
+        <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 640 640" {...props}
+             style={{borderRadius: 50}}>
             <path fill="#5A231F" d="M0 0h640v640H0V0Z"/>
             <path
                 fill="#6884AA"
