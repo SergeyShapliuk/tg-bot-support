@@ -19,7 +19,7 @@ import ModalError from "./components/ui/modal/ModalError";
 import useNetworkStatus from "./hooks/useNetworkStatus";
 // import {setupMockTelegramEnv} from "../telegramEnvConfig";
 import MemoGameIcon from "./components/svg/GameIcon";
-import GameComponent from "./components/game/GameComponent";
+import GameComponent from "./components/games/GameComponent";
 import {YMInitializer} from "react-yandex-metrika";
 import {ScreenSizeProvider} from "./context/ScreenSizeProvider";
 

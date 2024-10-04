@@ -307,11 +307,13 @@ function Tasks() {
                                   drag={false}
                                   layout
                                   value={item}
-                        // whileDrag={{
-                        //     backgroundColor: item.isCompleted ? "#d3ffd3" : "#e0e0e0", // Задаем цвет фона при перетаскивании
-                        //     opacity: 0, // Устанавливаем opacity
+                        // style={{
+                        //     backgroundColor: item.isCompleted ? "#d3ffd3" : "red", // Задаем цвет фона при перетаскивании
+                        //     // opacity: 0.3, // Устанавливаем opacity
                         // }}
-                        //           whileDrag={{boxShadow:'none',opacity:1,backgroundColor:"none"}}
+                        //           whileDrag={{
+                        //               opacity: 0.8 // Задайте уровень прозрачности при перетаскивании
+                        //           }}
                                   className="popup">
                         <div style={{
                             position: "relative",

@@ -1,15 +1,14 @@
-// import MemoHandcuffIcon from "../svg/HandcuffIcon";
-
-import {ThemeInitializer} from "./contexts/ThemeContext";
-import {Game} from "./components/Game";
 import {useCallback, useEffect, useState} from "react";
 import {initInitData} from "@telegram-apps/sdk-react";
-import {useStartGame} from "../../hooks/useStartGame";
-import {useSetGame} from "../../hooks/useSetGame";
-import {useStatistics} from "./features/stats";
 import ym from "react-yandex-metrika";
+import {ThemeInitializer} from "./contexts/ThemeContext";
+import {Game} from "./components/Game";
+import {useStatistics} from "./features/stats";
+import {useStartGame} from "../../../hooks/useStartGame";
+import {useSetGame} from "../../../hooks/useSetGame";
 
-const GameComponent = () => {
+
+const StackApp = () => {
     const initData = initInitData();
     const {globalStats} = useStatistics();
 
@@ -47,7 +46,6 @@ const GameComponent = () => {
         }
     }, [isStarted, isEnded]);
 
-
     const setStartGame = useCallback(() => {
         setStarted(true);
     }, [isStarted]);
@@ -57,41 +55,12 @@ const GameComponent = () => {
         setStarted(false);
     }, [isStarted, isEnded]);
 
+
     return (
         <ThemeInitializer>
             <Game setStartGame={setStartGame} setEndGame={setEndGame} autoplay={false}/>
         </ThemeInitializer>
-        // return (
-        //     <div style={{
-        //         width: "100%",
-        //         height: "100%",
-        //         display: "flex",
-        //         flexDirection: "column",
-        //         justifyContent: "center",
-        //         alignItems: "center"
-        //     }}>
-        //         <div style={{
-        //             color: "#3193F4",
-        //             fontFamily: "Onest",
-        //             fontSize: "29px",
-        //             fontWeight: "500",
-        //             lineHeight: "33px",
-        //             marginTop: 20
-        //         }}>Game
-        //         </div>
-        //         <div style={{
-        //             color: "#FFFFFF",
-        //             fontFamily: "Onest",
-        //             fontWeight: "400",
-        //             fontSize: "20px",
-        //             lineHeight: "22px",
-        //             marginTop: 104
-        //         }}>А game will
-        //             start soon
-        //         </div>
-        //         <MemoHandcuffIcon style={{position: "absolute", bottom: 0}}/>
-        //     </div>
     );
 };
 
-export default GameComponent;
+export default StackApp;
