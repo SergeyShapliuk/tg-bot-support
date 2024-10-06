@@ -1,6 +1,6 @@
 import {Physics} from "@react-three/cannon";
 import {Canvas} from "@react-three/fiber";
-import {memo, useMemo, useRef, useState} from "react";
+import React, {memo, useMemo, useRef, useState} from "react";
 import {Box3, Mesh, Vector2, Vector3} from "three";
 import {useEventListener, useLocalStorage} from "usehooks-ts";
 import {ComboConfig, getNewSizeAndPositionOnComboStreak} from "../features/combos";
@@ -27,6 +27,7 @@ import {DirLight} from "./DirLight";
 // import {useControls} from "leva";
 // import {ConditionalWrapper} from "./ConditionalWrapper";
 import {useTheme} from "../contexts/ThemeContext";
+import {useNavigate} from "react-router-dom";
 
 
 const gameConfig = {
@@ -56,7 +57,7 @@ function getRandomSpeed(min: number, max: number) {
 }
 
 export function Game({setStartGame, setEndGame, autoplay}: GamePropsType) {
-
+    const navigate = useNavigate();
     const {theme, setThemeName} = useTheme();
     const [defaultConf] = useState({
         invertGravity: false,
@@ -345,8 +346,16 @@ export function Game({setStartGame, setEndGame, autoplay}: GamePropsType) {
         }
     });
 
+    const handleBackClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation(); // Останавливаем распространение события
+        navigate(-1); // Возвращаем на предыдущую страницу
+    };
+
     return (
         <div style={{height: "100vh"}}>
+            <div onClick={event => handleBackClick(event)}
+                 style={{position: "fixed", padding: 10, zIndex: 10}}>back
+            </div>
             <Canvas
                 gl={{
                     antialias: false,

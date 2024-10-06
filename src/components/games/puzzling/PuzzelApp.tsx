@@ -1,9 +1,10 @@
-import {useEffect} from "react";
-import {useLocation} from "react-router-dom";
+import React, {useEffect} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 
 
 const PuzzleApp = () => {
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         let isMounted = true;
@@ -35,7 +36,16 @@ const PuzzleApp = () => {
         };
     }, [location]);
 
-    return null;
+    const handleBackClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation(); // Останавливаем распространение события
+        navigate(-1); // Возвращаем на предыдущую страницу
+    };
+
+    return (
+        <div onClick={event => handleBackClick(event)}
+             style={{position: "fixed", padding: 10, color: "blue", zIndex: 10}}>back
+        </div>
+    );
 };
 
 export default PuzzleApp;

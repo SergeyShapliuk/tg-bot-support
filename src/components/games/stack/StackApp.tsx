@@ -61,6 +61,7 @@ const StackApp = () => {
         <ThemeInitializer>
             <Game setStartGame={setStartGame} setEndGame={setEndGame} autoplay={false}/>
         </ThemeInitializer>
+
     );
 };
 
