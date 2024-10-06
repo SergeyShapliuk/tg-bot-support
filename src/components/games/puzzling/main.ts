@@ -32,8 +32,8 @@ function resize() {
     window.scrollTo(0, 0);
 
     // Update renderer and navigation screens dimensions
-    app.renderer.resize(width, height - 100);
-    navigation.resize(width, height - 100);
+    app.renderer.resize(width, height);
+    navigation.resize(width, height);
 }
 
 /** Fire when document visibility changes - lose or regain focus */
@@ -51,6 +51,7 @@ function visibilityChange() {
 export async function init() {
     app = new PIXI.Application();
     if (app) {
+
         app
             .init({
                 backgroundColor: 0xffffff, // Устанавливаем цвет фона
@@ -58,6 +59,7 @@ export async function init() {
 
             })
             .then(async () => {
+                // console.warn("Pixi application already initialized.");
                 document.body.appendChild(app.canvas);
                 //     // Trigger the first resize
                 window.addEventListener("resize", resize);

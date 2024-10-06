@@ -96,7 +96,7 @@ export type SetUserTaskType = {
     resp: string;
 }
 export type StartGameType = {
-    data: { game_customer_id: number };
+    data: { game_customer_id: number, cols_game: string | number };
     resp: string;
     info?: { id: number };
     msg?: string;

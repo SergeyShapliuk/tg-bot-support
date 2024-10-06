@@ -11,7 +11,7 @@ import { CloudLabel } from '../ui/CloudLabel';
 import { i18n } from '../utils/i18n';
 import { Cauldron } from '../ui/Cauldron';
 import { RippleButton } from '../ui/RippleButton';
-import { SettingsPopup } from '../popups/SettingsPopup';
+// import { SettingsPopup } from '../popups/SettingsPopup';
 import { PausePopup } from '../popups/PausePopup';
 import { GameCountdown } from '../ui/GameCountdown';
 import { GameEffects } from '../ui/GameEffects';
@@ -44,7 +44,7 @@ export class GameScreen extends Container {
     /** Button for pausing the game */
     public readonly pauseButton: RippleButton;
     /** Button that opens the settings panel */
-    public readonly settingsButton: RippleButton;
+    // public readonly settingsButton: RippleButton;
     /** Countdown displayed before actual gameplay starts */
     public readonly countdown: GameCountdown;
     /** Countdown displayed when the gameplay is about to finish */
@@ -68,12 +68,12 @@ export class GameScreen extends Container {
         this.pauseButton.onPress.connect(() => navigation.presentPopup(PausePopup));
         this.addChild(this.pauseButton);
 
-        this.settingsButton = new RippleButton({
-            image: 'icon-settings',
-            ripple: 'icon-settings-stroke',
-        });
-        this.settingsButton.onPress.connect(() => navigation.presentPopup(SettingsPopup));
-        this.addChild(this.settingsButton);
+        // this.settingsButton = new RippleButton({
+        //     image: 'icon-settings',
+        //     ripple: 'icon-settings-stroke',
+        // });
+        // this.settingsButton.onPress.connect(() => navigation.presentPopup(SettingsPopup));
+        // this.addChild(this.settingsButton);
 
         this.gameContainer = new Container();
         this.addChild(this.gameContainer);
@@ -187,8 +187,8 @@ export class GameScreen extends Container {
         this.cauldron.y = div - 60;
         this.pauseButton.x = 30;
         this.pauseButton.y = 30;
-        this.settingsButton.x = width - 30;
-        this.settingsButton.y = 30;
+        // this.settingsButton.x = width - 30;
+        // this.settingsButton.y = 30;
         this.countdown.x = centerX;
         this.countdown.y = centerY;
         this.timesUp.x = centerX;

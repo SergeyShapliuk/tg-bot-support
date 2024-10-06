@@ -22,6 +22,8 @@ import MemoGameIcon from "./components/svg/GameIcon";
 import GameComponent from "./components/games/GameComponent";
 import {YMInitializer} from "react-yandex-metrika";
 import {ScreenSizeProvider} from "./context/ScreenSizeProvider";
+import StackApp from "./components/games/stack/StackApp";
+import PuzzleApp from "./components/games/puzzling/PuzzelApp";
 
 
 // import {version as appVersion} from "../package.json";
@@ -33,7 +35,11 @@ function App() {
     const [miniApp] = initMiniApp();
     const [viewport] = initViewport();
     const [swipeBehavior] = initSwipeBehavior();
+    const location = useLocation();
     const network = useNetworkStatus();
+
+    const isShowNavBar = ["/game/stack", "/game/puzzle"].includes(location.pathname);
+
     const [error, setError] = useState<{ isOpen: boolean, message: string }>({isOpen: false, message: ""});
 
     const [queryClient] = useState(
@@ -105,13 +111,15 @@ function App() {
                         <TotalPointsProvider>
                             <CountdownProvider>
                                 <Routes>
-                                    <Route index element={<Home/>}/>
-                                    <Route path={"/"} element={<Home/>}/>
-                                    <Route path="tasks" element={<Tasks/>}/>
-                                    <Route path="friends" element={<Friends/>}/>
-                                    <Route path="game" element={<GameComponent/>}/>
+                                    <Route path="/" element={<Home/>}/>
+                                    <Route path="/tasks" element={<Tasks/>}/>
+                                    <Route path="/friends" element={<Friends/>}/>
+                                    <Route path="/game/*" element={<GameComponent/>}>
+                                        <Route path="stack" element={<StackApp/>}/>
+                                        <Route path="puzzle" element={<PuzzleApp/>}/>
+                                    </Route>
                                 </Routes>
-                                <NavBar/>
+                                {!isShowNavBar && <NavBar/>}
                             </CountdownProvider>
                         </TotalPointsProvider>
                     </ScreenSizeProvider>
@@ -142,6 +150,7 @@ export default App;
 function NavBar() {
     const location = useLocation();
     const {badge} = useTotalPoints();
+
     const activeStyle = (isActive: boolean): CSSProperties => {
         return isActive ? {
             width: 119.33,

@@ -1,25 +1,39 @@
 import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
 
 
 const PuzzleApp = () => {
+    const location = useLocation();
 
-    // Очистка при размонтировании компонента
     useEffect(() => {
+        let isMounted = true;
+
         const startApp = async () => {
-            const module = await import("./main");
-            module.init();
+            try {
+                const module = await import("./main");
+                if (isMounted) {
+                    await module.init(); // Инициализация PixiJS
+                    console.log("Pixi application started.");
+                }
+            } catch (error) {
+                console.error("Error loading Pixi application:", error);
+            }
         };
+
         startApp();
+
         return () => {
-            // if (isRunning) {
+            isMounted = false;
             const stopAppEf = async () => {
-                const module = await import("./main"); // Импортируйте модуль снова
-                module.stop(); // Остановите приложение
+                const module = await import("./main");
+                if (!isMounted) {
+                    await module.stop(); // Остановка PixiJS
+                    console.log("Pixi application stopped.");
+                }
             };
             stopAppEf();
-            // }
         };
-    }, []);
+    }, [location]);
 
     return null;
 };

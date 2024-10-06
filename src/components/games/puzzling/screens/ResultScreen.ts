@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { Label } from '../ui/Label';
 import { i18n } from '../utils/i18n';
 import { ResultStars } from '../ui/ResultStars';
-import { Dragon } from '../ui/Dragon';
+// import { Dragon } from '../ui/Dragon';
 import { LargeButton } from '../ui/LargeButton';
 import { GameScreen } from './GameScreen';
 import { navigation } from '../utils/navigation';
@@ -22,9 +22,9 @@ export class ResultScreen extends Container {
     /** Assets bundles required by this screen */
     public static assetBundles = ['result', 'common'];
     /** The centered box area containing the results */
-    private panel: Container;
+    private panel: Container<any>;
     /** Animated dragon */
-    private dragon: Dragon;
+    // private dragon: Dragon;
     /** The panel background */
     private panelBase: Sprite;
     /** The screen title */
@@ -60,9 +60,9 @@ export class ResultScreen extends Container {
         this.settingsButton.onPress.connect(() => navigation.presentPopup(SettingsPopup));
         this.addChild(this.settingsButton);
 
-        this.dragon = new Dragon();
-        this.dragon.playTransition();
-        this.addChild(this.dragon);
+        // this.dragon = new Dragon();
+        // this.dragon.playTransition();
+        // this.addChild(this.dragon);
 
         this.panel = new Container();
         this.addChild(this.panel);
@@ -125,7 +125,7 @@ export class ResultScreen extends Container {
         this.bottomBase.visible = false;
         this.continueButton.visible = false;
         this.panel.visible = false;
-        this.dragon.visible = false;
+        // this.dragon.visible = false;
         this.score.visible = false;
         this.bestScore.visible = false;
         this.message.hide(false);
@@ -139,8 +139,8 @@ export class ResultScreen extends Container {
 
     /** Resize the screen, fired whenever window size changes */
     public resize(width: number, height: number) {
-        this.dragon.x = width * 0.5 + 20;
-        this.dragon.y = height * 0.5 - 210;
+        // this.dragon.x = width * 0.5 + 20;
+        // this.dragon.y = height * 0.5 - 210;
         this.panel.x = width * 0.5;
         this.panel.y = height * 0.5;
         this.continueButton.x = width * 0.5;
@@ -162,7 +162,7 @@ export class ResultScreen extends Container {
         await waitFor(0.5);
         const mode = userSettings.getGameMode();
         const performance = userStats.load(mode);
-        this.showDragon();
+        // this.showDragon();
         await this.showPanel();
         this.animateGradeStars(performance.grade);
         await this.animatePoints(performance.score);
@@ -173,42 +173,42 @@ export class ResultScreen extends Container {
     /** Hide screen with animations */
     public async hide() {
         this.hideBottom();
-        await this.hideDragon();
+        // await this.hideDragon();
         await this.hidePanel();
     }
 
     /** Reveal the animated dragon behind the panel */
-    private async showDragon() {
-        gsap.killTweensOf(this.dragon.scale);
-        gsap.killTweensOf(this.dragon.pivot);
-        this.dragon.visible = true;
-        this.dragon.scale.set(0);
-        this.dragon.pivot.y = -300;
-        gsap.to(this.dragon.pivot, {
-            y: 0,
-            duration: 0.7,
-            ease: 'back.out',
-            delay: 0.1,
-        });
-        await gsap.to(this.dragon.scale, {
-            x: 1,
-            y: 1,
-            duration: 0.3,
-            ease: 'back.out',
-            delay: 0.2,
-        });
-    }
+    // private async showDragon() {
+    //     gsap.killTweensOf(this.dragon.scale);
+    //     gsap.killTweensOf(this.dragon.pivot);
+    //     this.dragon.visible = true;
+    //     this.dragon.scale.set(0);
+    //     this.dragon.pivot.y = -300;
+    //     gsap.to(this.dragon.pivot, {
+    //         y: 0,
+    //         duration: 0.7,
+    //         ease: 'back.out',
+    //         delay: 0.1,
+    //     });
+    //     await gsap.to(this.dragon.scale, {
+    //         x: 1,
+    //         y: 1,
+    //         duration: 0.3,
+    //         ease: 'back.out',
+    //         delay: 0.2,
+    //     });
+    // }
 
     /** Hide the animated dragon behind the panel */
-    private async hideDragon() {
-        gsap.killTweensOf(this.dragon.pivot);
-        await gsap.to(this.dragon.pivot, {
-            y: -100,
-            duration: 0.2,
-            ease: 'back.in',
-        });
-        this.dragon.scale.set(0);
-    }
+    // private async hideDragon() {
+    //     gsap.killTweensOf(this.dragon.pivot);
+    //     await gsap.to(this.dragon.pivot, {
+    //         y: -100,
+    //         duration: 0.2,
+    //         ease: 'back.in',
+    //     });
+    //     this.dragon.scale.set(0);
+    // }
 
     /** Show the container box panel animated */
     private async showPanel() {

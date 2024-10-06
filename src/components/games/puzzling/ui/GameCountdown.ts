@@ -18,7 +18,7 @@ const easeMidSlowMotion = registerCustomEase(
  */
 export class GameCountdown extends Container {
     /** Inner container for internal animations */
-    private container: Container;
+    private container: Container<any>;
     /** The animated cloud background */
     private cloud: Cloud;
     /** The message displaying */

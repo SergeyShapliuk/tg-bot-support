@@ -3,9 +3,9 @@ import {initInitData} from "@telegram-apps/sdk-react";
 import ym from "react-yandex-metrika";
 import {ThemeInitializer} from "./contexts/ThemeContext";
 import {Game} from "./components/Game";
-import {useStatistics} from "./features/stats";
 import {useStartGame} from "../../../hooks/useStartGame";
 import {useSetGame} from "../../../hooks/useSetGame";
+import {useStatistics} from "./features/stats";
 
 
 const StackApp = () => {
@@ -17,8 +17,9 @@ const StackApp = () => {
     const [currentScore, setCurrentScore] = useState<number>(0);
 
     const {mutate: startGame, data: dataStartGame} = useStartGame();
-    const {mutate: stopGame} = useSetGame();
+    const {mutate: stopGame, data} = useSetGame();
     console.log("dataStart", dataStartGame);
+    console.log("dataStop", data);
 
     useEffect(() => {
         if (isStarted && !isEnded) {

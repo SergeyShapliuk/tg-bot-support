@@ -88,11 +88,12 @@ export async function initAssets() {
 
     if (!assetsManager.initialized) {
         // Load assets manifest
-        assetsManifest = await fetchAssetsManifest("assets/assets-manifest.json");
-
+        // console.log('assetsManager.initialized',assetsManager.initialized)
+        assetsManifest = await fetchAssetsManifest("/assets/assets-manifest.json");
+        // console.log('assetsManager',assetsManifest)
         // Init PixiJS assets with this asset manifest
 
-        await Assets.init({manifest: assetsManifest, basePath: "/assets"}).then(res => console.log("assetsinit", res));
+        await Assets.init({manifest: assetsManifest, basePath: "/assets"}).then(res => console.log("assetsinit", res)).catch(err => console.error("Error initializing assets:", err));
         // Load assets for the load screen
         await loadBundles("preload");
 

@@ -21,9 +21,9 @@ export class Cloud extends Container {
     /** Rectangular area of the cloud */
     private base: Sprite;
     /** Bottom container for cloud circles */
-    private bottom: Container;
+    private bottom: Container<any>;
     /** Top container for cloud circles */
-    private top: Container;
+    private top: Container<any>;
     /** Pool of circles that can be reused */
     private circlesPool: CloudCircle[] = [];
     /** Currently displayed circles */
@@ -105,7 +105,7 @@ export class Cloud extends Container {
     }
 
     /** Fill a container with circles distributed equally along given width */
-    private fillCircles(container: Container, width: number, circleSize: number) {
+    private fillCircles(container: Container<any>, width: number, circleSize: number) {
         const spacing = circleSize * 0.4;
         const numCircles = Math.ceil(width / spacing);
         const offset = ((numCircles - 1) * spacing) / 2;

@@ -14,13 +14,13 @@ const easeDropJumpOut = registerCustomEase('M0,0,C0,0,0.07,-0.63,0.402,-0.422,0.
  */
 export class Cauldron extends Container {
     /** Inner container for the cauldron */
-    private container: Container;
+    private container: Container<any>;
     /** The optional cauldron shadow, displayed in game screen */
     private shadow: Sprite;
     /** The cauldron spine animation */
     private spine: Spine;
     /** Optional content attached to the cauldron, that will follow its animation */
-    private content?: Container;
+    private content?: Container<any>;
 
     constructor(shadow = false) {
         super();
