@@ -1,26 +1,25 @@
-import { Container, NineSliceSprite, Sprite, Texture } from 'pixi.js';
-import gsap from 'gsap';
-import { Label } from '../ui/Label';
-import { i18n } from '../utils/i18n';
-import { ResultStars } from '../ui/ResultStars';
+import {Container, NineSliceSprite, Sprite, Texture} from "pixi.js";
+import gsap from "gsap";
+import {Label} from "../ui/Label";
+import {i18n} from "../utils/i18n";
+import {ResultStars} from "../ui/ResultStars";
 // import { Dragon } from '../ui/Dragon';
-import { LargeButton } from '../ui/LargeButton';
-import { GameScreen } from './GameScreen';
-import { navigation } from '../utils/navigation';
-import { CloudLabel } from '../ui/CloudLabel';
-import { ResultScore } from '../ui/ResultScore';
-import { RippleButton } from '../ui/RippleButton';
-import { SettingsPopup } from '../popups/SettingsPopup';
-import { bgm, sfx } from '../utils/audio';
-import { userSettings } from '../utils/userSettings';
-import { waitFor } from '../utils/asyncUtils';
-import { MaskTransition } from '../ui/MaskTransition';
-import { userStats } from '../utils/userStats';
+import {LargeButton} from "../ui/LargeButton";
+import {navigation} from "../utils/navigation";
+import {CloudLabel} from "../ui/CloudLabel";
+import {ResultScore} from "../ui/ResultScore";
+import {bgm, sfx} from "../utils/audio";
+import {userSettings} from "../utils/userSettings";
+import {waitFor} from "../utils/asyncUtils";
+import {MaskTransition} from "../ui/MaskTransition";
+import {userStats} from "../utils/userStats";
+import {Action} from "../utils/action";
+import {HomeScreen} from "./HomeScreen";
 
 /** APpears after gameplay ends, displaying scores and grade */
 export class ResultScreen extends Container {
     /** Assets bundles required by this screen */
-    public static assetBundles = ['result', 'common'];
+    public static assetBundles = ["result", "common"];
     /** The centered box area containing the results */
     private panel: Container<any>;
     /** Animated dragon */
@@ -46,19 +45,24 @@ export class ResultScreen extends Container {
     /** Button that goes back to the game to play again */
     private continueButton: LargeButton;
     /** Button that opens the settings panel */
-    private settingsButton: RippleButton;
+        // private settingsButton: RippleButton;
+
+    private actionUser: Action;
+
     /** A special transition that temporarely masks the entire screen */
     private maskTransition?: MaskTransition;
+
 
     constructor() {
         super();
 
-        this.settingsButton = new RippleButton({
-            image: 'icon-settings',
-            ripple: 'icon-settings-stroke',
-        });
-        this.settingsButton.onPress.connect(() => navigation.presentPopup(SettingsPopup));
-        this.addChild(this.settingsButton);
+        this.actionUser = new Action();
+        // this.settingsButton = new RippleButton({
+        //     image: 'icon-settings',
+        //     ripple: 'icon-settings-stroke',
+        // });
+        // this.settingsButton.onPress.connect(() => navigation.presentPopup(SettingsPopup));
+        // this.addChild(this.settingsButton);
 
         // this.dragon = new Dragon();
         // this.dragon.playTransition();
@@ -67,25 +71,25 @@ export class ResultScreen extends Container {
         this.panel = new Container();
         this.addChild(this.panel);
 
-        this.panelBase = Sprite.from('result-base');
+        this.panelBase = Sprite.from("result-base");
         this.panelBase.anchor.set(0.5);
         this.panel.addChild(this.panelBase);
 
-        this.title = new Label('', { fill: 0xffffff });
+        this.title = new Label("", {fill: 0xffffff});
         this.title.y = -160;
         this.panel.addChild(this.title);
 
-        this.mode = new Label('', { fill: 0xffffff, fontSize: 12 });
+        this.mode = new Label("", {fill: 0xffffff, fontSize: 12});
         this.mode.y = -140;
         this.mode.alpha = 0.5;
         this.panel.addChild(this.mode);
 
-        this.cauldron = Sprite.from('white-cauldron');
+        this.cauldron = Sprite.from("white-cauldron");
         this.cauldron.anchor.set(0.5);
         this.cauldron.y = 145;
         this.panel.addChild(this.cauldron);
 
-        this.message = new CloudLabel({ color: 0xffffff, labelColor: 0x2c136c });
+        this.message = new CloudLabel({color: 0xffffff, labelColor: 0x2c136c});
         this.message.y = -95;
         this.panel.addChild(this.message);
 
@@ -103,20 +107,24 @@ export class ResultScreen extends Container {
         this.panel.addChild(this.stars);
 
         this.bottomBase = new NineSliceSprite({
-            texture: Texture.from('rounded-rectangle'),
+            texture: Texture.from("rounded-rectangle"),
             leftWidth: 32,
             topHeight: 32,
             rightWidth: 32,
-            bottomHeight: 32,
+            bottomHeight: 32
         });
-        this.bottomBase.tint = 0x2c136c;
+        this.bottomBase.tint = 0x02284E;
         this.bottomBase.height = 200;
         this.addChild(this.bottomBase);
 
-        this.continueButton = new LargeButton({ text: i18n.resultPlay });
+        this.continueButton = new LargeButton({text: i18n.resultPlay});
         this.addChild(this.continueButton);
-        this.continueButton.onPress.connect(() => navigation.showScreen(GameScreen));
-
+        this.continueButton.onPress.connect(() => {
+            navigation.showScreen(HomeScreen);
+            const mode = userSettings.getGameMode();
+            const performance = userStats.load(mode);
+            this.actionUser.stopGame(performance.score);
+        });
         this.maskTransition = new MaskTransition();
     }
 
@@ -133,7 +141,7 @@ export class ResultScreen extends Container {
 
         this.title.text = `${i18n.resultTitle}`;
         const mode = userSettings.getGameMode();
-        const readableMode = (i18n as any)[mode + 'Mode'];
+        const readableMode = (i18n as any)[mode + "Mode"];
         this.mode.text = `${readableMode}`;
     }
 
@@ -147,13 +155,13 @@ export class ResultScreen extends Container {
         this.continueButton.y = height - 90;
         this.bottomBase.width = width;
         this.bottomBase.y = height - 100;
-        this.settingsButton.x = width - 30;
-        this.settingsButton.y = 30;
+        // this.settingsButton.x = width - 30;
+        // this.settingsButton.y = 30;
     }
 
     /** Show screen with animations */
     public async show() {
-        bgm.play('common/bgm-main.mp3', { volume: 0.5 });
+        bgm.play("common/bgm-main.mp3", {volume: 0.5});
         // GameScreen hide to a flat colour covering the viewport, which gets replaced
         // by this transition, revealing this screen
         this.maskTransition?.playTransitionIn();
@@ -219,7 +227,7 @@ export class ResultScreen extends Container {
             x: 1,
             y: 1,
             duration: 0.4,
-            ease: 'back.out',
+            ease: "back.out"
         });
     }
 
@@ -230,7 +238,7 @@ export class ResultScreen extends Container {
             x: 0,
             y: 0,
             duration: 0.3,
-            ease: 'back.in',
+            ease: "back.in"
         });
     }
 
@@ -246,15 +254,15 @@ export class ResultScreen extends Container {
         gsap.to(this.bottomBase.pivot, {
             y: 0,
             duration: 0.3,
-            ease: 'back.out',
-            delay: 0.3,
+            ease: "back.out",
+            delay: 0.3
         });
 
         await gsap.to(this.continueButton.pivot, {
             y: 0,
             duration: 0.4,
-            ease: 'back.out',
-            delay: 0.4,
+            ease: "back.out",
+            delay: 0.4
         });
     }
 
@@ -266,13 +274,13 @@ export class ResultScreen extends Container {
         gsap.to(this.bottomBase.pivot, {
             y: -200,
             duration: 0.3,
-            ease: 'back.in',
+            ease: "back.in"
         });
 
         await gsap.to(this.continueButton.pivot, {
             y: -200,
             duration: 0.4,
-            ease: 'back.in',
+            ease: "back.in"
         });
     }
 
@@ -304,12 +312,12 @@ export class ResultScreen extends Container {
     private async animateGradeMessage(grade: number) {
         await waitFor(0.1);
         const messages = i18n as Record<string, string>;
-        const message = 'grade' + grade;
+        const message = "grade" + grade;
         this.message.text = messages[message];
         if (grade < 1) {
-            sfx.play('common/sfx-incorrect.wav');
+            sfx.play("common/sfx-incorrect.wav");
         } else {
-            sfx.play('common/sfx-special.wav');
+            sfx.play("common/sfx-special.wav");
         }
         await this.message.show();
     }

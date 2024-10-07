@@ -1,59 +1,57 @@
-import { Container, Texture, TilingSprite } from 'pixi.js';
-import { app } from '../main';
+import {Container, Sprite, Texture} from "pixi.js";
+import {app} from "../main";
 
 /**
- * The app's animated background based on TilingSprite, always present in the screen
+ * The app's animated background based on Sprite, always present on the screen
  */
 export class TiledBackground extends Container {
-    /** The direction that the background should animate */
-    public direction = -Math.PI * 0.15;
-    /** The tiling sprite that will repeat the pattern */
-    private sprite: TilingSprite;
+    private sprite: Sprite;
 
     constructor() {
         super();
 
-        this.sprite = new TilingSprite({
-            texture: Texture.from('background'),
-            width: app.screen.width,
-            height: app.screen.height,
-        });
-        this.sprite.tileTransform.rotation = this.direction;
+        // Инициализация Sprite с текстурой
+        this.sprite = new Sprite(Texture.from("background"));
+        this.sprite.anchor.set(0.5);  // Центрирование по середине
         this.addChild(this.sprite);
 
-        this.onRender = () => this.renderUpdate();
+        // Подписка на изменение размеров окна
+        app.renderer.on("resize", this.onResize.bind(this));
+
+        // Инициализация размеров
+        this.resize(app.screen.width, app.screen.height);
     }
 
-    /** Get the sprite width */
-    public get width() {
-        return this.sprite.width;
+    /** Обновление размеров спрайта при изменении размера окна */
+    private onResize() {
+        this.resize(app.screen.width, app.screen.height);
     }
 
-    /** Set the sprite width */
-    public set width(value: number) {
-        this.sprite.width = value;
+    /** Применение эффекта cover при изменении размеров */
+    public resize(screenWidth: number, screenHeight: number) {
+        const textureRatio = this.sprite.texture.width / this.sprite.texture.height;
+        const screenRatio = screenWidth / screenHeight;
+
+        let scaleFactor;
+
+        // Масштабируем по ширине или высоте, чтобы занять весь экран
+        if (screenRatio > textureRatio) {
+            scaleFactor = screenWidth / this.sprite.texture.width;
+        } else {
+            scaleFactor = screenHeight / this.sprite.texture.height;
+        }
+
+        // Устанавливаем масштаб спрайта
+        this.sprite.width = this.sprite.texture.width * scaleFactor;
+        this.sprite.height = this.sprite.texture.height * scaleFactor;
+
+        // Центрируем спрайт по экрану
+        this.sprite.x = screenWidth / 2;
+        this.sprite.y = screenHeight / 2;
     }
 
-    /** Get the sprite height */
-    public get height() {
-        return this.sprite.height;
-    }
-
-    /** Set the sprite height */
-    public set height(value: number) {
-        this.sprite.height = value;
-    }
-
-    /** Auto-update every frame */
+    /** Анимация обновления каждый кадр */
     public renderUpdate() {
-        const delta = app.ticker.deltaTime;
-        this.sprite.tilePosition.x -= Math.sin(-this.direction) * delta;
-        this.sprite.tilePosition.y -= Math.cos(-this.direction) * delta;
-    }
-
-    /** Resize the background, fired whenever window size changes  */
-    public resize(width: number, height: number) {
-        this.width = width;
-        this.height = height;
+        // Тут можно добавить любую анимацию, если необходимо
     }
 }

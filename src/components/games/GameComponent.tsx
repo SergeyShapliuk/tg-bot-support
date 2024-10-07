@@ -1,10 +1,13 @@
 import {NavLink, Outlet, useLocation} from "react-router-dom";
 import classes from "./GameComponent.module.css";
-
+import MemoStackIcon from "../svg/StackIcon";
+import {useScreenSize} from "../../context/ScreenSizeProvider";
+import blaster from "../../assets/blaster.png";
 
 
 const GameComponent = () => {
     const location = useLocation();
+
     // const [isRunning, setIsRunning] = useState<"stack" | "puzzle" | string>("");
 
     // const startStack = () => {
@@ -58,7 +61,7 @@ const GameComponent = () => {
 export default GameComponent;
 
 function NavGames() {
-
+    const {screenSize} = useScreenSize();
     // const {badge} = useTotalPoints();
     // const activeStyle = (isActive: boolean): CSSProperties => {
     //     return isActive ? {
@@ -76,17 +79,54 @@ function NavGames() {
     //         gap: 8.9
     //     } : {position: "relative", display: "flex", justifyContent: "center", width: "22%", textDecoration: "none"};
     // };
-    const textStyle = {color: "#fff", fontSize: 36, fontWeight: 700, lineHeight: "35px", letterSpacing: -0.3};
+    const textStyle = {
+        color: "#fff",
+        fontSize: screenSize.width * 0.092,
+        fontWeight: 700,
+        lineHeight: "46px",
+        letterSpacing: -0.3,
+        zIndex: 1
+    };
 
     return (
         <nav className={classes.navGame}>
             <NavLink to="/game/stack" className={classes.nav_item} style={{textDecoration: "none"}}>
-                {/*<MemoHomeIcon fill={location.pathname === "/" ? "#0E1012" : "#434343"}/>*/}
                 <div style={textStyle}>STACK</div>
+                <div style={{
+                    alignSelf: "self-start",
+                    borderRadius: 15,
+                    color: "#fff",
+                    fontSize: screenSize.width * 0.035,
+                    fontWeight: "400",
+                    lineHeight: "16px",
+                    backgroundColor: "rgba(249,249,249,0.31)",
+                    padding: "7px 20px"
+                }}>Open
+                </div>
+                <MemoStackIcon style={{position: "absolute", bottom: 0, right: 0}}/>
             </NavLink>
             <NavLink to="/game/puzzle" className={classes.nav_item} style={{textDecoration: "none"}}>
-                {/*<MemoTasksIcon fill={location.pathname === "/tasks" ? "#0E1012" : "#434343"}/>*/}
-                <div style={textStyle}>PUZZLING POTIONS</div>
+                <div style={textStyle}>BLASTER</div>
+                <div style={{
+                    alignSelf: "self-start",
+                    borderRadius: 15,
+                    color: "#fff",
+                    fontSize: screenSize.width * 0.035,
+                    fontWeight: "400",
+                    lineHeight: "16px",
+                    backgroundColor: "rgba(249,249,249,0.31)",
+                    padding: "7px 20px"
+                }}>Open
+                </div>
+                <img src={blaster} style={{
+                    position: "absolute",
+                    width: 159,
+                    height: 154,
+                    bottom: 0,
+                    right: 0,
+                    objectFit: "cover",
+                    zIndex: 2
+                }}/>
             </NavLink>
         </nav>
     );

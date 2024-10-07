@@ -1,5 +1,5 @@
-import { Container, Sprite } from 'pixi.js';
-import gsap from 'gsap';
+import {Container, Sprite} from "pixi.js";
+import gsap from "gsap";
 
 /**
  * The game logo, presented in the Home screen
@@ -10,8 +10,8 @@ export class Logo extends Container {
 
     constructor() {
         super();
-        this.scale.set(0.5);
-        this.image = Sprite.from('logo-game');
+        this.scale.set(0.2);
+        this.image = Sprite.from("logo-game");
         this.image.anchor.set(0.5);
         this.addChild(this.image);
     }
@@ -22,7 +22,7 @@ export class Logo extends Container {
         this.visible = true;
         if (animated) {
             this.image.scale.set(0);
-            await gsap.to(this.image.scale, { x: 1, y: 1, duration: 0.3, ease: 'back.out' });
+            await gsap.to(this.image.scale, {x: 1, y: 1, duration: 0.3, ease: "back.out"});
         } else {
             this.image.scale.set(1);
         }
@@ -32,7 +32,7 @@ export class Logo extends Container {
     public async hide(animated = true) {
         gsap.killTweensOf(this.image.scale);
         if (animated) {
-            await gsap.to(this.image.scale, { x: 0, y: 0, duration: 0.3, ease: 'back.in' });
+            await gsap.to(this.image.scale, {x: 0, y: 0, duration: 0.3, ease: "back.in"});
         } else {
             this.image.scale.set(0);
         }

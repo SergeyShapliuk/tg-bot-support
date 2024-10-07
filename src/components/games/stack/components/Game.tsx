@@ -28,6 +28,7 @@ import {DirLight} from "./DirLight";
 // import {ConditionalWrapper} from "./ConditionalWrapper";
 import {useTheme} from "../contexts/ThemeContext";
 import {useNavigate} from "react-router-dom";
+import bc from "../../puzzling/raw-assets/common{m}/common-atlas{tps}/bc.png";
 
 
 const gameConfig = {
@@ -353,8 +354,8 @@ export function Game({setStartGame, setEndGame, autoplay}: GamePropsType) {
 
     return (
         <div style={{height: "100vh"}}>
-            <div onClick={event => handleBackClick(event)}
-                 style={{position: "fixed", padding: 10, zIndex: 10}}>back
+            <div onClick={event => handleBackClick(event)}>
+                <img src={bc} style={{position: "absolute", top: 15, left: 15, zIndex: 10}}/>
             </div>
             <Canvas
                 gl={{

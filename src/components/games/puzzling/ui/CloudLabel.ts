@@ -4,7 +4,7 @@ import { Cloud } from './Cloud';
 import gsap from 'gsap';
 
 const defaultCloudLabelOptions = {
-    color: 0x2c136c,
+    color: 0x02284E,
     labelColor: 0xffffff,
 };
 
@@ -15,7 +15,7 @@ export type CloudLabelOptions = typeof defaultCloudLabelOptions;
  */
 export class CloudLabel extends Container {
     /** Inner container for components, for animation purposes */
-    private container: Container;
+    private container: Container<any>;
     /** The animated cloud background */
     private cloud: Cloud;
     /** The message label */

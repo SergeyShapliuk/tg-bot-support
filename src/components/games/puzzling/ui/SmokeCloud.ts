@@ -6,11 +6,11 @@ import { app } from '../main';
  */
 export class SmokeCloud extends Container {
     /** The tint colour of this component */
-    private color = 0x2c136c;
+    private color = 0x02284E;
     /** Rectangular base area of the cloud */
     private base: Sprite;
     /** Container for animated cloud circles */
-    private circlesContainer: Container;
+    private circlesContainer: Container<any>;
     /** Pool of reusable circles */
     private circlesPool: SmokeCloudCircle[] = [];
     /** Circles currently being displayed */

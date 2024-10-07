@@ -4,7 +4,7 @@ export const i18n = {
     pressMessage: 'Press to start',
     playButton: 'Start Game',
     resultTitle: 'Results',
-    resultPlay: 'Play again',
+    resultPlay: 'Claim',
     grade3: 'Incredible!',
     grade2: 'Well Done!',
     grade1: 'Good!',

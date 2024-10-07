@@ -31,7 +31,7 @@ export class GameCountdown extends Container {
         this.addChild(this.container);
 
         this.cloud = new Cloud({
-            color: 0x0a0025,
+            color: 0x02284E,
             width: 400,
             height: 70,
             circleSize: 100,

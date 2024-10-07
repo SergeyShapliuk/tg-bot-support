@@ -79,7 +79,9 @@ export async function init() {
 
                 // Go to one of the screens if a shortcut is present in url params, otherwise go to home screen
                 if (getUrlParam("game") !== null) {
+                    console.log('GameScreensssssss')
                     await navigation.showScreen(GameScreen);
+
                 } else if (getUrlParam("load") !== null) {
                     await navigation.showScreen(LoadScreen);
                 } else if (getUrlParam("result") !== null) {

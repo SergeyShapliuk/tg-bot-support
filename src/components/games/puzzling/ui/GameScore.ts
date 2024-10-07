@@ -10,7 +10,7 @@ import { sfx } from '../utils/audio';
  */
 export class GameScore extends Container {
     /** Inner container for animation */
-    private container: Container;
+    private container: Container<any>;
     /** The animated cloud background */
     private cloud: Cloud;
     /** The score number displayed */
@@ -31,7 +31,7 @@ export class GameScore extends Container {
         this.addChild(this.container);
 
         this.cloud = new Cloud({
-            color: 0x2c136c,
+            color: 0x02284E,
             width: 200,
             height: 20,
             circleSize: 50,

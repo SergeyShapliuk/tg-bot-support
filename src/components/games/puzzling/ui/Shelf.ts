@@ -6,9 +6,9 @@ import { Container, Sprite } from 'pixi.js';
  */
 export class Shelf extends Container {
     /** Inner container for shelf bulding blocks */
-    private base: Container;
+    private base: Container<any>;
     /** Inner container for shelf shadow blocks */
-    private shadow: Container;
+    private shadow: Container<any>;
 
     constructor() {
         super();

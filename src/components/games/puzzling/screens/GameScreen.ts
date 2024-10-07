@@ -1,38 +1,38 @@
-import { Container, Ticker } from 'pixi.js';
-import gsap from 'gsap';
-import { Match3, Match3OnMatchData, Match3OnMoveData, Match3OnPopData } from '../match3/Match3';
-import { Shelf } from '../ui/Shelf';
-import { getUrlParam, getUrlParamNumber } from '../utils/getUrlParams';
-import { GameTimer } from '../ui/GameTimer';
-import { navigation } from '../utils/navigation';
-import { ResultScreen } from './ResultScreen';
-import { GameScore } from '../ui/GameScore';
-import { CloudLabel } from '../ui/CloudLabel';
-import { i18n } from '../utils/i18n';
-import { Cauldron } from '../ui/Cauldron';
-import { RippleButton } from '../ui/RippleButton';
+import {Container, Ticker} from "pixi.js";
+import gsap from "gsap";
+import {Match3, Match3OnMatchData, Match3OnMoveData, Match3OnPopData} from "../match3/Match3";
+import {Shelf} from "../ui/Shelf";
+import {getUrlParam, getUrlParamNumber} from "../utils/getUrlParams";
+import {GameTimer} from "../ui/GameTimer";
+import {navigation} from "../utils/navigation";
+import {ResultScreen} from "./ResultScreen";
+import {GameScore} from "../ui/GameScore";
+import {CloudLabel} from "../ui/CloudLabel";
+import {i18n} from "../utils/i18n";
+import {Cauldron} from "../ui/Cauldron";
+import {RippleButton} from "../ui/RippleButton";
 // import { SettingsPopup } from '../popups/SettingsPopup';
-import { PausePopup } from '../popups/PausePopup';
-import { GameCountdown } from '../ui/GameCountdown';
-import { GameEffects } from '../ui/GameEffects';
-import { bgm } from '../utils/audio';
-import { userSettings } from '../utils/userSettings';
-import { GameTimesUp } from '../ui/GameTimesUp';
-import { GameOvertime } from '../ui/GameOvertime';
-import { waitFor } from '../utils/asyncUtils';
-import { match3GetConfig, Match3Mode } from '../match3/Match3Config';
-import { userStats } from '../utils/userStats';
+import {PausePopup} from "../popups/PausePopup";
+import {GameCountdown} from "../ui/GameCountdown";
+import {GameEffects} from "../ui/GameEffects";
+import {bgm} from "../utils/audio";
+import {userSettings} from "../utils/userSettings";
+import {GameTimesUp} from "../ui/GameTimesUp";
+import {GameOvertime} from "../ui/GameOvertime";
+import {waitFor} from "../utils/asyncUtils";
+import {match3GetConfig, Match3Mode} from "../match3/Match3Config";
+import {userStats} from "../utils/userStats";
 
 /** The screen tha holds the Match3 game */
 export class GameScreen extends Container {
     /** Assets bundles required by this screen */
-    public static assetBundles = ['game', 'common'];
+    public static assetBundles = ["game", "common"];
     /** The Math3 game */
     public readonly match3: Match3;
     /** Animated cauldron */
     public readonly cauldron: Cauldron;
     /** Inner container for the match3 */
-    public readonly gameContainer: Container;
+    public readonly gameContainer: Container<any>;
     /** The gameplay timer display */
     public readonly timer: GameTimer;
     /** The game score display */
@@ -62,8 +62,8 @@ export class GameScreen extends Container {
         super();
 
         this.pauseButton = new RippleButton({
-            image: 'icon-pause',
-            ripple: 'icon-pause-stroke',
+            image: "icon-pause",
+            ripple: "icon-pause-stroke"
         });
         this.pauseButton.onPress.connect(() => navigation.presentPopup(PausePopup));
         this.addChild(this.pauseButton);
@@ -92,13 +92,13 @@ export class GameScreen extends Container {
         this.score = new GameScore();
         this.addChild(this.score);
 
-        this.comboMessage = new CloudLabel({ color: 0x2c136c, labelColor: 0xffffff });
+        this.comboMessage = new CloudLabel({color: 0x2c136c, labelColor: 0xffffff});
         this.comboMessage.text = i18n.comboMessage;
         this.comboMessage.hide(false);
         this.addChild(this.comboMessage);
 
-        this.comboLevel = new CloudLabel({ color: 0x2c136c, labelColor: 0xffffff });
-        this.comboLevel.text = 'x8';
+        this.comboLevel = new CloudLabel({color: 0x2c136c, labelColor: 0xffffff});
+        this.comboLevel.text = "x8";
         this.comboLevel.hide(false);
         this.addChild(this.comboLevel);
 
@@ -124,12 +124,12 @@ export class GameScreen extends Container {
     /** Prepare the screen just before showing */
     public prepare() {
         const match3Config = match3GetConfig({
-            rows: getUrlParamNumber('rows') ?? 9,
-            columns: getUrlParamNumber('columns') ?? 7,
-            tileSize: getUrlParamNumber('tileSize') ?? 50,
-            freeMoves: getUrlParam('freeMoves') !== null,
-            duration: getUrlParamNumber('duration') ?? 60,
-            mode: (getUrlParam('mode') as Match3Mode) ?? userSettings.getGameMode(),
+            rows: getUrlParamNumber("rows") ?? 9,
+            columns: getUrlParamNumber("columns") ?? 7,
+            tileSize: getUrlParamNumber("tileSize") ?? 50,
+            freeMoves: getUrlParam("freeMoves") !== null,
+            duration: getUrlParamNumber("duration") ?? 60,
+            mode: (getUrlParam("mode") as Match3Mode) ?? userSettings.getGameMode()
         });
 
         this.finished = false;
@@ -185,7 +185,7 @@ export class GameScreen extends Container {
         this.comboLevel.y = div - 50;
         this.cauldron.x = centerX;
         this.cauldron.y = div - 60;
-        this.pauseButton.x = 30;
+        this.pauseButton.x = width - 30;
         this.pauseButton.y = 30;
         // this.settingsButton.x = width - 30;
         // this.settingsButton.y = 30;
@@ -199,8 +199,8 @@ export class GameScreen extends Container {
 
     /** Show screen with animations */
     public async show() {
-        bgm.play('common/bgm-game.mp3', { volume: 0.5 });
-        await gsap.to(this.gameContainer.pivot, { y: 0, duration: 0.5, ease: 'back.out' });
+        bgm.play("common/bgm-game.mp3", {volume: 0.5});
+        await gsap.to(this.gameContainer.pivot, {y: 0, duration: 0.5, ease: "back.out"});
         await this.countdown.show();
         await this.cauldron.show();
         await this.countdown.hide();
@@ -228,7 +228,7 @@ export class GameScreen extends Container {
         if (data.combo > 1) {
             this.comboMessage.show();
             this.comboLevel.show();
-            this.comboLevel.text = 'x' + data.combo;
+            this.comboLevel.text = "x" + data.combo;
         }
 
         this.vfx?.onMatch(data);
