@@ -12,7 +12,7 @@ interface TotalPointsContextProps {
 }
 
 
-const TotalPointsContext = createContext<TotalPointsContextProps | undefined>(undefined);
+export const TotalPointsContext = createContext<TotalPointsContextProps | undefined>(undefined);
 
 
 export const TotalPointsProvider = ({children}: { children: ReactNode }) => {
