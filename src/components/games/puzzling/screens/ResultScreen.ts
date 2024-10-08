@@ -45,9 +45,9 @@ export class ResultScreen extends Container {
     /** Button that goes back to the game to play again */
     private continueButton: LargeButton;
     /** Button that opens the settings panel */
-        // private settingsButton: RippleButton;
+    // private settingsButton: RippleButton;
 
-    private actionUser: Action;
+    // private actionUser: Action;
 
     /** A special transition that temporarely masks the entire screen */
     private maskTransition?: MaskTransition;
@@ -56,7 +56,7 @@ export class ResultScreen extends Container {
     constructor() {
         super();
 
-        this.actionUser = new Action();
+        // this.actionUser = new Action();
         // this.settingsButton = new RippleButton({
         //     image: 'icon-settings',
         //     ripple: 'icon-settings-stroke',
@@ -120,10 +120,11 @@ export class ResultScreen extends Container {
         this.continueButton = new LargeButton({text: i18n.resultPlay});
         this.addChild(this.continueButton);
         this.continueButton.onPress.connect(() => {
-            navigation.showScreen(HomeScreen);
             const mode = userSettings.getGameMode();
             const performance = userStats.load(mode);
-            this.actionUser.stopGame(performance.score);
+            const actionUser = Action.getInstance();
+            actionUser.stopGame(performance.score);
+            navigation.showScreen(HomeScreen);
         });
         this.maskTransition = new MaskTransition();
     }

@@ -42,13 +42,11 @@ export class HomeScreen extends Container {
     // /** The footer base, also used for transition in */
     private base: NineSliceSprite;
 
-    private actionUser: Action;
+    // private actionUser: Action;
 
 
     constructor() {
         super();
-
-        this.actionUser = new Action();
 
         this.logo = new Logo();
         this.addChild(this.logo);
@@ -98,8 +96,10 @@ export class HomeScreen extends Container {
 
         this.playButton = new LargeButton({text: i18n.playButton});
         this.playButton.onPress.connect(() => {
+            const actionUser = Action.getInstance();
+            actionUser.startGame();
             navigation.showScreen(GameScreen);
-            this.actionUser.startGame();
+
         });
         this.addChild(this.playButton);
     }
