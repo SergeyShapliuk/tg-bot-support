@@ -1,8 +1,8 @@
 import { pixiPipes } from '@assetpack/core/pixi';
 
 export default {
-    entry: 'src/components/games/slither/raw-assets',
-    output: './public/slither/assets/',
+    entry: 'src/components/games/puzzling/raw-assets',
+    output: './public/assets/',
     cache: true,
     pipes: [
         ...pixiPipes({
@@ -12,7 +12,7 @@ export default {
                 },
             },
             manifest: {
-                output: './public/slither/assets/assets-manifest.json',
+                output: './public/assets/assets-manifest.json',
             }
         }),
     ],
