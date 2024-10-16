@@ -4,7 +4,8 @@ import { i18n } from '../utils/i18n';
 import { Cauldron } from '../ui/Cauldron';
 import { PixiLogo } from '../ui/PixiLogo';
 import { SmokeCloud } from '../ui/SmokeCloud';
-import { app } from '../main';
+import {app} from "../main";
+
 
 /** Screen shown while loading assets */
 export class LoadScreen extends Container {

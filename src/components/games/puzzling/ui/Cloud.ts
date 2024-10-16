@@ -1,7 +1,7 @@
 import { Container, Sprite, Texture } from 'pixi.js';
-import { app } from '../main';
 import gsap from 'gsap';
 import { randomRange } from '../utils/random';
+import {app} from "../main";
 
 const defaultCloudOptions = {
     width: 130,

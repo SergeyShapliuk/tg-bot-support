@@ -8,7 +8,8 @@ import {sound} from "@pixi/sound";
 import {LoadScreen} from "./screens/LoadScreen";
 import {GameScreen} from "./screens/GameScreen";
 import {ResultScreen} from "./screens/ResultScreen";
-import {HomeScreen} from "./screens/HomeScreen"; // Импортируем звуки
+import {HomeScreen} from "./screens/HomeScreen";
+import {Application} from "pixi.js";
 
 export let app: any;
 
@@ -49,26 +50,27 @@ function visibilityChange() {
 
 /** Setup app and initialise assets */
 export async function init() {
-    app = new PIXI.Application();
-    if (app) {
 
-        app
-            .init({
-                backgroundColor: 0xffffff, // Устанавливаем цвет фона
-                resizeTo: window // Автоматическое изменение размера
+    if (!app) {
+        app = new Application();
+        await PIXI.Assets;
+        app.init({
+            backgroundColor: 0xffffff, // Устанавливаем цвет фона
+            resizeTo: window // Автоматическое изменение размера
 
-            })
+        })
             .then(async () => {
-                // console.warn("Pixi application already initialized.");
+                console.warn("Pixi application already initialized.", app);
                 document.body.appendChild(app.canvas);
                 //     // Trigger the first resize
                 window.addEventListener("resize", resize);
                 resize();
-
+                console.log("init", app);
                 // Add a visibility listener, so the app can pause sounds and screens
                 document.addEventListener("visibilitychange", visibilityChange);
-
                 // Setup assets bundles (see assets.ts) and start up loading everything in background
+
+                // await resetAndLoadAssets();
                 await initAssets();
 
                 // Add a persisting background shared by all screens
@@ -76,10 +78,10 @@ export async function init() {
 
                 // Show initial loading screen
                 await navigation.showScreen(LoadScreen);
-
-                // Go to one of the screens if a shortcut is present in url params, otherwise go to home screen
+                //
+                // // Go to one of the screens if a shortcut is present in url params, otherwise go to home screen
                 if (getUrlParam("game") !== null) {
-                    console.log('GameScreensssssss')
+                    console.log("GameScreensssssss");
                     await navigation.showScreen(GameScreen);
 
                 } else if (getUrlParam("load") !== null) {
@@ -110,18 +112,34 @@ export async function init() {
 //     console.error("Error initializing Pixi application:", error);
 // });
 
-export async function stop() {
+export async function stopApp() {
     if (app) { // Проверяем, существует ли экземпляр приложения
-        await sound.stopAll(); // Останавливаем все звуки
-        app.destroy(true); // Останавливаем приложение и освобождаем ресурсы
+        await sound.close();
+
+        // app.stop();// Останавливаем все звуки// Останавливаем приложение и освобождаем ресурсы
+        // document.body.removeChild(app.canvas);
+        app.destroy(true);
+        app = null;
+        const canvas = document.querySelector("canvas"); // Найти канвас
+        if (canvas && canvas.parentNode) {
+            canvas.parentNode.removeChild(canvas); // Удалить канвас из DOM
+        }
+        // PIXI.Application.prototype.destroy({removeView:true})
+        // Assets.cache.reset();
+        // await Assets.unloadBundle(['common'])
+        // navigation.blur();
+
+
+        // Останавливаем приложение и освобождаем ресурсы
         // const canvas = app.canvas; // Получаем ссылку на canvas
         // if (canvas.parentNode) {
         //     canvas.parentNode.removeChild(canvas); // Убираем canvas со страницы
         // }
-
+        console.log("Application stopped and resources cleared.1", app); //
         // await navigation.showScreen(LoadScreen); // Показываем экран загрузки
-        navigation.blur(); // Убираем фокус с навигации
-        app = null; // Устанавливаем app в null для перезапуска
-        console.log("Application stopped and resources cleared."); // Логируем остановку приложения
+        // navigation.blur(); // Убираем фокус с навигации
+        // Устанавливаем app в null для перезапуска
+
+        console.log("Application stopped and resources cleared.2", PIXI); // Логируем остановку приложения
     }
 }

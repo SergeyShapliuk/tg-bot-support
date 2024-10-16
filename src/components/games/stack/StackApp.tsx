@@ -25,8 +25,8 @@ const StackApp = () => {
         if (isStarted && !isEnded) {
             setCurrentScore(globalStats.totalScore);
             startGame({tg_id: initData?.user?.id.toString() ?? "test_user3"});
-            ym("hit", "/game");
-            ym("reachGoal", "start");
+            ym("hit", "/game/stack");
+            ym("reachGoal", "stack_start");
         }
         if (!isStarted && isEnded) {
             let game_id: number | undefined;

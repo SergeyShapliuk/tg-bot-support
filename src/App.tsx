@@ -24,12 +24,16 @@ import {YMInitializer} from "react-yandex-metrika";
 import {ScreenSizeProvider} from "./context/ScreenSizeProvider";
 import StackApp from "./components/games/stack/StackApp";
 import PuzzleApp from "./components/games/puzzling/PuzzelApp";
+import Profile from "./components/profile/Profile";
+import {TonConnectUIProvider} from "@tonconnect/ui-react";
+import MemoWalletIcon from "./components/svg/WalletIcon";
 
 
 // import {version as appVersion} from "../package.json";
 //
 // console.log(`App version: ${appVersion}`);
 // setupMockTelegramEnv();
+
 
 function App() {
     const [miniApp] = initMiniApp();
@@ -100,6 +104,7 @@ function App() {
         expand().then();
     }, []);
 
+
     return (
         <>
             <div className={classes.main}
@@ -110,16 +115,20 @@ function App() {
                     <ScreenSizeProvider>
                         <TotalPointsProvider>
                             <CountdownProvider>
-                                <Routes>
-                                    <Route path="/" element={<Home/>}/>
-                                    <Route path="/tasks" element={<Tasks/>}/>
-                                    <Route path="/friends" element={<Friends/>}/>
-                                    <Route path="/game/*" element={<GameComponent/>}>
-                                        <Route path="stack" element={<StackApp/>}/>
-                                        <Route path="puzzle" element={<PuzzleApp/>}/>
-                                    </Route>
-                                </Routes>
-                                {!isShowNavBar && <NavBar/>}
+                                <TonConnectUIProvider
+                                    manifestUrl="https://raw.githubusercontent.com/markokhman/func-course-chapter-5-code/master/public/manifest.json">
+                                    <Routes>
+                                        <Route path="/" element={<Home/>}/>
+                                        <Route path="/tasks" element={<Tasks/>}/>
+                                        <Route path="/friends" element={<Friends/>}/>
+                                        <Route path="/game/*" element={<GameComponent/>}>
+                                            <Route path="stack" element={<StackApp/>}/>
+                                            <Route path="puzzle" element={<PuzzleApp/>}/>
+                                        </Route>
+                                        <Route path="/profile" element={<Profile/>}/>
+                                    </Routes>
+                                    {!isShowNavBar && <NavBar/>}
+                                </TonConnectUIProvider>
                             </CountdownProvider>
                         </TotalPointsProvider>
                     </ScreenSizeProvider>
@@ -201,6 +210,10 @@ function NavBar() {
             <NavLink to="game" style={({isActive}) => activeStyle(isActive)}>
                 <MemoGameIcon fill={location.pathname === "/game" ? "#0E1012" : "#434343"}/>
                 {location.pathname === "/game" && <span style={textStyle}>Game</span>}
+            </NavLink>
+            <NavLink to="profile" style={({isActive}) => activeStyle(isActive)}>
+                <MemoWalletIcon fill={location.pathname === "/friends" ? "#0E1012" : "#434343"}/>
+                {location.pathname === "/profile" && <span style={textStyle}>Wallet</span>}
             </NavLink>
         </nav>
     );

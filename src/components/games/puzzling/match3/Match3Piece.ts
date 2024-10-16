@@ -2,7 +2,8 @@ import { Container, FederatedPointerEvent, Sprite, Texture } from 'pixi.js';
 import gsap from 'gsap';
 import { Match3Position } from './Match3Utility';
 import { resolveAndKillTweens, registerCustomEase, pauseTweens, resumeTweens } from '../utils/animation';
-import { app } from '../main';
+import {app} from "../main";
+
 
 /** Default piece options */
 const defaultMatch3PieceOptions = {

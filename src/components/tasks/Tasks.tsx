@@ -13,6 +13,7 @@ import {useScreenSize} from "../../context/ScreenSizeProvider";
 import {useTotalPoints} from "../../context/TotalPointsProvider";
 import {Reorder} from "framer-motion";
 import {TasksItemType} from "../../types/types";
+import AdsGram from "../ads/AdsGram";
 
 
 // const userTasks = {
@@ -254,6 +255,7 @@ function Tasks() {
 
     return (
         <div className={classes.main}>
+            <AdsGram blockId="4304"/>
             <div style={{
                 position: "relative",
                 fontSize: "60px",

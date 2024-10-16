@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import bc from "./raw-assets/common{m}/common-atlas{tps}/bc.png";
+import ym from "react-yandex-metrika";
 
 
 const PuzzleApp = () => {
-    const location = useLocation();
+    // const location = useLocation();
     const navigate = useNavigate();
 
 
@@ -15,9 +16,11 @@ const PuzzleApp = () => {
             try {
                 const module = await import("./main");
                 if (isMounted) {
+                    // await init()
                     await module.init(); // Инициализация PixiJS
                     console.log("Pixi application started.");
-
+                    ym("hit", "/game/blaster");
+                    ym("reachGoal", "blaster_start");
 
                 }
             } catch (error) {
@@ -32,16 +35,16 @@ const PuzzleApp = () => {
             const stopAppEf = async () => {
                 const module = await import("./main");
                 if (!isMounted) {
-                    await module.stop(); // Остановка PixiJS
+                    await module.stopApp(); // Остановка PixiJS
                     console.log("Pixi application stopped.");
                 }
             };
             stopAppEf();
         };
-    }, [location]);
+    }, []);
 
 
-    const handleBackClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const handleBackClick = async (event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation(); // Останавливаем распространение события
         navigate(-1); // Возвращаем на предыдущую страницу
     };

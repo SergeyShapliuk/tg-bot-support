@@ -1,7 +1,7 @@
 import { Sprite, Texture } from 'pixi.js';
 import gsap from 'gsap';
-import { app } from '../main';
 import { navigation } from '../utils/navigation';
+import {app} from "../main";
 
 /**
  * Cover or reveal the entire app, masking the whole screen in a cauldron shape,

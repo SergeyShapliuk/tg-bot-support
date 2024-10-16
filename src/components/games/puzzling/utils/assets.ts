@@ -12,13 +12,17 @@ class AssetsManager {
         return this._initialized;
     }
 
-    // Пример метода инициализации
+    // Метод для инициализации активов
     public async initAssets(manifest: AssetsManifest) {
-        if (!this._initialized) {
-            console.log("Initializing assets with manifest", manifest);
-            await Assets.init({manifest, basePath: "/assets"});
-            this._initialized = true;
+        // Если активы уже инициализированы, выбрасываем ошибку
+        if (this._initialized) {
+            throw new Error("[Assets] AssetManager уже инициализирован. Пожалуйста, сбросьте его перед повторной инициализацией.");
         }
+
+        console.log("Initializing assets with manifest", manifest);
+        await Assets.init({ manifest, basePath: "/assets" });
+        this._initialized = true;
+        console.log("Assets initialized successfully.");
     }
 }
 
@@ -36,7 +40,7 @@ function checkBundleExists(bundle: string) {
 
 /** Load assets bundles that have nott been loaded yet */
 export async function loadBundles(bundles: string | string[]) {
-
+    console.log("loadBundles:", bundles);
     if (typeof bundles === "string") bundles = [bundles];
 
     // Check bundles requested if they exists
@@ -83,24 +87,30 @@ async function fetchAssetsManifest(url: string) {
     return manifest;
 }
 
+
 /** Initialise and start background loading of all assets */
 export async function initAssets() {
+    //  Assets.cache.reset();
+    console.log("assetsManager", assetsManager.initialized);
+    // if (assetsManager.initialized) {
+    //     await resetAssets();
+    // }
+    // // Load assets manifest
+    // console.log('assetsManager.initialized',assetsManager.initialized)
+    assetsManifest = await fetchAssetsManifest("/assets/assets-manifest.json");
+    console.log("assetsManager", assetsManifest);
+    // Init PixiJS assets with this asset manifest
+    // await assetsManager.initAssets(assetsManifest);  // Инициализируем через assetsManager
+    await Assets.init({
+        manifest: assetsManifest,
+        basePath: "/assets"
+    });
+    // Load assets for the load screen
+    await loadBundles("preload");
 
-    if (!assetsManager.initialized) {
-        // Load assets manifest
-        // console.log('assetsManager.initialized',assetsManager.initialized)
-        assetsManifest = await fetchAssetsManifest("/assets/assets-manifest.json");
-        // console.log('assetsManager',assetsManifest)
-        // Init PixiJS assets with this asset manifest
-
-        await Assets.init({manifest: assetsManifest, basePath: "/assets"}).then(res => console.log("assetsinit", res)).catch(err => console.error("Error initializing assets:", err));
-        // Load assets for the load screen
-        await loadBundles("preload");
-
-        // List all existing bundles names
-        const allBundles = assetsManifest.bundles.map((item) => item.name);
-        // Start up background loading of all bundles
-        Assets.backgroundLoadBundle(allBundles);
-    }
+    // List all existing bundles names
+    const allBundles = assetsManifest.bundles.map((item) => item.name);
+    console.log("allBundles", allBundles);
+    await Assets.backgroundLoadBundle(allBundles);
 
 }

@@ -1,6 +1,7 @@
 import {Container, Sprite, Texture} from "pixi.js";
 import {app} from "../main";
 
+
 /**
  * The app's animated background based on Sprite, always present on the screen
  */

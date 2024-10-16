@@ -2,8 +2,8 @@ import { Container, Sprite, Texture } from 'pixi.js';
 import { i18n } from '../utils/i18n';
 import { Label } from './Label';
 import gsap from 'gsap';
-import { app } from '../main';
 import { sfx } from '../utils/audio';
+import {app} from "../main";
 
 /**
  * Shows up when the game is 5 seconds to finish, with a countdown 5 to 1,

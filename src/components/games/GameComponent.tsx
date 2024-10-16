@@ -31,29 +31,31 @@ const GameComponent = () => {
     // };
 
     return (
-        location.pathname === "/game/stack" || location.pathname === "/game/puzzle" ?
-            <Outlet/> :
-            <div className={classes.main}>
-                <div style={{
-                    position: "relative",
-                    fontSize: "60px",
-                    fontWeight: "600",
-                    letterSpacing: -0.3,
-                    textAlign: "center"
-                }}>GAME
+        <div key={location.pathname}>
+            {location.pathname === "/game/stack" || location.pathname === "/game/puzzle" ?
+                <Outlet/> :
+                <div className={classes.main}>
                     <div style={{
-                        position: "absolute",
-                        width: "100%",
-                        height: 27,
-                        gap: 0,
-                        opacity: 0.27,
-                        rotate: "-15deg",
-                        background: "radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, rgba(100, 115, 131, 0) 100%)",
-                        top: 30
-                    }}/>
-                </div>
-                <NavGames/>
-            </div>
+                        position: "relative",
+                        fontSize: "60px",
+                        fontWeight: "600",
+                        letterSpacing: -0.3,
+                        textAlign: "center"
+                    }}>GAME
+                        <div style={{
+                            position: "absolute",
+                            width: "100%",
+                            height: 27,
+                            gap: 0,
+                            opacity: 0.27,
+                            rotate: "-15deg",
+                            background: "radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, rgba(100, 115, 131, 0) 100%)",
+                            top: 30
+                        }}/>
+                    </div>
+                    <NavGames/>
+                </div>}
+        </div>
 
     );
 };

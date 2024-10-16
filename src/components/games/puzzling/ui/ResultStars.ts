@@ -1,8 +1,8 @@
 import { Container } from 'pixi.js';
-import { app } from '../main';
 import { earthquake } from '../utils/animation';
 import { sfx } from '../utils/audio';
 import { Star } from './Star';
+import {app} from "../main";
 
 /**
  * The group of 3 stars in the Result screen, representing the gameplay grade.

@@ -1,4 +1,4 @@
-import {CSSProperties, useEffect} from "react";
+import {CSSProperties, lazy, useEffect} from "react";
 import {initInitData} from "@telegram-apps/sdk-react";
 import classes from "./Home.module.css";
 import image from "../../assets/main_image.jpg";
@@ -10,6 +10,8 @@ import {useFetchBalance} from "../../hooks/useFetchBalance";
 import MemoGameIconFill from "../svg/GameIconFill";
 import {NavLink} from "react-router-dom";
 import {useScreenSize} from "../../context/ScreenSizeProvider";
+
+const Ads = lazy(() => import("../ads/Ads"));
 
 
 export const override: CSSProperties = {
@@ -61,10 +63,65 @@ function Home() {
         }
     }, [isSuccessBalance, isSuccessTimer, isFetching]);
 
+    // useEffect(() => {
+    //     const initAdfox = () => {
+    //         const adContainer = document.getElementById("adfox_172890647605499958");
+    //         console.log("YaadContainer:", adContainer);
+    //         if (adContainer) {
+    //             adContainer.style.position = "absolute";
+    //             adContainer.style.display = "block";
+    //             adContainer.style.width = "100%";
+    //             adContainer.style.height = "100%";
+    //             adContainer.style.zIndex = "10";
+    //             // adContainer.style.backgroundColor = "red";
+    //             window.yaContextCb = window.yaContextCb || [];
+    //             window.yaContextCb.push(function () {
+    //                 console.log("Ya:", window.Ya);
+    //                 console.log("Ya.adfoxCodes:", window.Ya && window.Ya.adfoxCode);
+    //                 if (window.Ya && window.Ya.adfoxCode) {
+    //                     // const platform = /Mobi|Android/i.test(navigator.userAgent) ? 'touch' : 'desktop';
+    //                     Ya.adfoxCode.create({
+    //                         ownerId: 10885266,
+    //                         containerId: "adfox_172890647605499958",
+    //                         type: "fullscreen", // Добавляем тип
+    //                         platform: "touch", // Добавляем платформу
+    //                         params: {
+    //                             p1: "delme",
+    //                             p2: "hiuq",
+    //                             ext_duid: "7546029935"
+    //
+    //                         }
+    //                     });
+    //                 } else {
+    //                     console.error("Adfox нсе инициализирован, проверьте подключение скрипта.");
+    //                 }
+    //             });
+    //         } else {
+    //             console.error("Контейнер для рекламы не найден");
+    //         }
+    //     };
+    //     (function (d, w, c) {
+    //         w[c] = w[c] || [];
+    //         w[c].push(initAdfox);
+    //         const n = d.createElement("script");
+    //         n.src = "https://yandex.ru/ads/system/context.js";
+    //         n.async = true;
+    //         const s = d.getElementsByTagName("script")[0];
+    //         s.parentNode.insertBefore(n, s);
+    //     })(document, window, "yaContextCb");
+    //
+    //     return () => {
+    //         const adContainer = document.getElementById("adfox_172890647605499958");
+    //         if (adContainer) {
+    //             adContainer.style.display = "none";
+    //         }
+    //     };
+    // }, []);
 
     if (!isInitialized) return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override} loading={!isInitialized}/>;
     return (
         <div className={classes.main}>
+            <Ads/>
             {/*<div style={{textAlign: "center"}}>*/}
             <div className="popup">
                 <div style={{

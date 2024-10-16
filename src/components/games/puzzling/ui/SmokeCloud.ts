@@ -1,5 +1,6 @@
 import { Container, Sprite, Texture } from 'pixi.js';
-import { app } from '../main';
+import {app} from "../main";
+
 
 /**
  * The cloud that shows up on the top of the screen, during loading.
