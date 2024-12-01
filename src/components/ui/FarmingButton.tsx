@@ -51,7 +51,7 @@ function FarmingButton({
                                      boxShadow: "0px 3px 7.5px 0px #00000040"
                                  }}
                                  onClick={setUserPoints}>
-                Claim +{point} SD
+                Claim +{point} HH
             </button>}
             {/*<BeatLoader*/}
             {/*    color={"red"}*/}

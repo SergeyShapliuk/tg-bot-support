@@ -237,7 +237,7 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                     textAlign: "center",
                     zIndex: 1
                 }}>
-                    <span style={{position: "relative", right: 25}}>Farming SD <span
+                    <span style={{position: "relative", right: 25}}>Farming HH <span
                         style={{position: "absolute", paddingLeft: 5}}>{timer?.resp === "ok" &&
                     <CountUp start={count} end={timer?.info?.amount}
                              duration={timer?.second?.last}

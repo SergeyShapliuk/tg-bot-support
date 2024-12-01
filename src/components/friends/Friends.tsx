@@ -20,7 +20,7 @@ type ShareState = "pending" | "success" | "error";
 
 const listInvite = [
     {title: "Share your invitation link", subTitle: "Get a  play pass for each friends"},
-    {title: "Your friends join Support Durov", subTitle: "And start farming points"},
+    {title: "Your friends join Tap2Trip", subTitle: "And start farming points"},
     {title: "Score 20% from buddies", subTitle: ""}
 ];
 

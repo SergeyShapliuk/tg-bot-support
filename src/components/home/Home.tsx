@@ -152,7 +152,7 @@ function Home() {
                     fontWeight: 600,
                     letterSpacing: -0.2,
                     textAlign: "left"
-                }}>{points ? points : "0"} SD
+                }}>{points ? points : "0"} HH
                 </div>
                 {/*</div>*/}
             </div>

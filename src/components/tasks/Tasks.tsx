@@ -278,9 +278,8 @@ function Tasks() {
                 textAlign: "center"
                 // paddingRight: "16px",
                 // paddingLeft: "16px",
-            }}>Just Support
-                Durov community, be
-                aware of new and following updates, find your tribe in SD
+            }}>Just Tap2Trip community, be
+                aware of new and following updates, find your tribe in HH
             </div>
             {/*<div style={{*/}
             {/*    height: "100%",*/}
