@@ -17,7 +17,7 @@ import {MutationCache, QueryCache, QueryClient, QueryClientProvider} from "@tans
 import {TotalPointsProvider, useTotalPoints} from "./context/TotalPointsProvider";
 import ModalError from "./components/ui/modal/ModalError";
 import useNetworkStatus from "./hooks/useNetworkStatus";
-import {setupMockTelegramEnv} from "../telegramEnvConfig";
+// import {setupMockTelegramEnv} from "../telegramEnvConfig";
 import MemoGameIcon from "./components/svg/GameIcon";
 import GameComponent from "./components/games/GameComponent";
 import {YMInitializer} from "react-yandex-metrika";
@@ -29,12 +29,12 @@ import PuzzleApp from "./components/games/puzzling/PuzzelApp";
 // import {version as appVersion} from "../package.json";
 //
 // console.log(`App version: ${appVersion}`);
-setupMockTelegramEnv();
-//
+// setupMockTelegramEnv();
+
 function App() {
-    // const [miniApp] = initMiniApp();
-    // const [viewport] = initViewport();
-    // const [swipeBehavior] = initSwipeBehavior();
+    const [miniApp] = initMiniApp();
+    const [viewport] = initViewport();
+    const [swipeBehavior] = initSwipeBehavior();
     const location = useLocation();
     const network = useNetworkStatus();
 
@@ -83,22 +83,22 @@ function App() {
     );
 
 
-    // useEffect(() => {
-    //     miniApp.ready();
-    //     const expand = async () => {
-    //         const vp = await viewport;
-    //         if (!vp.isExpanded) {
-    //             vp.expand();
-    //         }
-    //         await swipeBehavior.disableVerticalSwipe();
-    //     };
-    //     // const localVersion = localStorage.getItem("appVersion");
-    //     // if (localVersion && localVersion !== appVersion) {
-    //     //     localStorage.setItem("appVersion", appVersion);
-    //     //     window.location.reload();
-    //     // }
-    //     expand().then();
-    // }, []);
+    useEffect(() => {
+        miniApp.ready();
+        const expand = async () => {
+            const vp = await viewport;
+            if (!vp.isExpanded) {
+                vp.expand();
+            }
+            await swipeBehavior.disableVerticalSwipe();
+        };
+        // const localVersion = localStorage.getItem("appVersion");
+        // if (localVersion && localVersion !== appVersion) {
+        //     localStorage.setItem("appVersion", appVersion);
+        //     window.location.reload();
+        // }
+        expand().then();
+    }, []);
 
     return (
         <>
