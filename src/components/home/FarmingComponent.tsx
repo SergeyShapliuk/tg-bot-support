@@ -11,7 +11,7 @@ import {useFetchTimer} from "../../hooks/useFetchTimer";
 import EffectComponent from "../ui/effect/EffectComponent";
 import {throttle} from "throttle-debounce";
 import classes from "./Home.module.css";
-import ym from "react-yandex-metrika";
+// import ym from "react-yandex-metrika";
 import {useScreenSize} from "../../context/ScreenSizeProvider";
 
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
@@ -164,8 +164,8 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                 }
                 // console.log("fdsfsd", res);
             });
-            ym("hit", "/home");
-            ym("reachGoal", "farming");
+            // ym("hit", "/home");
+            // ym("reachGoal", "farming");
         }
     });
 

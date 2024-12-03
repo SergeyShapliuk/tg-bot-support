@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from "react";
 import {initInitData} from "@telegram-apps/sdk-react";
-import ym from "react-yandex-metrika";
+// import ym from "react-yandex-metrika";
 import {ThemeInitializer} from "./contexts/ThemeContext";
 import {Game} from "./components/Game";
 import {useStartGame} from "../../../hooks/useStartGame";
@@ -17,16 +17,16 @@ const StackApp = () => {
     const [currentScore, setCurrentScore] = useState<number>(0);
 
     const {mutate: startGame, data: dataStartGame} = useStartGame();
-    const {mutate: stopGame, data} = useSetGame();
-    console.log("dataStart", dataStartGame);
-    console.log("dataStop", data);
+    const {mutate: stopGame} = useSetGame();
+    // console.log("dataStart", dataStartGame);
+    // console.log("dataStop", data);
 
     useEffect(() => {
         if (isStarted && !isEnded) {
             setCurrentScore(globalStats.totalScore);
             startGame({tg_id: initData?.user?.id.toString() ?? "test_user3"});
-            ym("hit", "/game");
-            ym("reachGoal", "start");
+            // ym("hit", "/game");
+            // ym("reachGoal", "start");
         }
         if (!isStarted && isEnded) {
             let game_id: number | undefined;

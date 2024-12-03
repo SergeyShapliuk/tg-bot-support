@@ -20,7 +20,7 @@ import useNetworkStatus from "./hooks/useNetworkStatus";
 // import {setupMockTelegramEnv} from "../telegramEnvConfig";
 import MemoGameIcon from "./components/svg/GameIcon";
 import GameComponent from "./components/games/GameComponent";
-import {YMInitializer} from "react-yandex-metrika";
+// import {YMInitializer} from "react-yandex-metrika";
 import {ScreenSizeProvider} from "./context/ScreenSizeProvider";
 import StackApp from "./components/games/stack/StackApp";
 import PuzzleApp from "./components/games/puzzling/PuzzelApp";
@@ -104,8 +104,8 @@ function App() {
         <>
             <div className={classes.main}
                  style={{pointerEvents: error.isOpen || !network.isOnline ? "none" : "visible"}}>
-                <YMInitializer accounts={[98457205]}
-                               options={{webvisor: true, clickmap: true, trackLinks: true, accurateTrackBounce: true}}/>
+                {/*<YMInitializer accounts={[98457205]}*/}
+                {/*               options={{webvisor: true, clickmap: true, trackLinks: true, accurateTrackBounce: true}}/>*/}
                 <QueryClientProvider client={queryClient}>
                     <ScreenSizeProvider>
                         <TotalPointsProvider>
