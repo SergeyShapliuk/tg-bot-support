@@ -1,0 +1,1987 @@
+{
+    "assets": {
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets": {
+            "isFolder": true,
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio": {
+            "isFolder": true,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/bubble-land-sfx.wav": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio",
+            "metaData": {},
+            "transformData": {},
+            "hash": "pwu-yA"
+        },
+        ".assetpack/audio/audio/bubble-land-sfx.mp3": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/bubble-land-sfx.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/bubble-land-sfx-MzP52Q.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/bubble-land-sfx.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/bubble-land-sfx-MzP52Q.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/bubble-land-sfx-MzP52Q.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/audio/audio/bubble-land-sfx.ogg": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/bubble-land-sfx.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/bubble-land-sfx-NSwNfg.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/bubble-land-sfx.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/bubble-land-sfx-NSwNfg.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/bubble-land-sfx-NSwNfg.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/bubbles-falling.wav": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio",
+            "metaData": {},
+            "transformData": {},
+            "hash": "oCb9"
+        },
+        ".assetpack/audio/audio/bubbles-falling.mp3": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/bubbles-falling.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/bubbles-falling-7oPtGw.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/bubbles-falling.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/bubbles-falling-7oPtGw.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/bubbles-falling-7oPtGw.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/audio/audio/bubbles-falling.ogg": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/bubbles-falling.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/bubbles-falling-9DHWTA.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/bubbles-falling.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/bubbles-falling-9DHWTA.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/bubbles-falling-9DHWTA.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/bubbo-bubbo-bg-music.wav": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio",
+            "metaData": {},
+            "transformData": {},
+            "hash": "hh782A"
+        },
+        ".assetpack/audio/audio/bubbo-bubbo-bg-music.mp3": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/bubbo-bubbo-bg-music.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/bubbo-bubbo-bg-music-LhJLbA.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/bubbo-bubbo-bg-music.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/bubbo-bubbo-bg-music-LhJLbA.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/bubbo-bubbo-bg-music-LhJLbA.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/audio/audio/bubbo-bubbo-bg-music.ogg": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/bubbo-bubbo-bg-music.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/bubbo-bubbo-bg-music-7wxkAA.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/bubbo-bubbo-bg-music.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/bubbo-bubbo-bg-music-7wxkAA.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/bubbo-bubbo-bg-music-7wxkAA.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/cannon-move.wav": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio",
+            "metaData": {},
+            "transformData": {},
+            "hash": "cjxwmA"
+        },
+        ".assetpack/audio/audio/cannon-move.mp3": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/cannon-move.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/cannon-move-OpWCvw.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/cannon-move.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/cannon-move-OpWCvw.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/cannon-move-OpWCvw.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/audio/audio/cannon-move.ogg": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/cannon-move.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/cannon-move-y90KSw.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/cannon-move.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/cannon-move-y90KSw.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/cannon-move-y90KSw.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/powerup-bomb.wav": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio",
+            "metaData": {},
+            "transformData": {},
+            "hash": "Hj00"
+        },
+        ".assetpack/audio/audio/powerup-bomb.mp3": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/powerup-bomb.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/powerup-bomb-zKsfSg.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/powerup-bomb.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/powerup-bomb-zKsfSg.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/powerup-bomb-zKsfSg.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/audio/audio/powerup-bomb.ogg": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/powerup-bomb.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/powerup-bomb-3jM0.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/powerup-bomb.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/powerup-bomb-3jM0.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/powerup-bomb-3jM0.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/powerup-super.wav": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio",
+            "metaData": {},
+            "transformData": {},
+            "hash": "-CC2Jw"
+        },
+        ".assetpack/audio/audio/powerup-super.mp3": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/powerup-super.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/powerup-super-xeUFrQ.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/powerup-super.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/powerup-super-xeUFrQ.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/powerup-super-xeUFrQ.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/audio/audio/powerup-super.ogg": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/powerup-super.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/powerup-super-RrrsHA.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/powerup-super.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/powerup-super-RrrsHA.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/powerup-super-RrrsHA.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/powerup-time.wav": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio",
+            "metaData": {},
+            "transformData": {},
+            "hash": "0pYWUQ"
+        },
+        ".assetpack/audio/audio/powerup-time.mp3": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/powerup-time.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/powerup-time-rJYOCg.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/powerup-time.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/powerup-time-rJYOCg.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/powerup-time-rJYOCg.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/audio/audio/powerup-time.ogg": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/powerup-time.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/powerup-time-5lD_cg.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/powerup-time.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/powerup-time-5lD_cg.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/powerup-time-5lD_cg.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/primary-button-press.wav": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio",
+            "metaData": {},
+            "transformData": {},
+            "hash": "tNhwEw"
+        },
+        ".assetpack/audio/audio/primary-button-press.mp3": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/primary-button-press.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/primary-button-press-eue6VQ.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/primary-button-press.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/primary-button-press-eue6VQ.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/primary-button-press-eue6VQ.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/audio/audio/primary-button-press.ogg": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/primary-button-press.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/primary-button-press-4nMd_Q.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/primary-button-press.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/primary-button-press-4nMd_Q.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/primary-button-press-4nMd_Q.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/secondary-button-press.wav": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio",
+            "metaData": {},
+            "transformData": {},
+            "hash": "4BkXsw"
+        },
+        ".assetpack/audio/audio/secondary-button-press.mp3": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/secondary-button-press.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/secondary-button-press-tFubsA.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/secondary-button-press.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/secondary-button-press-tFubsA.mp3": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/secondary-button-press-tFubsA.mp3",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/audio/audio/secondary-button-press.ogg": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/audio/secondary-button-press.wav",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/audio/secondary-button-press-tmWLug.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/audio/audio/secondary-button-press.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/audio/secondary-button-press-tmWLug.ogg": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/audio/secondary-button-press-tmWLug.ogg",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/fonts": {
+            "isFolder": true,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/fonts/Bungee-Regular{wf}.ttf": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/fonts",
+            "metaData": {
+                "wf": true
+            },
+            "transformData": {},
+            "hash": "cAr2jA"
+        },
+        ".assetpack/webfont/fonts/Bungee-Regular{wf}.woff2": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/fonts/Bungee-Regular{wf}.ttf",
+            "metaData": {
+                "wf": true
+            },
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/fonts/Bungee-Regular-14lMlQ{wf}.woff2": {
+            "isFolder": false,
+            "transformParent": ".assetpack/webfont/fonts/Bungee-Regular{wf}.woff2",
+            "metaData": {
+                "wf": true
+            },
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/fonts/Bungee-Regular-14lMlQ.woff2": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/fonts/Bungee-Regular-14lMlQ{wf}.woff2",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/fonts/OpenSans-SemiBold{wf}.ttf": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/fonts",
+            "metaData": {
+                "wf": true
+            },
+            "transformData": {},
+            "hash": "UirUJg"
+        },
+        ".assetpack/webfont/fonts/OpenSans-SemiBold{wf}.woff2": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/fonts/OpenSans-SemiBold{wf}.ttf",
+            "metaData": {
+                "wf": true
+            },
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/fonts/OpenSans-SemiBold-LFZ1dw{wf}.woff2": {
+            "isFolder": false,
+            "transformParent": ".assetpack/webfont/fonts/OpenSans-SemiBold{wf}.woff2",
+            "metaData": {
+                "wf": true
+            },
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/fonts/OpenSans-SemiBold-LFZ1dw.woff2": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/fonts/OpenSans-SemiBold-LFZ1dw{wf}.woff2",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images": {
+            "isFolder": true,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/favicon.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images",
+            "metaData": {},
+            "transformData": {},
+            "hash": "-oDk"
+        },
+        ".assetpack/mipmap/images/favicon.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/favicon.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/favicon.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/favicon.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/favicon-y5NE7A.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/favicon.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/favicon-y5NE7A.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/favicon-y5NE7A.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/favicon.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/favicon.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/favicon-Jz3EqQ.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/favicon.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/favicon-Jz3EqQ.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/favicon-Jz3EqQ.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/favicon@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/favicon.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/favicon@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/favicon@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/favicon-uwtODQ@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/favicon@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/favicon-uwtODQ@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/favicon-uwtODQ@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/favicon@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/favicon@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/favicon-fE0T0w@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/favicon@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/favicon-fE0T0w@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/favicon-fE0T0w@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}": {
+            "isFolder": true,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images",
+            "metaData": {
+                "m": true,
+                "tps": true
+            },
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/bottom-tray.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "tOZFcA"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/bubble-bomb.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "hODTcg"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/bubble-glow.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "RrYD-Q"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/bubble-reserve-base.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "ZAf3tg"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/bubble-reserve-ring.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "EBoRxQ"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/bubble-super.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "fmoSrA"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/bubble-timer.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "VcQ_KA"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/button-flat-small.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "jJW-Qg"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/button-flat.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "gvFHvg"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/game-side-border.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "RTOrbw"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/icon-pause.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "49kLQw"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/info-bg.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "Sw_h1g"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/laser-line-glow.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "Po2bzQ"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/laser-line.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "0WnmCg"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/panel-small-instructions.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "_x22vw"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/rounded-tray.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "SHw-Tg"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/satellite.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "fYMu2w"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/shot-visualiser.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "F5g2AQ"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}/top-tray.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "7YA0NA"
+        },
+        ".assetpack/texture-packer/images/game-screen.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {
+                "mIgnore": true,
+                "fix": true
+            },
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/game-screen.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/game-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/game-screen.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/game-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/game-screen-oBckNw.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/game-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/game-screen-oBckNw.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/game-screen-oBckNw.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/game-screen.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/game-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/game-screen-ggjplg.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/game-screen.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/game-screen-ggjplg.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/game-screen-ggjplg.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/texture-packer/images/game-screen.json": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/game-screen.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/game-screen.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/game-screen.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/game-screen.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/game-screen-PW8QPw.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/game-screen.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/game-screen-FhHW7A.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/game-screen-PW8QPw.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/game-screen.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/game-screen.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/game-screen.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/game-screen.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/game-screen-Q_32Fg.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/game-screen.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/game-screen-Ty_H6A.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/game-screen-Q_32Fg.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer/images/game-screen@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {
+                "mIgnore": true,
+                "fix": true
+            },
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/game-screen@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/game-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/game-screen@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/game-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/game-screen-oHJklw@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/game-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/game-screen-oHJklw@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/game-screen-oHJklw@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/game-screen@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/game-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/game-screen-h-Q8pQ@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/game-screen@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/game-screen-h-Q8pQ@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/game-screen-h-Q8pQ@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/texture-packer/images/game-screen@0.5x.json": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/game-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/game-screen@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/game-screen@0.5x.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/game-screen@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/game-screen@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/game-screen-g1lJXQ@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/game-screen@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/game-screen-XuYj6Q@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/game-screen-g1lJXQ@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/game-screen@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/game-screen@0.5x.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/game-screen@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/game-screen@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/game-screen-gnYlzw@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/game-screen@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/game-screen-ZDu0fA@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/game-screen-gnYlzw@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/pause-overlay{m}": {
+            "isFolder": true,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images",
+            "metaData": {
+                "m": true
+            },
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/pause-overlay{m}/pause-panel.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/pause-overlay{m}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "9ekzRg"
+        },
+        ".assetpack/mipmap/images/pause-overlay{m}/pause-panel.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/pause-overlay{m}/pause-panel.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/pause-overlay{m}/pause-panel.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/pause-overlay{m}/pause-panel.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/pause-overlay{m}/pause-panel-qy7U.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/pause-overlay{m}/pause-panel.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/pause-overlay/pause-panel-qy7U.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/pause-overlay{m}/pause-panel-qy7U.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/pause-overlay{m}/pause-panel.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/pause-overlay{m}/pause-panel.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/pause-overlay{m}/pause-panel-lV6g0Q.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/pause-overlay{m}/pause-panel.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/pause-overlay/pause-panel-lV6g0Q.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/pause-overlay{m}/pause-panel-lV6g0Q.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/pause-overlay{m}/pause-panel@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/pause-overlay{m}/pause-panel.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/pause-overlay{m}/pause-panel@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/pause-overlay{m}/pause-panel@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/pause-overlay{m}/pause-panel-4uTusg@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/pause-overlay{m}/pause-panel@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/pause-overlay/pause-panel-4uTusg@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/pause-overlay{m}/pause-panel-4uTusg@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/pause-overlay{m}/pause-panel@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/pause-overlay{m}/pause-panel@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/pause-overlay{m}/pause-panel-_H-0NA@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/pause-overlay{m}/pause-panel@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/pause-overlay/pause-panel-_H-0NA@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/pause-overlay{m}/pause-panel-_H-0NA@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}": {
+            "isFolder": true,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images",
+            "metaData": {
+                "m": true,
+                "tps": true
+            },
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/background-tile.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "IuRliQ"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/bubble-blue.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "u2x-Hw"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/bubble-green.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "G8erEQ"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/bubble-red.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "n2mj"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/bubble-shadow.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "p7eVQA"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/bubble-shine.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "h22eJw"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/bubble-yellow.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "4p0ENQ"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/cannon-arrow.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "MO5KRw"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/cannon-barrel.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "wzl9IQ"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/cannon-main.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "jKeyAA"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/cannon-top.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "5VtjtQ"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/loading-circle.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "3vDXnA"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}/pixi-logo.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "eZZ48Q"
+        },
+        ".assetpack/texture-packer/images/preload.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {
+                "mIgnore": true,
+                "fix": true
+            },
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/preload.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/preload.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/preload.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/preload.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/preload-NQtY_Q.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/preload.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/preload-NQtY_Q.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/preload-NQtY_Q.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/preload.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/preload.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/preload-uFCpag.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/preload.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/preload-uFCpag.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/preload-uFCpag.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/texture-packer/images/preload.json": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/preload.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/preload.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/preload.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/preload.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/preload-vRHxDw.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/preload.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/preload-ScSXhw.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/preload-vRHxDw.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/preload.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/preload.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/preload.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/preload.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/preload-EfEiXg.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/preload.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/preload-geJklw.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/preload-EfEiXg.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer/images/preload@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {
+                "mIgnore": true,
+                "fix": true
+            },
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/preload@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/preload@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/preload@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/preload@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/preload--2raAA@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/preload@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/preload--2raAA@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/preload--2raAA@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/preload@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/preload@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/preload-Krhh7g@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/preload@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/preload-Krhh7g@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/preload-Krhh7g@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/texture-packer/images/preload@0.5x.json": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/preload{m}{tps}",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/preload@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/preload@0.5x.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/preload@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/preload@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/preload-NlAFCA@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/preload@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/preload-4AAQBw@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/preload-NlAFCA@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/preload@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/preload@0.5x.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/preload@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/preload@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/preload-ndKgxA@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/preload@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/preload-_M8l2A@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/preload-ndKgxA@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}": {
+            "isFolder": true,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images",
+            "metaData": {
+                "m": true,
+                "tps": true
+            },
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}/icon-back.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "J0uwJA"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}/panel-end-screen-base.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "RqDZuw"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}/panel-end-screen-points-breakdown.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "4G5c0w"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}/panel-end-screen-points-total.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "wTqPHg"
+        },
+        ".assetpack/texture-packer/images/results-screen.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}",
+            "metaData": {
+                "mIgnore": true,
+                "fix": true
+            },
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/results-screen.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/results-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/results-screen.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/results-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/results-screen-sADwog.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/results-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/results-screen-sADwog.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/results-screen-sADwog.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/results-screen.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/results-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/results-screen-0s1tXQ.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/results-screen.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/results-screen-0s1tXQ.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/results-screen-0s1tXQ.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/texture-packer/images/results-screen.json": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/results-screen.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/results-screen.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/results-screen.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/results-screen.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/results-screen-uTX2Hg.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/results-screen.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/results-screen-KJcDMw.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/results-screen-uTX2Hg.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/results-screen.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/results-screen.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/results-screen.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/results-screen.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/results-screen-RkVUHw.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/results-screen.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/results-screen-jQjSyg.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/results-screen-RkVUHw.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer/images/results-screen@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}",
+            "metaData": {
+                "mIgnore": true,
+                "fix": true
+            },
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/results-screen@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/results-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/results-screen@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/results-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/results-screen-_s0TkQ@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/results-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/results-screen-_s0TkQ@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/results-screen-_s0TkQ@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/results-screen@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/results-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/results-screen-g-Lj-A@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/results-screen@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/results-screen-g-Lj-A@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/results-screen-g-Lj-A@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/texture-packer/images/results-screen@0.5x.json": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/results-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/results-screen@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/results-screen@0.5x.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/results-screen@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/results-screen@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/results-screen-0qPHpQ@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/results-screen@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/results-screen-iX9W@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/results-screen-0qPHpQ@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/results-screen@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/results-screen@0.5x.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/results-screen@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/results-screen@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/results-screen-81Eo6Q@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/results-screen@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/results-screen-I-Ao@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/results-screen-81Eo6Q@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}": {
+            "isFolder": true,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images",
+            "metaData": {
+                "m": true,
+                "tps": true
+            },
+            "transformData": {}
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}/background-tile-space.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "nnSDHg"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}/icon-sound-off.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "JUub_Q"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}/icon-sound-on.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "TmpESw"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}/pixi-btn-down.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "vXha3A"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}/pixi-btn-up.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "zgbIGw"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}/play-btn-down.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "mxL2Sw"
+        },
+        "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}/play-btn-up.png": {
+            "isFolder": false,
+            "parent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {},
+            "hash": "IIl8PQ"
+        },
+        ".assetpack/texture-packer/images/title-screen.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {
+                "mIgnore": true,
+                "fix": true
+            },
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/title-screen.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/title-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/title-screen.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/title-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/title-screen-H-iwEg.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/title-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/title-screen-H-iwEg.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/title-screen-H-iwEg.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/title-screen.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/title-screen.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/title-screen-YxpyiA.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/title-screen.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/title-screen-YxpyiA.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/title-screen-YxpyiA.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/texture-packer/images/title-screen.json": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/title-screen.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/title-screen.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/title-screen.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/title-screen.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/title-screen-4xdTLA.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/title-screen.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/title-screen-InJdTA.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/title-screen-4xdTLA.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/title-screen.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/title-screen.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/title-screen.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/title-screen.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/title-screen-V_PzeA.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/title-screen.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/title-screen-y4rPTQ.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/title-screen-V_PzeA.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer/images/title-screen@0.5x.png": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {
+                "mIgnore": true,
+                "fix": true
+            },
+            "transformData": {}
+        },
+        ".assetpack/mipmap/images/title-screen@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/title-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/title-screen@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/title-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/title-screen-P-UvWA@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/title-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/title-screen-P-UvWA@0.5x.png": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/title-screen-P-UvWA@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/compress/images/title-screen@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/mipmap/images/title-screen@0.5x.png",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/cache-buster/images/title-screen-fRDAlw@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/compress/images/title-screen@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/title-screen-fRDAlw@0.5x.webp": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/title-screen-fRDAlw@0.5x.webp",
+            "metaData": {},
+            "transformData": {}
+        },
+        ".assetpack/texture-packer/images/title-screen@0.5x.json": {
+            "isFolder": false,
+            "transformParent": "G:/react/my-web-app/src/components/games/bubbo/raw-assets/images/title-screen{m}{tps}",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/title-screen@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/title-screen@0.5x.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/title-screen@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/title-screen@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/title-screen-NVH5Aw@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/title-screen@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/title-screen-dBUQmA@0.5x.png.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/title-screen-NVH5Aw@0.5x.png.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/texture-packer-compress/images/title-screen@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer/images/title-screen@0.5x.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/json/images/title-screen@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/texture-packer-compress/images/title-screen@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        ".assetpack/cache-buster/images/title-screen-J7txog@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/json/images/title-screen@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        },
+        "G:/react/my-web-app/public/bubbo/assets/images/title-screen-wpoUMA@0.5x.webp.json": {
+            "isFolder": false,
+            "transformParent": ".assetpack/cache-buster/images/title-screen-J7txog@0.5x.webp.json",
+            "metaData": {},
+            "transformData": {
+                "page": 0
+            }
+        }
+    }
+}
