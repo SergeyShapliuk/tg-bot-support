@@ -6,15 +6,24 @@
 .nav {
     position: fixed;
     bottom: 26px;
+
     left: 50%;
-    transform: translate(-50%);
-    width: 94%;
+    transform: translateX(-50%);
+
+    width: 95%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
     height: 48px;
     display: flex;
     align-items: center;
-    background-color: #0E1012;
+    justify-content: center;
     padding: 4px;
+
+    background-color: #0E1012;
     border-radius: 68px;
     box-sizing: border-box;
     z-index: 999;
 }
+

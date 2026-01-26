@@ -1,7 +1,7 @@
 import {CSSProperties, useEffect, useState} from "react";
 import {initInitData} from "@telegram-apps/sdk-react";
 import classes from "./Home.module.css";
-import image from "../../assets/main_image.jpg";
+import image from "../../assets/final_thumbnail.jpg";
 import {FadeLoader} from "react-spinners";
 import {useFetchTimer} from "../../hooks/useFetchTimer";
 import FarmingComponent from "./FarmingComponent";
@@ -67,7 +67,13 @@ function Home() {
     if (!isInitialized) return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override} loading={!isInitialized}/>;
     return (
         <>
-            <div className={classes.main}>
+            <div className={classes.main} style={{
+                display: "flex",
+                flexDirection: "column",
+                height: "100vh",
+                paddingBottom: "60px", // Высота навигации
+                overflowY: "auto"
+            }}>
                 {/*<div style={{textAlign: "center"}}>*/}
                 <div className="popup">
                     <div style={{
@@ -85,14 +91,14 @@ function Home() {
                                 <div
                                     style={{
                                         color: "#FFFFFF",
-                                        fontSize: screenSize.width * 0.069,
+                                        fontSize: "clamp(16px, 4.2vw, 27px)",
                                         fontWeight: "500",
                                         lineHeight: "24px"
                                     }}>Info
                                 </div>
                                 <div style={{
                                     color: "#FFFFFF",
-                                    fontSize: screenSize.width * 0.035,
+                                    fontSize: "clamp(12px, 4.2vw, 21px)",
                                     fontWeight: "400",
                                     lineHeight: "18px"
                                 }}>is ready, try it now!
@@ -100,18 +106,18 @@ function Home() {
                             </div>
                         </div>
                         <button onClick={() => setOpen(true)} style={{
-                            width: 75,
+                            width: screenSize.width <= 650 ? screenSize.width * 0.15 : 75,
                             height: 30,
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
                             borderRadius: 15,
                             color: "#fff",
-                            fontSize: screenSize.width * 0.035,
+                            fontSize: "clamp(12px, 4.2vw, 20px)",
                             fontWeight: "400",
                             lineHeight: "16px",
                             backgroundColor: "rgba(249,249,249,0.31)",
-                            padding: "7px 20px"
+                            padding: "10px 20px"
                         }}>Open
                         </button>
                     </div>
@@ -138,21 +144,27 @@ function Home() {
                         Hello, {initData?.user?.username ? initData.user.username : initData?.user?.firstName ? initData?.user?.firstName : "-----"}!
                     </div>
                     {/*<p style={{position: "absolute", right: 10, paddingRight: "10px", fontSize: 24}}>&#8383; {points}</p>*/}
-                    <div style={{height: screenSize.height - 450, display: "flex", alignItems: "center"}}>
+                    {/*<div style={{*/}
+                    {/*    // height: "70%",*/}
+                    {/*    // maxHeight:'100%',// 45% от высоты экрана*/}
+                    {/*    // minHeight: 180, // минимальная высота*/}
+                    {/*    display: "flex",*/}
+                    {/*    alignItems: "center"*/}
+                    {/*}}>*/}
                         <img
                             src={image}
                             className={classes.image} alt="Image"/>
-                    </div>
+                    {/*</div>*/}
                     {/*<div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'flex-end',background:'red',}}>*/}
                     <div style={{fontSize: "20px", letterSpacing: -0.3, textAlign: "left"}}>Your
                         balance
                     </div>
                     <div style={{
-                        fontSize: screenSize.width * 0.097,
+                        fontSize: "clamp(28px, 9.7vw, 44px)",
                         fontWeight: 600,
                         letterSpacing: -0.2,
                         textAlign: "left"
-                    }}>{points ? points : "0"} HH
+                    }}>{points ? points : "0"} SD
                     </div>
                     {/*</div>*/}
                 </div>
@@ -172,12 +184,12 @@ function Home() {
                 }}>
                     {/*<Sheet.Header disableDrag/>*/}
                     <div style={{
-                        padding: "20px 36px 20px 36px",
+                        padding: "50px 36px 20px 36px",
                         fontSize: "20px",
                         fontWeight: 500,
                         textAlign: "center"
-                    }}>HH tokens can be
-                        accepted as part of the payment for hotel reservations.
+                    }}>This application was developed during Pavel Durov's imprisonment in France as an experimental
+                        concept.
                     </div>
                     <div onClick={() => {
                         setOpen(false);
@@ -189,38 +201,39 @@ function Home() {
                             fontSize: "20px",
                             fontWeight: 500,
                             textAlign: "center"
-                        }}>How to get a discount on a hotel? 🌍
+                        }}>Unfortunately, without further developer support, the token exchange feature is
+                            currently not working 🌍
                         </div>
                         <div style={{
                             paddingTop: 10,
                             fontSize: "19px",
                             fontWeight: 400,
                             textAlign: "left"
-                        }}>1. Earn HH tokens in our Telegram game.
+                        }}>1. Collect HH tokens within the app.
                         </div>
                         <div style={{
                             padding: "10px 0",
                             fontSize: "19px",
                             fontWeight: 400,
                             textAlign: "left"
-                        }}>2. Choose any hotel on Booking.com.
+                        }}>2. Explore the gaming features.
                         </div>
                         <div style={{
                             fontSize: "19px",
                             fontWeight: 400,
                             textAlign: "left"
-                        }}>3. Contact the administrator via Telegram (
-                            <a href={`https://t.me/hotelhub_manager`}
-                               target="_blank"
-                               rel="noopener noreferrer">@hotelhub_manager
-                            </a>).
+                        }}>3. Check back for future updates if the project resumes.
+                            {/*<a href={`https://t.me/hotelhub_manager`}*/}
+                            {/*   target="_blank"*/}
+                            {/*   rel="noopener noreferrer">@hotelhub_manager*/}
+                            {/*</a>).*/}
                         </div>
                         <div style={{
                             padding: "20px 0",
                             fontSize: "19px",
                             fontWeight: 400,
                             textAlign: "left"
-                        }}>💎 The administrator will confirm the booking taking into account your discount!
+                        }}>💎 Stay tuned in the future if the project resumes.
                         </div>
                         {/*<QRCodeCanvas id="qrcode"*/}
                         {/*              value={`https://t.me/supDurovBot?start=ref_${userRef?.codes[0]?.code}`}*/}

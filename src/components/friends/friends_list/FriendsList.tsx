@@ -10,7 +10,7 @@ import {useScreenSize} from "../../../context/ScreenSizeProvider";
 
 const limit = 50;
 
-function FriendsList() {
+function FriendsList({referrals}) {
     const initData = initInitData();
     const {screenSize} = useScreenSize();
 
@@ -19,18 +19,23 @@ function FriendsList() {
     const [offset, setOffset] = useState<number>(0);
     const [showScrollTopButton, setShowScrollTopButton] = useState<boolean>(false);
 
-    const {data: referrals} = useFetchReferrals(initData?.user?.id.toString() ?? "899065167", limit, offset);
+    // const {data: referrals} = useFetchReferrals(initData?.user?.id.toString() ?? "899065167", limit, offset);
     // console.log("FriendsList", referrals);
-    // console.log("Friendsitems", items);
+    console.log("Friendsitems", items);
+    console.log("Friendsitems2", referrals);
     useEffect(() => {
-        if (referrals) {
+        // if (referrals) {
+        if (referrals?.length) {
             setItems((prevItems) => {
-                const newItems = referrals.data.filter(
-                    referral => !prevItems.some(item => item.customer === referral.customer)
+                setItems(referrals)
+                // const newItems = referrals.data.filter(
+                const newItems = referrals.filter(
+                    referral => !prevItems.some(item => item.customer === referral?.customer)
                 );
                 return [...prevItems, ...newItems];
             });
-            setHasMore(referrals.data.length === limit);
+            // setHasMore(referrals.data.length === limit);
+            setHasMore(referrals?.length === limit);
         }
     }, [referrals]);
 
@@ -65,7 +70,8 @@ function FriendsList() {
             <div style={{
                 position: "relative", fontSize: "15px",
                 fontWeight: 700, textAlign: "left", zIndex: 10
-            }}>{`${referrals?.info?.cols_ref} friends:`}
+            // }}>{`${referrals?.info?.cols_ref} friends:`}
+            }}>{`${7} friends:`}
                 <div id="catalog-scroll-container" className={classes.listFriends}
                      style={{height: screenSize.height - 390}}>
                     <InfiniteScroll

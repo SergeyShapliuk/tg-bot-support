@@ -35,6 +35,8 @@ function FarmingButton({
                            startFarming,
                            setUserPoints
                        }: FarmingButtonType) {
+    console.log('count',isCountdown)
+    console.log('complete',complete)
 
     return (
         <div className={classes.buttonContainer}>

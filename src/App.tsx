@@ -24,7 +24,7 @@ import GameComponent from "./components/games/GameComponent";
 import {ScreenSizeProvider} from "./context/ScreenSizeProvider";
 import StackApp from "./components/games/stack/StackApp";
 import PuzzleApp from "./components/games/puzzling/PuzzelApp";
-
+import {setupMockTelegramEnv} from "../telegramEnvConfig";
 
 // import {version as appVersion} from "../package.json";
 //
@@ -177,22 +177,23 @@ function NavBar() {
                 <span style={textStyle}>Home</span>}
             </NavLink>
             <NavLink to="tasks" style={({isActive}) => activeStyle(isActive)}>
-                <MemoTasksIcon fill={location.pathname === "/tasks" ? "#0E1012" : "#434343"}/>
+                <div style={{position: "relative", display: "inline-flex"}}>
+                    <MemoTasksIcon fill={location.pathname === "/tasks" ? "#0E1012" : "#434343"}/>
+                    {location.pathname !== "/tasks" && <div style={{
+                        // width: "15px",
+                        // height: "15px",
+                        position: "absolute",
+                        // top: 0,
+                        right: -15,
+                        bottom: 15,
+                        color: "#3193F4",
+                        fontSize: "14px",
+                        fontWeight: "700",
+                        borderRadius: "50px"
+                        // backgroundColor: "#3193F4"
+                    }}>{badge !== 0 && badge}</div>}
+                </div>
                 {location.pathname === "/tasks" && <span style={textStyle}>Tasks</span>}
-                {location.pathname !== "/tasks" &&
-                <div style={{
-                    // width: "15px",
-                    // height: "15px",
-                    position: "absolute",
-                    // top: 0,
-                    right: 15,
-                    bottom: 15,
-                    color: "#3193F4",
-                    fontSize: "14px",
-                    fontWeight: "700",
-                    borderRadius: "50px"
-                    // backgroundColor: "#3193F4"
-                }}>{badge !== 0 && badge}</div>}
             </NavLink>
             <NavLink to="friends" style={({isActive}) => activeStyle(isActive)}>
                 <MemoFriendsIcon fill={location.pathname === "/friends" ? "#0E1012" : "#434343"}/>

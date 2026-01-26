@@ -12,7 +12,7 @@ import {
 
 export const api = {
     async getUserBalance(telegram_id: string) {
-        const response = await axiosInstanceApi.get<string, AxiosResponse<GetBalanceType>>(`get-user-balance?telegram_id=${telegram_id}`, {
+        const response = await axiosInstanceApi.get<string, AxiosResponse<GetBalanceType>>(`users/get-user-balance/${telegram_id}`, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -20,7 +20,7 @@ export const api = {
         return response;
     },
     async getUserTimer(telegram_id: string) {
-        const response = await axiosInstanceApi.get<string, AxiosResponse<GetTimerType>>(`get-user-timer?telegram_id=${telegram_id}`, {
+        const response = await axiosInstanceApi.get<string, AxiosResponse<GetTimerType>>(`users/get-user-timer/${telegram_id}`, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -28,7 +28,7 @@ export const api = {
         return response;
     },
     async getUserTask(telegram_id: string) {
-        const response = await axiosInstanceApi.get<string, AxiosResponse<GetTasksType>>(`get-task?telegram_id=${telegram_id}`, {
+        const response = await axiosInstanceApi.get<string, AxiosResponse<GetTasksType>>(`tasks/${telegram_id}`, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -51,31 +51,30 @@ export const api = {
         });
         return response;
     },
-    // _tdiff:30
     async setStartTimer(telegram_id: string) {
-        const response = await axiosInstanceApi.post<string, AxiosResponse<StartTimerType>>("start-user-timer", {telegram_id}, {
+        const response = await axiosInstanceApi.post<string, AxiosResponse<StartTimerType>>("users/start-user-timer", {telegram_id}, {
             headers: {
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "application/json"
             }
         });
         return response;
     },
     async setCloseTimer(telegram_id: string) {
-        const response = await axiosInstanceApi.post<string, AxiosResponse<CloseTimerType>>("close-user-timer", {telegram_id}, {
+        const response = await axiosInstanceApi.post<string, AxiosResponse<CloseTimerType>>("users/close-user-timer", {telegram_id}, {
             headers: {
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "application/json"
             }
         });
         return response;
     },
     async setTask(telegram_id: string, task_id: number, stat: number) {
-        const response = await axiosInstanceApi.post<string, AxiosResponse<SetTaskType>>("set-user-task-stat", {
+        const response = await axiosInstanceApi.post<string, AxiosResponse<SetTaskType>>("tasks/status", {
             telegram_id,
             task_id,
             stat
         }, {
             headers: {
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "application/json"
             }
         });
         return response;

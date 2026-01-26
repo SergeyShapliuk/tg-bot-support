@@ -278,8 +278,8 @@ function Tasks() {
                 textAlign: "center"
                 // paddingRight: "16px",
                 // paddingLeft: "16px",
-            }}>Just Tap2Trip community, be
-                aware of new and following updates, find your tribe in HH
+            }}>Just Support Durov community, be
+                aware of new and following updates, find your tribe in SD
             </div>
             {/*<div style={{*/}
             {/*    height: "100%",*/}
@@ -290,6 +290,58 @@ function Tasks() {
             {/*    // paddingBottom:10,*/}
             {/*    gap: 7*/}
             {/*}}>*/}
+            {/*<div className="popup" style={{marginTop: 20}}>*/}
+            {/*    <div style={{*/}
+            {/*        position: "relative",*/}
+            {/*        width: "100%",*/}
+            {/*        height: 37,*/}
+            {/*        display: "flex",*/}
+            {/*        flexDirection: "row",*/}
+            {/*        justifyContent: "space-between",*/}
+            {/*        alignItems: "center",*/}
+            {/*        zIndex: 999*/}
+            {/*    }}>*/}
+            {/*        <div style={{flex: 1, display: "flex", flexDirection: "row", alignItems: "center"}}>*/}
+            {/*            <div style={{*/}
+            {/*                display: "flex",*/}
+            {/*                flexDirection: "row",*/}
+            {/*                alignItems: "center"*/}
+            {/*            }}>*/}
+            {/*                <MemoCheckIcon/>*/}
+            {/*                <p style={{*/}
+            {/*                    flex: 1,*/}
+            {/*                    paddingLeft: 20,*/}
+            {/*                    paddingRight: 20,*/}
+            {/*                    fontSize: screenSize.width >= 370 ? "15px" : screenSize.width * 0.038,*/}
+            {/*                    letterSpacing: -0.4*/}
+            {/*                }}>Add task</p>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*        <button*/}
+            {/*            // onClick={() => onLinkHandleStart(String(initData?.user?.id) ?? "test", item.id, 2)}*/}
+            {/*            style={{*/}
+            {/*                width: 75,*/}
+            {/*                height: 30,*/}
+            {/*                display: "flex",*/}
+            {/*                justifyContent: "center",*/}
+            {/*                alignItems: "center",*/}
+            {/*                borderRadius: 15,*/}
+            {/*                color: "#fff",*/}
+            {/*                fontSize: "14px",*/}
+            {/*                fontWeight: "400",*/}
+            {/*                lineHeight: "16px",*/}
+            {/*                letterSpacing: -0.1,*/}
+            {/*                backgroundColor: "rgba(249,249,249,0.31)"*/}
+            {/*            }}>*/}
+            {/*            /!*<a href={item.link}*!/*/}
+            {/*            /!*   onClick={() => onLinkHandleStart(String(initData?.user?.id) ?? "test", item.id, 2)}*!/*/}
+            {/*            /!*   target="_blank"*!/*/}
+            {/*            /!*   rel="noopener noreferrer"*!/*/}
+            {/*            /!*   style={{color: "white", textDecoration: "none"}}>Start</a>*!/*/}
+            {/*            add*/}
+            {/*        </button>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <Reorder.Group axis="y" values={list} onReorder={setList} style={{
                 // width:'100%',
                 height: screenSize.height - 270,
@@ -359,25 +411,28 @@ function Tasks() {
                                         backgroundColor: "#FFFFFF"
                                     }}>Claim</button> :
                                 item.user_stat <= 1 &&
-                                <button style={{
-                                    width: 75,
-                                    height: 30,
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    borderRadius: 15,
-                                    color: "#fff",
-                                    fontSize: "14px",
-                                    fontWeight: "400",
-                                    lineHeight: "16px",
-                                    letterSpacing: -0.1,
-                                    backgroundColor: "rgba(249,249,249,0.31)"
-                                }}>
-                                    <a href={item.link}
-                                       onClick={() => onLinkHandleStart(String(initData?.user?.id) ?? "test", item.id, 2)}
-                                       target="_blank"
-                                       rel="noopener noreferrer"
-                                       style={{color: "white", textDecoration: "none"}}>Start</a>
+                                <button
+                                    onClick={() => onLinkHandleStart(String(initData?.user?.id) ?? "test", item.id, 2)}
+                                    style={{
+                                        width: 75,
+                                        height: 30,
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        borderRadius: 15,
+                                        color: "#fff",
+                                        fontSize: "14px",
+                                        fontWeight: "400",
+                                        lineHeight: "16px",
+                                        letterSpacing: -0.1,
+                                        backgroundColor: "rgba(249,249,249,0.31)"
+                                    }}>
+                                    {/*<a href={item.link}*/}
+                                    {/*   onClick={() => onLinkHandleStart(String(initData?.user?.id) ?? "test", item.id, 2)}*/}
+                                    {/*   target="_blank"*/}
+                                    {/*   rel="noopener noreferrer"*/}
+                                    {/*   style={{color: "white", textDecoration: "none"}}>Start</a>*/}
+                                    Start
                                 </button>
                             }
                             {item.user_stat === 3 &&
@@ -401,10 +456,8 @@ function Tasks() {
                     </Reorder.Item>
                 ))}
             </Reorder.Group>
-            {/*</div>*/}
         </div>
-    )
-        ;
+    );
 }
 
 export default Tasks;

@@ -1,32 +1,28 @@
-import {createContext, useState, useContext, ReactNode, useEffect} from "react";
+import { createContext, useState, useContext, ReactNode, useEffect } from "react";
 
 interface ScreenSizeContextProps {
-    screenSize: { width: number, height: number };
+    screenSize: { width: number; height: number };
 }
 
 const ScreenSizeContext = createContext<ScreenSizeContextProps | undefined>(undefined);
 
-export const ScreenSizeProvider = ({children}: { children: ReactNode }) => {
-
-    const [screenSize, setScreenSize] = useState<{ width: number, height: number }>({
-        width: window.innerWidth,
-        height: window.innerHeight
+export const ScreenSizeProvider = ({ children }: { children: ReactNode }) => {
+    const [screenSize, setScreenSize] = useState<{ width: number; height: number }>({
+        width: 0,
+        height: 0
     });
 
     useEffect(() => {
-
         const updateScreenSize = () => {
-            // Используем window.visualViewport для мобильных устройств, если оно доступно
-            const width = window.visualViewport ? window.visualViewport.width : window.innerWidth;
-            const height = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+            const width = window.visualViewport?.width ?? window.innerWidth;
+            const height = window.visualViewport?.height ?? window.innerHeight;
 
-            setScreenSize({width, height});
+            setScreenSize({ width, height });
         };
 
         updateScreenSize();
 
         window.addEventListener("resize", updateScreenSize);
-
         window.visualViewport?.addEventListener("resize", updateScreenSize);
 
         return () => {
@@ -36,7 +32,7 @@ export const ScreenSizeProvider = ({children}: { children: ReactNode }) => {
     }, []);
 
     return (
-        <ScreenSizeContext.Provider value={{screenSize}}>
+        <ScreenSizeContext.Provider value={{ screenSize }}>
             {children}
         </ScreenSizeContext.Provider>
     );

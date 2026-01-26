@@ -17,7 +17,7 @@ import {useScreenSize} from "../../context/ScreenSizeProvider";
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
 // const totalTimeMS = 60 * 1000; // в миллисекундах
 // const totalTimeS = 30; // в секундах
-const totalTimeS = 25200; // в секундах
+const totalTimeS = 120; // в секундах
 
 type FarmingComponentProps = {
     timer: GetTimerType | undefined;
@@ -59,8 +59,8 @@ function FarmingComponent({timer}: FarmingComponentProps) {
     const {mutateAsync: stopTimer} = useCloseTimer();
 
     const [isAnimation, setAnimation] = useState<boolean>(false);
-    // console.log("data", data);
-    // console.log("timer", timer);
+    console.log("isCountdown", isCountdown);
+    console.log("timer", timer);
     // console.log("count", count);
     // console.log("startDate", startDate);
     // console.log("dataStopTimer", dataStopTimer);
@@ -232,7 +232,7 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                     justifyContent: "center",
                     alignItems: "center",
                     color: "#9BA6C3",
-                    fontSize: screenSize.width * 0.051,
+                    fontSize: "clamp(10px, 4.2vw, 34px)",
                     letterSpacing: -0.5,
                     textAlign: "center",
                     zIndex: 1
@@ -246,10 +246,10 @@ function FarmingComponent({timer}: FarmingComponentProps) {
                              useEasing={false}/>}</span></span>
                     <span style={{
                         position: "absolute",
-                        top: 19,
+                        // top: 19,
                         right: 0,
                         paddingRight: "20px",
-                        fontSize: "10px",
+                        fontSize: "clamp(8px, 3.2vw, 16px)",
                         zIndex: 1
                     }}>{hours}h {minutes}m</span>
                 </div>

@@ -1,14 +1,16 @@
 import axios from "axios";
 // import axiosRetry from 'axios-retry';
 
-// const baseURL = "https://sd-api.faexb.com/api/";
-const baseURL = "https://hh-api.faexb.com/api/";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
+
+// const baseURL = "http://localhost:5001/";
 
 
 export const axiosInstanceApi = axios.create({
     baseURL,
     withCredentials: false,
-    timeout: 20000,
+    timeout: 20000
 });
 // axiosRetry(axiosInstanceAdm, {
 //   retries: 3,

@@ -81,7 +81,7 @@ function NavGames() {
     // };
     const textStyle = {
         color: "#fff",
-        fontSize: screenSize.width * 0.092,
+        fontSize: "clamp(28px, 9.7vw, 44px)",
         fontWeight: 700,
         lineHeight: "46px",
         letterSpacing: -0.3,
@@ -96,7 +96,7 @@ function NavGames() {
                     alignSelf: "self-start",
                     borderRadius: 15,
                     color: "#fff",
-                    fontSize: screenSize.width * 0.035,
+                    fontSize: "clamp(18px, 4.7vw, 24px)",
                     fontWeight: "400",
                     lineHeight: "16px",
                     backgroundColor: "rgba(249,249,249,0.31)",
@@ -111,7 +111,7 @@ function NavGames() {
                     alignSelf: "self-start",
                     borderRadius: 15,
                     color: "#fff",
-                    fontSize: screenSize.width * 0.035,
+                    fontSize: "clamp(18px, 4.7vw, 24px)",
                     fontWeight: "400",
                     lineHeight: "16px",
                     backgroundColor: "rgba(249,249,249,0.31)",

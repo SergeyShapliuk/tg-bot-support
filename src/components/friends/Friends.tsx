@@ -11,10 +11,11 @@ import MemoCheckIcon from "../svg/CheckIcon";
 import {FadeLoader} from "react-spinners";
 import {override} from "../home/Home";
 import FriendsList from "./friends_list/FriendsList";
+import qrCodeImage from "../../assets/qr.png";
 
 
 type ShareState = "pending" | "success" | "error";
-// type FriendsState = { customer: string, name: string, referal_count: string, amount: string };
+type FriendsState = { customer: string, name: string, referal_count: string, amount: string };
 // const onError: (error?: unknown) => void = null;
 
 
@@ -24,23 +25,23 @@ const listInvite = [
     {title: "Score 20% from buddies", subTitle: ""}
 ];
 
-// const listInviteFrens: FriendsState[] = [
-//     {customer: "1", name: "Alex", referal_count: "0", amount: "2323"},
-//     {customer: "2", name: "eflexe", referal_count: "2", amount: "2323"},
-//     {customer: "3", name: "Fexw", referal_count: "7", amount: "2323"},
-//     {customer: "4", name: "Fexw", referal_count: "7", amount: "2323"},
-//     {customer: "5", name: "Fexw", referal_count: "7", amount: "2323"},
-//     {customer: "6", name: "Fexw", referal_count: "7", amount: "2323"},
-//     {customer: "7", name: "Nlexe", referal_count: "0", amount: "2323"}
-// ];
+const listInviteFrens: FriendsState[] = [
+    {customer: "1", name: "Alex", referal_count: "0", amount: "2323"},
+    {customer: "2", name: "eflexe", referal_count: "2", amount: "2323"},
+    {customer: "3", name: "Fexw", referal_count: "7", amount: "2323"},
+    {customer: "4", name: "Fexw", referal_count: "7", amount: "2323"},
+    {customer: "5", name: "Fexw", referal_count: "7", amount: "2323"},
+    {customer: "6", name: "Fexw", referal_count: "7", amount: "2323"},
+    {customer: "7", name: "Nlexe", referal_count: "0", amount: "2323"}
+];
 
 
 function Friends() {
     const initData = initInitData();
     const hapticFeedback = initHapticFeedback();
 
-    const {data: referrals, status} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3", 50, 0);
-    const {data: userRef} = useFetchRef(initData?.user?.id.toString() ?? "test_user3");
+    // const {data: referrals, status} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3", 50, 0);
+    // const {data: userRef} = useFetchRef(initData?.user?.id.toString() ?? "test_user3");
 
 
     const [isOpen, setOpen] = useState<boolean>(false);
@@ -91,7 +92,8 @@ function Friends() {
 
     const copyClicked = async () => {
         try {
-            await navigator.clipboard.writeText(`https://t.me/supDurovBot?start=ref_${userRef?.codes[0]?.code} \n Join me on SupportDurov! Use my invite link to join us. 🚀`);
+            // await navigator.clipboard.writeText(`https://t.me/supDurovBot?start=ref_${userRef?.codes[0]?.code} \n Join me on SupportDurov! Use my invite link to join us. 🚀`);
+            await navigator.clipboard.writeText(`Join me on SupportDurov! Use my invite link to join us. 🚀`);
             setState("success");
             setOpen(false);
             hapticFeedback.notificationOccurred("success");
@@ -123,7 +125,28 @@ function Friends() {
     //     }
     // };
 
-    if (status !== "success") return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override}/>;
+    // if (status !== "success") return <FadeLoader color={"rgb(49,125,148)"} cssOverride={override}/>;
+// 1. Создайте бота через @BotFather
+// 2. Получите токен бота
+// 3. Отправляйте сообщения через API
+
+    const sendViaBot = async () => {
+        const botToken = "7546029935:AAFolPgihwYReqSbIEgGVgUpIUZiM1MWYVA";
+        const chatId = initData?.user?.id; // ID текущего пользователя
+
+        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                chat_id: 909630753,
+                text: "Это тестовый код",
+                parse_mode: "HTML"
+            })
+        });
+
+        const data = await response.json();
+        console.log("Сообщение отправлено:", data);
+    };
 
     return (
         <>
@@ -157,8 +180,9 @@ function Friends() {
                 }}>Invite a friends and earn a points.<br/> Score 20% from their referrals
                 </div>
                 <div style={{height: "100%", paddingBottom: 160}}>
-                    {referrals?.data?.length > 0 ? (
-                        <FriendsList/>
+                    {listInviteFrens.length > 0 ? (
+                        // <FriendsList/>
+                        <FriendsList referrals={listInviteFrens}/>
                     ) : (
                         <>
                             <div className={classes.subTitle}>How it works</div>
@@ -220,15 +244,17 @@ function Friends() {
                         {/*    //     excavate: true*/}
                         {/*    // }}*/}
                         {/*              style={{paddingTop: 50}}/>*/}
-                        <img src={userRef?.codes[0]?.link_code} alt="QrCode"
+                        {/*<img src={userRef?.codes[0]?.link_code} alt="QrCode"*/}
+                        <img src={qrCodeImage} alt="QrCode"
                              style={{width: "100%", height: "50%", borderRadius: "20px"}}/>
-                        <a className={classes.shareButton}
-                           href={`https://t.me/share/url?url=${userRef?.codes[0]?.link_code}`}
-                           target="_blank"
-                           rel="noopener noreferrer">Send QR Code</a>
+                        {/*<a className={classes.shareButton}*/}
+                        {/*   href={`https://t.me/share/url?url=${userRef?.codes[0]?.link_code}`}*/}
+                        {/*   target="_blank"*/}
+                        {/*   rel="noopener noreferrer">Send QR Code</a>*/}
                         {/*<button onClick={handleSendQRCode} className={classes.shareButton}>*/}
-                        {/*    Send QR Code*/}
-                        {/*</button>*/}
+                        <button onClick={sendViaBot} className={classes.shareButton}>
+                            Send QR Code
+                        </button>
                         <button onClick={copyClicked} style={{
                             height: 50,
                             color: "#fff",
