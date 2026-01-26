@@ -3,7 +3,7 @@ import { Match3Mode } from '../match3/Match3Config';
 import { sfx } from '../utils/audio';
 
 import { i18n } from '../utils/i18n';
-import { Graphics } from 'pixi.js';
+import {ContainerChild, Graphics} from "pixi.js";
 
 type ItemConfig = { mode: Match3Mode; text: string };
 
@@ -76,7 +76,9 @@ export class ModeSwitcher extends RadioGroup {
             selectedItem: 0,
         });
 
-        this.addChild(this.innerView);
+        if (this.innerView) {
+            this.addChild(this.innerView as ContainerChild);
+        }
         this.onChange.connect(() => {
             sfx.play('common/sfx-press.wav');
         });
