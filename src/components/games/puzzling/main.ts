@@ -78,9 +78,14 @@ export async function stop() {
     await sound.stopAll();
     navigation.blur();
 
-    app.destroy(true, {children: true, texture: true, baseTexture: true});
+    app.destroy(true);
     if (app.canvas.parentNode) app.canvas.parentNode.removeChild(app.canvas);
     app = null;
 
     console.log("Pixi application stopped.");
+}
+
+export function getApp(): Application {
+    if (!app) throw new Error("Pixi app not initialized");
+    return app;
 }

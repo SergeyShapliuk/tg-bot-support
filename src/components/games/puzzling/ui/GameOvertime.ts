@@ -1,9 +1,9 @@
-import { Container, Sprite, Texture } from 'pixi.js';
-import { i18n } from '../utils/i18n';
-import { Label } from './Label';
-import gsap from 'gsap';
-import { app } from '../main';
-import { sfx } from '../utils/audio';
+import {Container, Sprite, Texture} from "pixi.js";
+import {i18n} from "../utils/i18n";
+import {Label} from "./Label";
+import gsap from "gsap";
+import {getApp} from "../main";
+import {sfx} from "../utils/audio";
 
 /**
  * Shows up when the game is 5 seconds to finish, with a countdown 5 to 1,
@@ -20,14 +20,14 @@ export class GameOvertime extends Container {
     constructor() {
         super();
 
-        this.labelNum = new Label('', { fontSize: 230, fill: 0xffffff });
+        this.labelNum = new Label("", {fontSize: 230, fill: 0xffffff});
         this.labelNum.y = -8;
         this.addChild(this.labelNum);
 
         this.labelOver = new Label(i18n.overtime, {
             fontSize: 70,
             fill: 0xffffff,
-            fontWeight: 'bold',
+            fontWeight: "bold"
         });
         this.labelOver.y = -8;
         this.addChild(this.labelOver);
@@ -48,8 +48,8 @@ export class GameOvertime extends Container {
         const str = String(num);
         if (this.labelNum.text === str) return;
 
-        sfx.play('common/sfx-countdown.wav', { speed: 2, volume: 0.5 });
-        this.stroke.texture = Texture.from('num-stroke-' + str);
+        sfx.play("common/sfx-countdown.wav", {speed: 2, volume: 0.5});
+        this.stroke.texture = Texture.from("num-stroke-" + str);
         this.labelNum.text = str;
 
         gsap.killTweensOf(this.stroke);
@@ -58,16 +58,16 @@ export class GameOvertime extends Container {
         gsap.killTweensOf(this.labelNum.scale);
 
         this.labelNum.scale.set(0.5);
-        gsap.to(this.labelNum, { alpha: 1, duration: 0.4, ease: 'linear' });
-        gsap.to(this.labelNum.scale, { x: 1, y: 1, duration: 0.4, ease: 'back.out' });
+        gsap.to(this.labelNum, {alpha: 1, duration: 0.4, ease: "linear"});
+        gsap.to(this.labelNum.scale, {x: 1, y: 1, duration: 0.4, ease: "back.out"});
 
         this.stroke.alpha = 1;
         this.stroke.scale.set(1);
-        gsap.to(this.stroke, { alpha: 0, duration: 0.4, ease: 'linear' });
-        gsap.to(this.stroke.scale, { x: 4, y: 4, duration: 0.4, ease: 'sine.in' });
+        gsap.to(this.stroke, {alpha: 0, duration: 0.4, ease: "linear"});
+        gsap.to(this.stroke.scale, {x: 4, y: 4, duration: 0.4, ease: "sine.in"});
 
-        gsap.to(this.labelNum, { alpha: 0, duration: 0.2, ease: 'linear', delay: 0.8 });
-        gsap.to(this.labelNum.scale, { x: 3, y: 3, duration: 0.2, ease: 'linear', delay: 0.8 });
+        gsap.to(this.labelNum, {alpha: 0, duration: 0.2, ease: "linear", delay: 0.8});
+        gsap.to(this.labelNum.scale, {x: 3, y: 3, duration: 0.2, ease: "linear", delay: 0.8});
     }
 
     /** Play the "Finished" animation  */
@@ -76,16 +76,16 @@ export class GameOvertime extends Container {
         this.stroke.visible = false;
 
         if (!this.labelOver.visible) {
-            sfx.play('common/sfx-countdown.wav', { speed: 0.5, volume: 0.5 });
+            sfx.play("common/sfx-countdown.wav", {speed: 0.5, volume: 0.5});
             gsap.killTweensOf(this.labelOver);
             gsap.killTweensOf(this.labelOver.scale);
             this.labelOver.visible = true;
             this.labelOver.scale.set(0);
-            gsap.to(this.labelOver.scale, { x: 1, y: 1, duration: 0.3, ease: 'sine.out' });
+            gsap.to(this.labelOver.scale, {x: 1, y: 1, duration: 0.3, ease: "sine.out"});
         }
 
-        this.labelOver.rotation = Math.sin(app.ticker.lastTime * 0.01) * 0.05;
-        this.labelOver.alpha = 0.7 + Math.sin(app.ticker.lastTime * 0.02) * 0.3;
+        this.labelOver.rotation = Math.sin(getApp().ticker.lastTime * 0.01) * 0.05;
+        this.labelOver.alpha = 0.7 + Math.sin(getApp().ticker.lastTime * 0.02) * 0.3;
     }
 
     /** Update the display according to the remaining time passed - will be ignored until 5 secs left */
@@ -109,12 +109,12 @@ export class GameOvertime extends Container {
     public async show() {
         this.alpha = 0;
         this.visible = true;
-        gsap.to(this, { alpha: 0.5, duration: 0.3, ease: 'linear' });
+        gsap.to(this, {alpha: 0.5, duration: 0.3, ease: "linear"});
     }
 
     /** Hide the component  */
     public async hide() {
-        await gsap.to(this, { alpha: 0, duration: 0.4, ease: 'linear' });
+        await gsap.to(this, {alpha: 0, duration: 0.4, ease: "linear"});
         this.visible = false;
     }
 }

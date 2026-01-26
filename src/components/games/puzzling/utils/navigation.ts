@@ -1,35 +1,45 @@
-import { Container, Ticker } from 'pixi.js';
-import { areBundlesLoaded, loadBundles } from './assets';
-import { app } from '../main';
-import { pool } from './pool';
+import {Container, Ticker} from "pixi.js";
+import {areBundlesLoaded, loadBundles} from "./assets";
+import {getApp} from "../main";
+import {pool} from "./pool";
 
 /** Interface for app screens */
 interface AppScreen extends Container {
     /** Show the screen */
     show?(): Promise<void>;
+
     /** Hide the screen */
     hide?(): Promise<void>;
+
     /** Pause the screen */
     pause?(): Promise<void>;
+
     /** Resume the screen */
     resume?(): Promise<void>;
+
     /** Prepare screen, before showing */
     prepare?(): void;
+
     /** Reset screen, after hidden */
     reset?(): void;
+
     /** Update the screen, passing delta time/step */
     update?(time: Ticker): void;
+
     /** Resize the screen */
     resize?(width: number, height: number): void;
+
     /** Blur the screen */
     blur?(): void;
+
     /** Focus the screen */
     focus?(): void;
 }
 
 /** Interface for app screens constructors */
 interface AppScreenConstructor {
-    new (): AppScreen;
+    new(): AppScreen;
+
     /** List of assets bundles required by the screen */
     assetBundles?: string[];
 }
@@ -62,7 +72,7 @@ class Navigation {
     /** Add screen to the stage, link update & resize functions */
     private async addAndShowScreen(screen: AppScreen) {
         // Проверка инициализации приложения
-        if (!app) {
+        if (!getApp()) {
             console.log("Application is not initialized.");
             return;
         }
@@ -75,7 +85,7 @@ class Navigation {
 
         // Добавляем контейнер навигации на stage, если он еще не добавлен
         if (!this.container.parent) {
-            app.stage.addChild(this.container);
+            getApp().stage.addChild(this.container);
         }
 
         // Добавляем экран на контейнер
@@ -94,7 +104,7 @@ class Navigation {
 
         // Добавляем функцию обновления экрана, если доступно
         if (screen.update) {
-            app.ticker.add(screen.update, screen);
+            getApp().ticker.add(screen.update, screen);
         }
 
         // Показать новый экран
@@ -122,7 +132,7 @@ class Navigation {
 
         // Unlink update function if method is available
         if (screen.update) {
-            app.ticker.remove(screen.update, screen);
+            getApp().ticker.remove(screen.update, screen);
         }
 
         // Remove screen from its parent (usually app.stage, if not changed)

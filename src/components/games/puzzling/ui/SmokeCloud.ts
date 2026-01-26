@@ -1,5 +1,5 @@
-import { Container, Sprite, Texture } from 'pixi.js';
-import { app } from '../main';
+import {Container, Sprite, Texture} from "pixi.js";
+import {getApp} from "../main";
 
 /**
  * The cloud that shows up on the top of the screen, during loading.
@@ -93,7 +93,7 @@ export class SmokeCloud extends Container {
 
     /** Auto-update every frame */
     public renderUpdate() {
-        const delta = app.ticker.deltaTime;
+        const delta = getApp().ticker.deltaTime;
         for (const circle of this.circles) {
             circle.update(delta);
         }
@@ -110,7 +110,7 @@ class SmokeCloudCircle extends Sprite {
 
     constructor() {
         super();
-        this.texture = Texture.from('circle');
+        this.texture = Texture.from("circle");
         this.anchor.set(0.5);
     }
 

@@ -1,5 +1,5 @@
 import {Container, Sprite, Texture} from "pixi.js";
-import {app} from "../main";
+import {getApp} from "../main";
 
 /**
  * The app's animated background based on Sprite, always present on the screen
@@ -16,15 +16,15 @@ export class TiledBackground extends Container {
         this.addChild(this.sprite);
 
         // Подписка на изменение размеров окна
-        app.renderer.on("resize", this.onResize.bind(this));
+        getApp().renderer.on("resize", this.onResize.bind(this));
 
         // Инициализация размеров
-        this.resize(app.screen.width, app.screen.height);
+        this.resize(getApp().screen.width, getApp().screen.height);
     }
 
     /** Обновление размеров спрайта при изменении размера окна */
     private onResize() {
-        this.resize(app.screen.width, app.screen.height);
+        this.resize(getApp().screen.width, getApp().screen.height);
     }
 
     /** Применение эффекта cover при изменении размеров */

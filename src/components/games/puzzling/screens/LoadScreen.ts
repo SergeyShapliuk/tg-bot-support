@@ -1,15 +1,15 @@
-import { Container, Text } from 'pixi.js';
-import gsap from 'gsap';
-import { i18n } from '../utils/i18n';
-import { Cauldron } from '../ui/Cauldron';
-import { PixiLogo } from '../ui/PixiLogo';
-import { SmokeCloud } from '../ui/SmokeCloud';
-import { app } from '../main';
+import {Container, Text} from "pixi.js";
+import gsap from "gsap";
+import {i18n} from "../utils/i18n";
+import {Cauldron} from "../ui/Cauldron";
+import {PixiLogo} from "../ui/PixiLogo";
+import {SmokeCloud} from "../ui/SmokeCloud";
+import {getApp} from "../main";
 
 /** Screen shown while loading assets */
 export class LoadScreen extends Container {
     /** Assets bundles required by this screen */
-    public static assetBundles = ['preload'];
+    public static assetBundles = ["preload"];
     /** ANimated cauldron */
     private cauldron: Cauldron;
     /** The PixiJS logo */
@@ -29,9 +29,9 @@ export class LoadScreen extends Container {
             text: i18n.loadingMessage,
             style: {
                 fill: 0x5c5c5c,
-                fontFamily: 'Verdana',
-                align: 'center',
-            },
+                fontFamily: "Verdana",
+                align: "center"
+            }
         });
         this.message.anchor.set(0.5);
         this.addChild(this.message);
@@ -70,17 +70,17 @@ export class LoadScreen extends Container {
         gsap.to(this.message, {
             alpha: 0,
             duration: 0.3,
-            ease: 'linear',
-            delay: 0.5,
+            ease: "linear",
+            delay: 0.5
         });
 
         // Make the cloud cover the entire screen in a flat colour
         gsap.killTweensOf(this.cloud);
         await gsap.to(this.cloud, {
-            height: app.renderer.height,
+            height: getApp().renderer.height,
             duration: 1,
-            ease: 'quad.in',
-            delay: 0.5,
+            ease: "quad.in",
+            delay: 0.5
         });
     }
 }

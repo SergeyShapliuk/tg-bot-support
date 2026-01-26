@@ -1,13 +1,13 @@
-import { Container, Sprite, Texture } from 'pixi.js';
-import { app } from '../main';
-import gsap from 'gsap';
-import { randomRange } from '../utils/random';
+import {Container, Sprite, Texture} from "pixi.js";
+import {getApp} from "../main";
+import gsap from "gsap";
+import {randomRange} from "../utils/random";
 
 const defaultCloudOptions = {
     width: 130,
     height: 10,
     color: 0xffffff,
-    circleSize: 40,
+    circleSize: 40
 };
 
 export type CloudOptions = typeof defaultCloudOptions;
@@ -32,7 +32,7 @@ export class Cloud extends Container {
     constructor(options: Partial<CloudOptions> = {}) {
         super();
 
-        this.options = { ...defaultCloudOptions, ...options };
+        this.options = {...defaultCloudOptions, ...options};
         this.base = new Sprite(Texture.WHITE);
         this.base.tint = this.options.color;
         this.base.anchor.set(0.5);
@@ -120,7 +120,7 @@ export class Cloud extends Container {
 
     /** Auto-update every frame */
     public renderUpdate() {
-        const delta = app.ticker.deltaTime;
+        const delta = getApp().ticker.deltaTime;
         for (const circle of this.circles) {
             circle.update(delta);
         }
@@ -128,59 +128,59 @@ export class Cloud extends Container {
 
     /** Play circles showing up from afar forming the cloud */
     public async playFormAnimation(duration = 1) {
-        const ease = 'expo.out';
+        const ease = "expo.out";
 
         this.alpha = 0;
-        gsap.to(this, { alpha: 1, duration: 0.1, ease: 'linear' });
+        gsap.to(this, {alpha: 1, duration: 0.1, ease: "linear"});
 
         for (const circle of this.circles) {
             circle.pivot.x = randomRange(-200, 200);
             circle.pivot.y = randomRange(-200, 200);
             circle.scale.set(0);
             circle.alpha = 1;
-            gsap.to(circle.scale, { x: 1, y: 1, duration, ease });
-            gsap.to(circle.pivot, { x: 0, y: 0, duration, ease });
+            gsap.to(circle.scale, {x: 1, y: 1, duration, ease});
+            gsap.to(circle.pivot, {x: 0, y: 0, duration, ease});
         }
 
         this.top.pivot.y = this.top.y;
-        gsap.to(this.top.pivot, { y: 0, duration, ease });
+        gsap.to(this.top.pivot, {y: 0, duration, ease});
 
         this.bottom.pivot.y = this.bottom.y;
-        gsap.to(this.bottom.pivot, { y: 0, duration, ease });
+        gsap.to(this.bottom.pivot, {y: 0, duration, ease});
 
         const width = this.base.width;
         const height = this.base.height;
         this.base.width = 0;
         this.base.height = 0;
         this.base.alpha = 0;
-        gsap.to(this.base, { alpha: 1, duration, ease });
-        await gsap.to(this.base, { width, height, duration, ease });
+        gsap.to(this.base, {alpha: 1, duration, ease});
+        await gsap.to(this.base, {width, height, duration, ease});
     }
 
     /** Play circles moving out and fading away to dismiss the cloud */
     public async playDismissAnimation(duration = 1) {
-        const ease = 'expo.in';
+        const ease = "expo.in";
         for (const circle of this.circles) {
             gsap.to(circle.pivot, {
                 x: randomRange(-500, 500),
                 y: randomRange(-500, 500),
                 duration,
-                ease,
+                ease
             });
             gsap.to(circle.scale, {
                 x: 0.2,
                 y: 0.2,
                 duration,
-                ease,
+                ease
             });
             gsap.to(circle, {
                 alpha: 0,
                 duration,
-                ease,
+                ease
             });
         }
-        gsap.to(this.base, { alpha: 0, duration: duration * 0.5, ease });
-        await gsap.to(this.base, { duration: duration });
+        gsap.to(this.base, {alpha: 0, duration: duration * 0.5, ease});
+        await gsap.to(this.base, {duration: duration});
     }
 }
 
@@ -195,7 +195,7 @@ class CloudCircle extends Container {
 
     constructor() {
         super();
-        this.image = Sprite.from('circle');
+        this.image = Sprite.from("circle");
         this.image.anchor.set(0.5);
         this.addChild(this.image);
     }
