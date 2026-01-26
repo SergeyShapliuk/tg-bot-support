@@ -2,14 +2,12 @@ import {useState} from "react";
 import classes from "./Friends.module.css";
 import {Sheet} from "react-modal-sheet";
 import MemoCloseIcon from "../svg/CloseIcon";
-import {useFetchRef} from "../../hooks/useFetchRef";
-import {initHapticFeedback, initInitData} from "@telegram-apps/sdk-react";
-import {useFetchReferrals} from "../../hooks/useFetchReferrals";
+// import {useFetchRef} from "../../hooks/useFetchRef";
+import {initHapticFeedback} from "@telegram-apps/sdk-react";
+// import {useFetchReferrals} from "../../hooks/useFetchReferrals";
 // import MemoUsersIcon from "../svg/UsersIcon";
 import {toast} from "react-toastify";
 import MemoCheckIcon from "../svg/CheckIcon";
-import {FadeLoader} from "react-spinners";
-import {override} from "../home/Home";
 import FriendsList from "./friends_list/FriendsList";
 import qrCodeImage from "../../assets/qr.png";
 
@@ -37,7 +35,7 @@ const listInviteFrens: FriendsState[] = [
 
 
 function Friends() {
-    const initData = initInitData();
+    // const initData = initInitData();
     const hapticFeedback = initHapticFeedback();
 
     // const {data: referrals, status} = useFetchReferrals(initData?.user?.id.toString() ?? "test_user3", 50, 0);
@@ -132,7 +130,7 @@ function Friends() {
 
     const sendViaBot = async () => {
         const botToken = "7546029935:AAFolPgihwYReqSbIEgGVgUpIUZiM1MWYVA";
-        const chatId = initData?.user?.id; // ID текущего пользователя
+        // const chatId = initData?.user?.id; // ID текущего пользователя
 
         const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: "POST",

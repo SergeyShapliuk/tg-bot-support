@@ -1,11 +1,8 @@
-import {useCallback, useEffect, useState} from "react";
-import {initInitData} from "@telegram-apps/sdk-react";
+import {useCallback, useState} from "react";
+// import {initInitData} from "@telegram-apps/sdk-react";
 // import ym from "react-yandex-metrika";
 import {ThemeInitializer} from "./contexts/ThemeContext";
 import {Game} from "./components/Game";
-import {useStartGame} from "../../../hooks/useStartGame";
-import {useSetGame} from "../../../hooks/useSetGame";
-import {useStatistics} from "./features/stats";
 
 
 const StackApp = () => {
@@ -14,7 +11,7 @@ const StackApp = () => {
 
     const [isStarted, setStarted] = useState<boolean>(false);
     const [isEnded, setEnd] = useState<boolean>(false);
-    const [currentScore, setCurrentScore] = useState<number>(0);
+    // const [currentScore, setCurrentScore] = useState<number>(0);
 
     // const {mutate: startGame, data: dataStartGame} = useStartGame();
     // const {mutate: stopGame} = useSetGame();

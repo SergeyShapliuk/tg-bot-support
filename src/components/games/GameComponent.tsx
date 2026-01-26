@@ -1,7 +1,7 @@
 import {NavLink, Outlet, useLocation} from "react-router-dom";
 import classes from "./GameComponent.module.css";
 import MemoStackIcon from "../svg/StackIcon";
-import {useScreenSize} from "../../context/ScreenSizeProvider";
+// import {useScreenSize} from "../../context/ScreenSizeProvider";
 import blaster from "../../assets/blaster.png";
 
 
@@ -61,7 +61,7 @@ const GameComponent = () => {
 export default GameComponent;
 
 function NavGames() {
-    const {screenSize} = useScreenSize();
+    // const {screenSize} = useScreenSize();
     // const {badge} = useTotalPoints();
     // const activeStyle = (isActive: boolean): CSSProperties => {
     //     return isActive ? {

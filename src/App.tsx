@@ -24,7 +24,7 @@ import GameComponent from "./components/games/GameComponent";
 import {ScreenSizeProvider} from "./context/ScreenSizeProvider";
 import StackApp from "./components/games/stack/StackApp";
 import PuzzleApp from "./components/games/puzzling/PuzzelApp";
-import {setupMockTelegramEnv} from "../telegramEnvConfig";
+// import {setupMockTelegramEnv} from "../telegramEnvConfig";
 
 // import {version as appVersion} from "../package.json";
 //

@@ -12,7 +12,6 @@ import EffectComponent from "../ui/effect/EffectComponent";
 import {throttle} from "throttle-debounce";
 import classes from "./Home.module.css";
 // import ym from "react-yandex-metrika";
-import {useScreenSize} from "../../context/ScreenSizeProvider";
 
 // const totalTimeMS = 8 * 60 * 60 * 1000; // в миллисекундах
 // const totalTimeMS = 60 * 1000; // в миллисекундах
@@ -26,7 +25,7 @@ type FarmingComponentProps = {
 
 function FarmingComponent({timer}: FarmingComponentProps) {
     const initData = initInitData();
-    const {screenSize} = useScreenSize();
+    // const {screenSize} = useScreenSize();
 
     const {
         isCountdown,

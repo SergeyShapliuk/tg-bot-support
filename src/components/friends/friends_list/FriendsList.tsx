@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useState} from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {useFetchReferrals} from "../../../hooks/useFetchReferrals";
-import {initInitData} from "@telegram-apps/sdk-react";
+// import {useFetchReferrals} from "../../../hooks/useFetchReferrals";
+// import {initInitData} from "@telegram-apps/sdk-react";
 import {UserReferrals} from "../../../types/types";
 import classes from "../Friends.module.css";
 import MemoArrowIcon from "../../svg/ArrowIcon";
@@ -10,13 +10,13 @@ import {useScreenSize} from "../../../context/ScreenSizeProvider";
 
 const limit = 50;
 
-function FriendsList({referrals}) {
-    const initData = initInitData();
+function FriendsList({referrals}: { referrals: any }) {
+    // const initData = initInitData();
     const {screenSize} = useScreenSize();
 
     const [items, setItems] = useState<UserReferrals[]>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
-    const [offset, setOffset] = useState<number>(0);
+    // const [offset, setOffset] = useState<number>(0);
     const [showScrollTopButton, setShowScrollTopButton] = useState<boolean>(false);
 
     // const {data: referrals} = useFetchReferrals(initData?.user?.id.toString() ?? "899065167", limit, offset);
@@ -27,10 +27,10 @@ function FriendsList({referrals}) {
         // if (referrals) {
         if (referrals?.length) {
             setItems((prevItems) => {
-                setItems(referrals)
+                setItems(referrals);
                 // const newItems = referrals.data.filter(
                 const newItems = referrals.filter(
-                    referral => !prevItems.some(item => item.customer === referral?.customer)
+                    (referral: any) => !prevItems.some(item => item.customer === referral?.customer)
                 );
                 return [...prevItems, ...newItems];
             });
@@ -62,7 +62,7 @@ function FriendsList({referrals}) {
 
     const loadMoreData = useCallback(() => {
         if (hasMore) {
-            setOffset((prevOffset) => prevOffset + limit); // Обновляем offset для следующего запроса
+            // setOffset((prevOffset) => prevOffset + limit); // Обновляем offset для следующего запроса
         }
     }, [hasMore]);
     return (
@@ -70,7 +70,7 @@ function FriendsList({referrals}) {
             <div style={{
                 position: "relative", fontSize: "15px",
                 fontWeight: 700, textAlign: "left", zIndex: 10
-            // }}>{`${referrals?.info?.cols_ref} friends:`}
+                // }}>{`${referrals?.info?.cols_ref} friends:`}
             }}>{`${7} friends:`}
                 <div id="catalog-scroll-container" className={classes.listFriends}
                      style={{height: screenSize.height - 390}}>
