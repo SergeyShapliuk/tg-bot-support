@@ -1,24 +1,28 @@
-import React, {useEffect} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import bc from "./raw-assets/common{m}/common-atlas{tps}/bc.png";
-
+import { sound } from "@pixi/sound";
 
 const PuzzleApp = () => {
-    const location = useLocation();
     const navigate = useNavigate();
-
+    const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        let isMounted = true;
+        let appModule: typeof import("./main") | null = null;
 
         const startApp = async () => {
             try {
-                const module = await import("./main");
-                if (isMounted) {
-                    await module.init(); // Инициализация PixiJS
+                appModule = await import("./main");
+                if (containerRef.current && appModule) {
+                    await appModule.init(containerRef.current);
                     console.log("Pixi application started.");
 
-
+                    // Разблокировка AudioContext один раз
+                    const unlockAudio = () => {
+                        sound.resumeAll();
+                        window.removeEventListener("click", unlockAudio);
+                    };
+                    window.addEventListener("click", unlockAudio, { once: true });
                 }
             } catch (error) {
                 console.error("Error loading Pixi application:", error);
@@ -28,27 +32,26 @@ const PuzzleApp = () => {
         startApp();
 
         return () => {
-            isMounted = false;
-            const stopAppEf = async () => {
-                const module = await import("./main");
-                if (!isMounted) {
-                    await module.stop(); // Остановка PixiJS
-                    console.log("Pixi application stopped.");
-                }
-            };
-            stopAppEf();
+            if (appModule) {
+                appModule.stop();
+                console.log("Pixi application stopped.");
+            }
         };
-    }, [location]);
-
+    }, []);
 
     const handleBackClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        event.stopPropagation(); // Останавливаем распространение события
-        navigate(-1); // Возвращаем на предыдущую страницу
+        event.stopPropagation();
+        navigate(-1);
     };
 
     return (
-        <div onClick={event => handleBackClick(event)}>
-            <img src={bc} style={{position: "absolute", top: 15, left: 15, zIndex: 10}}/>
+        <div style={{ width: "100%", height: "100%", position: "relative" }}>
+            <div ref={containerRef} style={{ width: "100%", height: "100%" }} />
+            <img
+                src={bc}
+                onClick={handleBackClick}
+                style={{ position: "absolute", top: 15, left: 15, zIndex: 10, cursor: "pointer" }}
+            />
         </div>
     );
 };

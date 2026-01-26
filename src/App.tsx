@@ -24,12 +24,12 @@ import GameComponent from "./components/games/GameComponent";
 import {ScreenSizeProvider} from "./context/ScreenSizeProvider";
 import StackApp from "./components/games/stack/StackApp";
 import PuzzleApp from "./components/games/puzzling/PuzzelApp";
-// import {setupMockTelegramEnv} from "../telegramEnvConfig";
+import {setupMockTelegramEnv} from "../telegramEnvConfig";
 
 // import {version as appVersion} from "../package.json";
 //
 // console.log(`App version: ${appVersion}`);
-// setupMockTelegramEnv();
+setupMockTelegramEnv();
 
 function App() {
     const [miniApp] = initMiniApp();
@@ -83,22 +83,22 @@ function App() {
     );
 
 
-    useEffect(() => {
-        miniApp.ready();
-        const expand = async () => {
-            const vp = await viewport;
-            if (!vp.isExpanded) {
-                vp.expand();
-            }
-            await swipeBehavior.disableVerticalSwipe();
-        };
-        // const localVersion = localStorage.getItem("appVersion");
-        // if (localVersion && localVersion !== appVersion) {
-        //     localStorage.setItem("appVersion", appVersion);
-        //     window.location.reload();
-        // }
-        expand().then();
-    }, []);
+    // useEffect(() => {
+    //     miniApp.ready();
+    //     const expand = async () => {
+    //         const vp = await viewport;
+    //         if (!vp.isExpanded) {
+    //             vp.expand();
+    //         }
+    //         await swipeBehavior.disableVerticalSwipe();
+    //     };
+    //     // const localVersion = localStorage.getItem("appVersion");
+    //     // if (localVersion && localVersion !== appVersion) {
+    //     //     localStorage.setItem("appVersion", appVersion);
+    //     //     window.location.reload();
+    //     // }
+    //     expand().then();
+    // }, []);
 
     return (
         <>
