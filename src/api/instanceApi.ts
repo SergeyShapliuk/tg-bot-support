@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const baseURL = import.meta.env.VITE_BASE_URL;
-
+const fallbackURL = import.meta.env.VITE_SECONDARY_URL;
 // const baseURL = "http://localhost:5001/";
 
 
@@ -12,6 +12,35 @@ export const axiosInstanceApi = axios.create({
     withCredentials: false,
     timeout: 20000
 });
+
+axiosInstanceApi.interceptors.response.use(
+    response => response,
+    async error => {
+        const originalRequest = error.config;
+
+        // Проверяем, не пробовали ли уже использовать fallback
+        if (!originalRequest._retry) {
+            originalRequest._retry = true;
+
+            // Меняем baseURL на fallback
+            const originalBaseURL = originalRequest.baseURL || baseURL;
+            originalRequest.baseURL = fallbackURL;
+            originalRequest.url = originalRequest.url.replace(originalBaseURL, "");
+
+            try {
+                // Повторяем запрос с новым URL
+                return await axiosInstanceApi(originalRequest);
+            } catch (fallbackError) {
+                // Если и fallback не работает, возвращаем оригинальную ошибку
+                return Promise.reject(error);
+            }
+        }
+
+        return Promise.reject(error);
+    }
+);
+
+
 // axiosRetry(axiosInstanceAdm, {
 //   retries: 3,
 //   retryCondition: error => {
